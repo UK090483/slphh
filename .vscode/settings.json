@@ -1,0 +1,63 @@
+{
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "tailwindCSS.experimental.classRegex": ["clsx([^]*)"],
+  // "jest.autoRun": { "watch": true },
+  "jest.showCoverageOnLoad": true,
+  "jest.autoRun": { "watch": true, "onStartup": ["all-tests"] },
+
+  "files.exclude": {
+    "**/.git": false,
+    "**/.svn": false,
+    "**/.hg": false,
+    "**/CVS": false,
+    "**/.DS_Store": false,
+    "**/Thumbs.db": false,
+    "node_modules": false,
+    ".vscode": false,
+    ".eslintrc.json": false,
+    "next-env.d.ts": false,
+    ".gitignore": false,
+    "next.config.js": false,
+    "package.json": false,
+    "postcss.config.js": false,
+    "README.md": false,
+    "tsconfig.json": false,
+    "yarn.lock": false,
+    ".next": false,
+    "package-lock.json": false,
+    "tsconfig.tsbuildinfo": false,
+    "studio/node_modules": false,
+    "studio/package.json": false,
+    "studio/README.md": false,
+    "studio/tsconfig.json": false,
+    "studio/config/.checksums": false,
+    "studio/static": false,
+    ".env.local": false,
+    "coverage": false,
+    "__mocks__": false,
+    "tests": false,
+    "jest.config.js": false,
+    "setupTests.js": false,
+    "tailwind.config.js": false,
+    "styles": false,
+    "cypress.json": false
+  },
+
+  "workspace.isHidden": false,
+  "cSpell.words": [
+    "clsx",
+    "Dansk",
+    "Deutsch",
+    "Grotesk",
+    "Gtag",
+    "postbuild",
+    "serializers",
+    "tailwindcss",
+    "Textfit"
+  ],
+  "cSpell.ignoreWords": ["PERSPEKTIV", "fillmax", "lqip", "testid"],
+  "explorerExclude.backup": null
+}

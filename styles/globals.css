@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "grotesk";
+  src: url("/fonts/PPRightGrotesk-CompactBlack.woff2") format("woff2"),
+    url("/fonts/PPRightGrotesk-CompactBlack.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.tooltip {
+  background-color: white !important;
+  opacity: 1 !important;
+  border: black solid 2px !important;
+  padding: 2rem !important;
+  width: 280px !important;
+  color: black !important;
+}
+
+.hero {
+  height: calc(100vh - 60px);
+}

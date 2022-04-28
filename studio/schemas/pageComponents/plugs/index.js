@@ -5,8 +5,10 @@ import ImageGallery from "./ImageGallery/index";
 import PlayerPlug from "./PlayerPlug";
 import AutoGallery from "./AutoGallery";
 import SeoText from "./SeoText";
+import Trust from "./Trust";
 
 const Plugs = [
+  ...Trust,
   Button,
   Spacer,
   ImagPlug,

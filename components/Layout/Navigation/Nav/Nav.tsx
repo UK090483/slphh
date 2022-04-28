@@ -8,6 +8,7 @@ import { LangSwitch } from "@lib/LangSwitcherService/LangSwitch";
 import { HeaderNavigation } from "@lib/Navigation";
 import NavigationMobile from "@lib/Navigation/NavigationMobile";
 import SanityImage from "@lib/SanityImage";
+import clsx from "clsx";
 import React from "react";
 
 const Nav: React.FC = () => {
@@ -16,12 +17,17 @@ const Nav: React.FC = () => {
   const mainLogo = data?.footer?.logos && data.footer.logos[0];
   const navItems = data?.navigation;
   const langSwitchData = data?.langSwitchData;
-  const scrolled = useScrollThreshold(800);
+  const scrolled = useScrollThreshold(10);
 
   return (
     <>
       <nav>
-        <div className="flex items-center justify-between w-full  border-b-2 border-black h-14 ">
+        <div
+          className={clsx(
+            "flex items-center justify-between w-full transition-shadow px-5 py-5 ",
+            { "shadow-lg ": scrolled }
+          )}
+        >
           <Link aria-label="Home" href="/">
             <Logo />
           </Link>
@@ -45,24 +51,6 @@ const Nav: React.FC = () => {
             <Svg className="w-[30px] h-[30px]" icon="hamburger" />
           </button>
         </div>
-
-        {mainLogo && (
-          <div
-            className={`
-            transition-transform
-            ${
-              !scrolled ? "" : "translate-x-full"
-            } absolute top-14 -translate-y-0.5 right-0 border-t-0 border-r-0 bg-white  border-2 border-black p-2`}
-          >
-            <div className="relative w-[200px] h-11 lg:w-[360px] lg:h-16">
-              <SanityImage
-                image={mainLogo.image}
-                layout={"fill"}
-                objectFit="contain"
-              />
-            </div>
-          </div>
-        )}
       </nav>
       <NavigationMobile
         items={navItems}

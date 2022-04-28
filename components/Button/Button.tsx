@@ -12,7 +12,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   const { children, onClick = () => {}, href, external, tabIndex = 0 } = props;
 
   const className =
-    "inline-block px-8 md:px-12 py-1 md:py-2 rounded-full text-base-mobile md:text-base border-2 border-black  whitespace-nowrap hover:text-white hover:bg-black";
+    "inline-block px-8 md:px-12 py-1 md:py-2 rounded-full text-base-mobile md:text-base border-2 border-primary hover:border-black  whitespace-nowrap text-white bg-primary hover:bg-black";
 
   if (href) {
     return (

@@ -85,5 +85,6 @@ export default {
     { type: "imagePlug" },
     { type: "eventPlug" },
     { type: "seoText" },
+    { type: "trust" },
   ],
 };

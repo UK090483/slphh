@@ -37,6 +37,13 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "footerNav",
+      type: "array",
+      title: "Footer Navigation",
+      of: [{ type: "navigationItem" }],
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: "socialMedia",
       type: "array",
       title: "SocialMedia",

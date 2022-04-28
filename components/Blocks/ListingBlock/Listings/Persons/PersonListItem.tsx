@@ -27,13 +27,13 @@ const PersonListItem: React.FunctionComponent<IPersonListItemProps> = (
   const readMoreText = locale ? readMore[locale] : "mehr Erfahren";
 
   return (
-    <li className="flex flex-col items-center justify-center sm:min-w-[250px] w-1/2   sm:w-1/4 py-8 self-start">
+    <li className="flex flex-col items-center justify-center sm:min-w-[250px] w-full   sm:w-1/4 py-8 self-start ">
       <div className="tooltip hidden" />
       <div
-        className={`relative h-24  sm:h-32  overflow-hidden ${
+        className={`relative h-60  overflow-hidden ${
           isImage
             ? "w-full border-[10px] border-transparent "
-            : "rounded-full w-24 sm:w-32"
+            : "rounded-full w-60"
         } `}
       >
         <SanityImage
@@ -46,10 +46,10 @@ const PersonListItem: React.FunctionComponent<IPersonListItemProps> = (
       <div className="pt-3 h-12 ">
         <Typo
           bold
-          variant="h4"
+          variant="h5"
           as="h3"
           space={false}
-          className="uppercase text-center"
+          className="uppercase text-center text-primary"
         >
           {name}
         </Typo>
@@ -57,7 +57,6 @@ const PersonListItem: React.FunctionComponent<IPersonListItemProps> = (
       <Typo className="whitespace-pre-line text-center w-60">{position}</Typo>
       {description && (
         <>
-          {" "}
           <button
             className="underline text-sm sm:text-base"
             data-tip

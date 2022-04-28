@@ -44,16 +44,23 @@ export default withLocalization({
           { title: "Narrow", value: "s" },
         ],
       },
-      initialValue: "normal",
     },
-    // {
-    //   title: "Background Color",
-    //   name: "bgColor",
-    //   type: "string",
-    //   options: {
-    //     list: [...colorList()],
-    //   },
-    // },
+    {
+      title: "Background Color",
+      name: "bgColor",
+      type: "string",
+      options: {
+        list: [...colorList()],
+      },
+    },
+    {
+      title: "Decoration",
+      name: "decoration",
+      type: "string",
+      options: {
+        list: ["line"],
+      },
+    },
     {
       title: "Top Space",
       name: "topSpace",
@@ -72,24 +79,24 @@ export default withLocalization({
         list: [...sizesList()],
       },
     },
-    // {
-    //   title: "Image",
-    //   name: "image",
-    //   type: "defaultImage",
-    //   fieldset: "Image",
-    // },
-    // {
-    //   title: "Image Position",
-    //   name: "imagePosition",
-    //   type: "string",
-    //   options: {
-    //     list: [
-    //       { title: "Left", value: "l" },
-    //       { title: "Right", value: "r" },
-    //     ],
-    //   },
-    //   fieldset: "Image",
-    // },
+    {
+      title: "Image",
+      name: "image",
+      type: "defaultImage",
+      fieldset: "Image",
+    },
+    {
+      title: "Image Position",
+      name: "imagePosition",
+      type: "string",
+      options: {
+        list: [
+          { title: "Left", value: "l" },
+          { title: "Right", value: "r" },
+        ],
+      },
+      fieldset: "Image",
+    },
   ],
   preview: {
     select: {

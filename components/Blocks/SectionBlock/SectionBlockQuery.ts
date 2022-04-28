@@ -3,6 +3,8 @@ import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 
 const sectionBlockQuery = (locale: string = "") => `
 _type == "section" => {
+  decoration,
+  bgColor,
   _key,
   _type,
   title,
@@ -16,6 +18,8 @@ _type == "section" => {
 `;
 
 export interface SectionResult {
+  decoration?: "line";
+  bgColor?: "white" | "grey" | "black" | "primary" | "secondary" | undefined;
   title?: string;
   topSpace?: "s" | "m" | "l" | "xl" | "xxl";
   bottomSpace?: "s" | "m" | "l" | "xl" | "xxl";

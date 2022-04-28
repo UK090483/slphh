@@ -18,7 +18,7 @@ const PersonList: React.FunctionComponent<IPersonListProps> = (props) => {
   }, []);
 
   return (
-    <Section width="l" className=" overflow-hidden pb-12 ">
+    <Section width="l" bg="secondary" className=" overflow-hidden pb-12 ">
       {title && (
         <Typo
           variant="h3"

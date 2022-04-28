@@ -46,10 +46,10 @@ module.exports = {
           DEFAULT: "#ebebeb",
           dark: "#009eeb",
         },
-        black: "#000000",
+        black: "#1D355E",
         white: "#ffffff",
-        primary: "#F3BD06",
-        secondary: "#D22D30",
+        primary: "#DB4373",
+        secondary: "#A4CCCC",
         red: "#D22D30",
       },
       animation: {

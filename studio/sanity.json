@@ -1,11 +1,11 @@
 {
   "root": true,
-  "project": {
-    "name": "perspectivRegion"
-  },
   "api": {
-    "projectId": "d85o021b",
+    "projectId": "m3d5eg0p",
     "dataset": "production"
+  },
+  "project": {
+    "name": "slphh"
   },
   "plugins": [
     "@sanity/base",

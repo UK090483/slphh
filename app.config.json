@@ -1,9 +1,8 @@
 {
   "hostname": "https://www.perspektivregion.eu",
   "locales": {
-    "de": { "title": "Deutsch", "isDefault": true, "flag": "🇩🇪" },
-    "da": { "title": "Dänisch", "flag": "🇩🇰" },
-    "en": { "title": "Englisch", "flag": "🇺🇸" }
+    "en": { "title": "Englisch", "isDefault": true, "flag": "🇺🇸" },
+    "de": { "title": "Deutsch", "flag": "🇩🇪" }
   },
   "colors": {
     "primary": "#000000",

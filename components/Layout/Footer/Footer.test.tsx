@@ -13,11 +13,11 @@ describe("Footer", () => {
     const promise = Promise.resolve();
     customRender(<Footer />, {
       data: {
-        footer: { imprintPage: { href: "testHref", label: "testLabel" } },
+        footer: {},
       },
     });
     expect(screen.getByTestId("footer")).toBeInTheDocument();
-    expect(screen.getByText("testLabel")).toBeInTheDocument();
+
     expect(screen.getByText("testLabel")).toHaveAttribute("href", "testHref");
     await act(() => promise);
   });

@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "HamburgSans-Bold";
+  font-family: "HamburgSans";
   src: url("/fonts/HamburgSans-Bold.woff2") format("woff2");
   font-style: normal;
   font-weight: 600;
   font-display: swap;
 }
 @font-face {
-  font-family: "HamburgSans-Regular";
+  font-family: "HamburgSans";
   src: url("/fonts/HamburgSans-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;

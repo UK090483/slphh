@@ -60,14 +60,12 @@ const Typo: React.FC<TypographyProps> = ({
           "font-hand": hand,
           "text-sm": variant === "body-s",
           "text-base-mobile md:text-base ": variant === "body",
-          "text-lg font-header uppercase": ["body-l", "h6"].includes(
-            variant as string
-          ),
-          "text-xl font-header uppercase": variant === "h5",
-          "text-2xl-mobile md:text-2xl font-header uppercase": variant === "h4",
-          "text-3xl-mobile md:text-3xl font-header uppercase": variant === "h3",
-          "text-4xl-mobile md:text-4xl font-header uppercase": variant === "h2",
-          "text-5xl-mobile md:text-5xl font-header uppercase": variant === "h1",
+          "text-lg font-header ": ["body-l", "h6"].includes(variant as string),
+          "text-xl font-header ": variant === "h5",
+          "text-2xl-mobile md:text-2xl font-header ": variant === "h4",
+          "text-3xl-mobile md:text-3xl font-header ": variant === "h3",
+          "text-4xl-mobile md:text-4xl font-header ": variant === "h2",
+          "text-5xl-mobile md:text-5xl font-header ": variant === "h1",
           "font-black tracking-wide": isBold,
         }) + ` ${className}`
       }

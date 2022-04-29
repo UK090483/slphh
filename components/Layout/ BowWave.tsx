@@ -15,7 +15,8 @@ const BowWave: React.FunctionComponent<IBowWaveProps> = (props) => {
         viewBox="0 0 109.1 31.1"
       >
         <path
-          style={{ fill: "rgb(225,0,25)" }}
+          className=" fill-primary "
+          // style={{ fill: "rgb(225,0,25)" }}
           d="M79.3,31c0.8,0-2.1,0,2.3,0c4,0,6-1.5,6.6-2c1.7-1.4,3.3-3.7,3.7-4.2C93,23.2,109.1,0,109.1,0H75.9v0H0v30.9 c0,0,32.8,0.3,76.1,0.1L79.3,31z"
         />
       </svg>

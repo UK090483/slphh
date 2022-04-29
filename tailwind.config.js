@@ -18,7 +18,7 @@ module.exports = {
     },
     fontSize: {
       sm: ["12px", "1.4em"],
-      base: ["18px", "1.5em"],
+      base: ["20px", "1.5em"],
       "base-mobile": ["16px", "1.5625em"],
       lg: ["20px", "1.4em"],
       xl: ["20px", "1.4em"],
@@ -26,8 +26,8 @@ module.exports = {
       "2xl-mobile": ["16px", "1.1em"],
       "3xl": ["30px", "1.1em"],
       "3xl-mobile": ["22px", "1.1em"],
-      "4xl": ["55px", "1.1em"],
-      "4xl-mobile": ["35px", "1.1em"],
+      "4xl": ["38px", "1.1em"],
+      "4xl-mobile": ["30px", "1.1em"],
       "5xl": ["48px", "1.1em"],
       "5xl-mobile": ["38px", "1.1em"],
     },
@@ -37,8 +37,8 @@ module.exports = {
         menu: "1166px",
       },
       height: {
-        hero: "calc(100vh - 128px)",
-        "hero-mobile": "calc(100vh - 120px)",
+        hero: "calc(80vh - 128px)",
+        "hero-mobile": "calc(80vh - 128px)",
       },
       colors: {
         grey: {

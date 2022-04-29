@@ -32,6 +32,7 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
         width={type || autoType}
         {...(title && { id: title })}
         className={clsx({
+          "border-l-[40px] lg:border-l-0 border-transparent  ": decoration,
           "pt-5 md:pt-10": topSpace === "s",
           "pt-9 md:pt-20": topSpace === "m" || topSpace === null,
           "pt-12 md:pt-32": topSpace === "l",
@@ -49,7 +50,7 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
           decoration && (
             <div
               className={clsx(
-                "absolute w-[calc(80vw-744px)] max-w-[200px] min-w-[10px] bg-primary h-20 top-0 left-0 z-0",
+                "absolute w-[calc(50%-300px)] md:w-[calc(50%-382px)] lg:w-[calc(50%-400px)] min-w-[40px] max-w-[200px]  bg-primary h-20 top-0 left-0 z-0",
                 {
                   "top-5 md:top-10": topSpace === "s",
                   "top-9 md:top-20": topSpace === "m" || topSpace === null,

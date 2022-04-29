@@ -28,7 +28,12 @@ const ListingBlock: React.FC<ListingBlockProps> = (props) => {
   } = props;
 
   if (contentType === "testimonials") {
-    return <TestimonialList items={testimonialItems || []} />;
+    return (
+      <TestimonialList
+        title={showTitle ? title : null}
+        items={testimonialItems || []}
+      />
+    );
   }
 
   if (contentType === "persons") {

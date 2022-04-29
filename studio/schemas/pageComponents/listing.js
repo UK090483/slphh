@@ -111,7 +111,8 @@ export default withLocalization({
           parent?.type === "custom" ||
           parent?.contentType === "persons" ||
           parent?.contentType === "event" ||
-          parent?.contentType === "documentations"
+          parent?.contentType === "documentations" ||
+          parent?.contentType === "testimonials"
         ),
     },
   ],

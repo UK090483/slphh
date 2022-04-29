@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useAppContext } from "@components/AppContext";
+import BowWave from "@components/Layout/ BowWave";
 import { Logo } from "@components/Layout/Logo";
 import Link from "@components/Link";
 import Svg from "@components/Svg";
@@ -17,19 +18,20 @@ const Nav: React.FC = () => {
   const mainLogo = data?.footer?.logos && data.footer.logos[0];
   const navItems = data?.navigation;
   const langSwitchData = data?.langSwitchData;
-  const scrolled = useScrollThreshold(10);
+
+  const scrolled = useScrollThreshold(50);
 
   return (
     <>
       <nav>
         <div
           className={clsx(
-            "flex items-center justify-between w-full transition-shadow px-5 py-5 ",
-            { "shadow-lg ": scrolled }
+            "flex items-center justify-between w-full transition-shadow duration-700 px-5",
+            { "shadow-lg ": scrolled, "shadow-none": !scrolled }
           )}
         >
           <Link aria-label="Home" href="/">
-            <Logo />
+            <Logo small={scrolled} />
           </Link>
 
           <HeaderNavigation
@@ -66,6 +68,17 @@ const Nav: React.FC = () => {
           }}
         />
       </NavigationMobile>
+
+      <div
+        className={clsx(
+          "fixed bottom-0 w-screen transition-transform duration-700 ",
+          {
+            "translate-y-[72px] ": scrolled,
+          }
+        )}
+      >
+        <BowWave />
+      </div>
     </>
   );
 };

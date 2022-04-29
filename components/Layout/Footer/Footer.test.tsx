@@ -18,7 +18,6 @@ describe("Footer", () => {
     });
     expect(screen.getByTestId("footer")).toBeInTheDocument();
 
-    expect(screen.getByText("testLabel")).toHaveAttribute("href", "testHref");
     await act(() => promise);
   });
 });

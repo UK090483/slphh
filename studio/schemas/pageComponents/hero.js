@@ -17,60 +17,14 @@ export default withLocalization({
       localize: true,
     },
     {
-      title: "Text",
-      name: "text",
-      type: "array",
+      title: "Header",
+      name: "header",
+      type: "text",
       localize: true,
-      of: [
-        {
-          type: "block",
-          title: "Block",
-          styles: [{ title: "Normal", value: "normal" }],
-          lists: [],
-          marks: {
-            decorators: [
-              {
-                title: "Brake word",
-                value: "brake",
-                blockEditor: {
-                  icon: () => <div>----</div>,
-                  render: ({ children }) => (
-                    <span style={{ backgroundColor: "lightcyan" }}>
-                      -{children}
-                    </span>
-                  ),
-                },
-              },
-              {
-                title: "Unbreakable",
-                value: "unbreakable",
-                blockEditor: {
-                  icon: () => <div>----</div>,
-                  render: ({ children }) => (
-                    <span style={{ backgroundColor: "lightblue" }}>
-                      {children}
-                    </span>
-                  ),
-                },
-              },
-            ],
-            annotations: [
-              {
-                name: "image",
-                type: "image",
-                title: "Image",
-                blockEditor: {
-                  render: (props) => {
-                    console.log(props);
-
-                    return <span>--Image--</span>;
-                  },
-                },
-              },
-            ],
-          },
-        },
-      ],
+    },
+    {
+      name: "image",
+      type: "defaultImage",
     },
   ],
   preview: {

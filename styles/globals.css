@@ -3,9 +3,15 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "grotesk";
-  src: url("/fonts/PPRightGrotesk-CompactBlack.woff2") format("woff2"),
-    url("/fonts/PPRightGrotesk-CompactBlack.woff") format("woff");
+  font-family: "HamburgSans-Bold";
+  src: url("/fonts/HamburgSans-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "HamburgSans-Regular";
+  src: url("/fonts/HamburgSans-Regular.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -21,5 +27,5 @@
 }
 
 .hero {
-  height: calc(100vh - 60px);
+  height: calc(100vh - 128px);
 }

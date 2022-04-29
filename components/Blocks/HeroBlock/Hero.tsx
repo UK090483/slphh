@@ -1,79 +1,30 @@
-/* eslint-disable @next/next/no-img-element */
-
-import useSanityImage from "@lib/SanityImage/useSanityImage";
-import BlockContent, { Serializers } from "@sanity/block-content-to-react";
+import Typo from "@components/Typography/Typography";
+import SanityImage from "@lib/SanityImage";
 import React from "react";
-import { Textfit } from "react-textfit";
+
 import { HeroBlogResult } from "./HeroBlockQuery";
 
 interface HeroProps extends HeroBlogResult {}
 
-//@ts-ignore
-const InlineImage = (props) => {
-  //@ts-ignore
-  const { src } = useSanityImage(props.mark);
-
-  return (
-    <span style={{ height: "0.705em" }} className="relative inline-block ">
-      {src && (
-        <img
-          style={{ height: "0.705em" }}
-          height="0.8em"
-          src={src + "&w=200"}
-          alt=""
-        />
-      )}
-    </span>
-  );
-};
-//@ts-ignore
-const BlockRenderer = (props) => {
-  return React.createElement("span", { className: "block" }, props.children);
-};
-
-const serializer: Serializers = {
-  types: { block: BlockRenderer },
-  marks: {
-    image: InlineImage,
-    brake: ({ children }) => {
-      return <>&shy;{children}</>;
-    },
-    unbreakable: ({ children }) => {
-      return <span className="whitespace-nowrap">{children}</span>;
-    },
-  },
-  container: (props: any) => {
-    return <h1>{props?.children}</h1>;
-  },
-};
-
 const Hero: React.FC<HeroProps> = (props) => {
-  const { text } = props;
-  const [ready, setReady] = React.useState(false);
+  const { header, image } = props;
 
   return (
     <div
       data-testid="heroBlock"
-      className="flex flex-col h-hero-mobile  sm:h-hero pt-11 lg:pt-16"
+      className=" grid grid-cols-5 grid-rows-2  md:grid-rows-none h-hero-mobile sm:h-hero px-2 overflow-clip"
     >
-      {text && (
-        <Textfit
-          max={200}
-          className={`w-full h-full  px-5 container mx-auto font-header  flex items-center leading-[1.2em] transition-opacity duration-1000 overflow-hidden  ${
-            ready ? "opacity-100" : "opacity-0"
-          }`}
-          mode="multi"
-          onReady={() => {
-            !ready && setReady(true);
-          }}
-        >
-          <BlockContent
-            renderContainerOnSingleChild={true}
-            blocks={text}
-            serializers={serializer}
-          />
-        </Textfit>
-      )}
+      <div className="relative w-full  col-start-1 col-span-full md:col-start-2  row-span-1 row-start-1 z-0">
+        <SanityImage
+          image={image}
+          layout="fill"
+          objectFit="cover"
+          objectPosition={"left"}
+        />
+      </div>
+      <div className=" px-4 flex  justify-center items-center col-start-1 md:col-start-1 col-span-full md:col-span-3 z-10  row-span-1 row-start-2 md:row-start-1 ">
+        <Typo variant={"h1"}>{header}</Typo>
+      </div>
     </div>
   );
 };

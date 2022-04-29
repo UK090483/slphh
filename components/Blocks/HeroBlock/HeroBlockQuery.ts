@@ -1,25 +1,20 @@
+import { richTextQuery } from "@components/RichText/richTextQuery";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
-
-const marksQuery = `
-markDefs[]{
-  ...,
-  _type == "image" => {
-    ${imageMeta}
-  }
-}`;
 
 const heroBlockQuery = (locale: string = "") => `
 _type == "hero" => {
   _type,
   _key,
-  'text': (coalesce(text_${locale},text))[]{...,${marksQuery}}
+  'header':(coalesce(header_${locale},header)),
+  'image':image{${imageMeta}},
 }
 `;
 
 export interface HeroBlogResult {
   _key: string;
   title?: string | null;
-  text?: any;
+  header?: string | null;
+  image?: ImageMetaResult;
 }
 
 export default heroBlockQuery;

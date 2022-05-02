@@ -57,7 +57,8 @@ module.exports = {
         fadeInFast: "slideDown 0.25s ease-in forwards",
         fadeInMenuItemFast: "menuFade 0.25s ease-in forwards",
         slideDown: "slideDown 0.25s ease-in forwards",
-        slideInRight: "slideInRight 0.5s ease-in forwards",
+        slideInRight: "slideInRight 0.5s ease-out forwards",
+        slideInLeft: "slideInLeft 0.5s ease-out forwards",
         marquee: "marquee 25s linear infinite",
       },
       keyframes: {
@@ -92,6 +93,10 @@ module.exports = {
         },
         slideInRight: {
           "0%": { transform: "translateX(100%)", opacity: 0 },
+          "100%": { transform: "translateY(0)", opacity: 1 },
+        },
+        slideInLeft: {
+          "0%": { transform: "translateX(-100%)", opacity: 0 },
           "100%": { transform: "translateY(0)", opacity: 1 },
         },
       },

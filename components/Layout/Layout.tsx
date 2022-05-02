@@ -25,7 +25,7 @@ export const Layout: React.FC = (props) => {
       <Header>
         <Nav />
       </Header>
-      <main id="main-content" className="min-h-screen mt-[128px] select-none">
+      <main id="main-content" className="min-h-screen mt-[128px] select-none ">
         {children}
       </main>
       <Footer />

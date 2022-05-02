@@ -9,6 +9,7 @@ const config = {
   reactStrictMode: true,
   i18n: {
     locales: Object.keys(appConfig.locales),
+    localeDetection: false,
     defaultLocale: Object.entries(appConfig.locales).reduce(
       (acc, [key, lang]) => (lang.isDefault ? key : acc),
       null
@@ -25,16 +26,6 @@ const config = {
     domains: ["picsum.photos", "cdn.sanity.io"],
   },
 
-  async redirects() {
-    return [
-      {
-        source: "/rewrite",
-        destination:
-          "https://nextjs.org/docs/api-reference/next.config.js/cdn-support-with-asset-prefix",
-        permanent: true,
-      },
-    ];
-  },
   webpack(config, options) {
     const { dev, isServer } = options;
 

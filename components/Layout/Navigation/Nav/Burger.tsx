@@ -1,34 +1,36 @@
+import clsx from "clsx";
 import * as React from "react";
 
-interface IBurgerProps {}
+interface IBurgerProps {
+  open: boolean;
+}
 
 const Burger: React.FunctionComponent<IBurgerProps> = (props) => {
+  const { open } = props;
+  const baseClass = clsx(
+    "block absolute  h-0.5 w-6 bg-current duration-500   transition-all"
+  );
+
   return (
-    <div className="plate plate4 w-[30px] h-[30px]">
-      <svg
-        className="burger "
-        version="1.1"
-        height="100"
-        width="100"
-        viewBox="0 0 100 100"
-      >
-        <path className="line line1" d="M 50,35 H 30" />
-        <path className="line line2" d="M 50,35 H 70" />
-        <path className="line line3" d="M 50,50 H 30" />
-        <path className="line line4" d="M 50,50 H 70" />
-        <path className="line line5" d="M 50,65 H 30" />
-        <path className="line line6" d="M 50,65 H 70" />
-      </svg>
-      <svg
-        className="x"
-        version="1.1"
-        height="100"
-        width="100"
-        viewBox="0 0 100 100"
-      >
-        <path className="line" d="M 34,32 L 66,68" />
-        <path className="line" d="M 66,32 L 34,68" />
-      </svg>
+    <div className="absolute w-6 -translate-x-1/2  left-1/2 -translate-y-1/2 top-1/2 ">
+      <span
+        aria-hidden={true}
+        className={clsx(baseClass, {
+          "rotate-[135deg]": open,
+          " -translate-y-1.5": !open,
+        })}
+      />
+      <span
+        aria-hidden={true}
+        className={clsx(baseClass, { "opacity-0 ": open })}
+      />
+      <span
+        aria-hidden={true}
+        className={clsx(baseClass, {
+          "-rotate-[135deg] ": open,
+          " translate-y-1.5": !open,
+        })}
+      />
     </div>
   );
 };

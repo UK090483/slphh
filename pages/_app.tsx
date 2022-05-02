@@ -10,8 +10,10 @@ import { PageProps } from "@lib/SanityPageBuilder/types";
 import usePreviewSubscription from "@lib/SanityPageBuilder/lib/preview/previewSubscription";
 import { AppContextProvider } from "@components/AppContext";
 // import { AnalyticsContextProvider } from "@lib/Analytics/AnalyticsContext";
+// @ts-ignore
 
 import AppConfig from "app.config.json";
+import PageTransition from "@lib/PageTransition/PageTransition";
 
 interface AppPropsWithStaticProps {
   pageProps: PageProps<PageResult>;
@@ -33,16 +35,21 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   const pageProps = { ..._pageProps, data: aData } as PageProps<PageResult>;
 
   return (
-    // <AnalyticsContextProvider id="G-YVH817HM4Z">
-    <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-      <PreviewIndicator show={!!preview} />
-      {/* <Cookie /> */}
-      <Seo />
-    </AppContextProvider>
-    // </AnalyticsContextProvider>
+    <>
+      {/*     
+ <AnalyticsContextProvider id="G-YVH817HM4Z"> */}
+      <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
+        <Layout>
+          <Component {...pageProps} key={pageProps?.data?._id} />
+        </Layout>
+
+        <PreviewIndicator show={!!preview} />
+        {/* <Cookie /> */}
+        <Seo />
+      </AppContextProvider>
+
+      {/* </AnalyticsContextProvider> */}
+    </>
   );
 }
 

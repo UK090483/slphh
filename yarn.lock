@@ -5772,7 +5772,7 @@ next-auth@^4.0.2:
 
 next-page-transitions@^1.0.0-beta.2:
   version "1.0.0-beta.2"
-  resolved "https://registry.npmjs.org/next-page-transitions/-/next-page-transitions-1.0.0-beta.2.tgz"
+  resolved "https://registry.yarnpkg.com/next-page-transitions/-/next-page-transitions-1.0.0-beta.2.tgz#7dc305ba956b5e5e4d80ecd58ccaf01bc65fddc0"
   integrity sha512-j5BIwytcZV3N90brzHRsjOw7AOMZ4JvgK8aeSjanFIEt+tLYoF1LI/LuxlS+B2EQOXSBgxHbxBbUmPZPQEL4Xw==
   dependencies:
     prop-types "^15.6.1"

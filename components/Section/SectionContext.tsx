@@ -1,13 +1,14 @@
 import React from "react";
+import { SectionProps } from "./Section";
 
 type SectionContextValues = {
   bgColor?: string;
   width?: string;
 };
 
-const SectionContext = React.createContext<SectionContextValues>({});
+const SectionContext = React.createContext<SectionProps>({});
 
-export const SectionContextProvider: React.FC<SectionContextValues> = ({
+export const SectionContextProvider: React.FC<SectionProps> = ({
   children,
   ...rest
 }) => {

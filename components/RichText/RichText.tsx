@@ -45,6 +45,7 @@ const RichText: React.FC<RichTextPros> = (props: any) => {
         playerPlug: PlayerPlug,
         autoGalleryPlug: AutoGalleryPlug,
         trust: Trust,
+        embed: EmbedHTML,
       }}
       marks={{ link }}
       blockRenderer={(props) => {

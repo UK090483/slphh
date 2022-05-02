@@ -1,8 +1,9 @@
 import clsx from "clsx";
 import React from "react";
+import Decoration from "./Decoration";
 import { SectionContextProvider } from "./SectionContext";
 
-interface SectionProps {
+export interface SectionProps {
   width?: "full" | "m" | "l" | "s" | "responsive";
   bg?: "white" | "grey" | "black" | "primary" | "secondary";
   className?: string;
@@ -10,13 +11,17 @@ interface SectionProps {
   noPadding?: boolean;
   as?: "section" | "div" | "ul";
   asInner?: "div" | "ul";
+  decoration?: "line";
   style?: React.CSSProperties;
-  beforeContent?: React.ReactNode;
+  topSpace?: "s" | "m" | "l" | "xl" | "xxl";
+  bottomSpace?: "s" | "m" | "l" | "xl" | "xxl";
   "data-testid"?: string;
 }
 
 export const Section: React.FC<SectionProps> = (props) => {
   const {
+    topSpace,
+    bottomSpace,
     children,
     width = "s",
     className,
@@ -26,31 +31,45 @@ export const Section: React.FC<SectionProps> = (props) => {
     as: Component = "section",
     asInner: InnerComponent = "div",
     style,
-    beforeContent,
   } = props;
 
   return (
-    <SectionContextProvider bgColor={bg} width={width}>
+    <SectionContextProvider {...props}>
       <Component
         data-testid={props["data-testid"] || "section"}
         id={id}
         className={clsx(`w-full relative`, {
+          "bg-black text-white": bg === "black",
           "bg-white": bg === "white",
-          "bg-primary": bg === "primary",
+          "bg-primary text-white": bg === "primary",
           "bg-secondary": bg === "secondary",
           "bg-gray-300": bg === "grey",
         })}
       >
-        {beforeContent}
-
+        <Decoration />
         <InnerComponent
           style={style}
-          className={clsx("z-10", "mx-auto", "container", className, {
-            "md:max-w-screen-md ": width === "s",
-            "lg:max-w-screen-lg ": width === "m",
-            "xl:max-w-screen-xl ": width === "l",
-            "px-3": width !== "full" && !noPadding,
-          })}
+          className={clsx(
+            "z-10 mx-auto container ",
+            {
+              "md:max-w-screen-md ": width === "s",
+              "lg:max-w-screen-lg ": width === "m",
+              "xl:max-w-screen-xl ": width === "l",
+              "px-5": width !== "full" && !noPadding,
+              "pt-5 md:pt-10": topSpace === "s",
+              "pt-9 md:pt-20": topSpace === "m" || topSpace === null,
+              "pt-12 md:pt-32": topSpace === "l",
+              "pt-16 md:pt-44": topSpace === "xl",
+              "pt-24 md:pt-60": topSpace === "xxl",
+              "pb-5 md:pb-10": bottomSpace === "s",
+              "pb-9 md:pb-20": bottomSpace === "m",
+              "pb-16 md:pb-32": bottomSpace === "l",
+              "pb-12 md:pb-44": bottomSpace === "xl",
+              "pb-24 md:pb-60": bottomSpace === "xxl",
+              "pb-0.5": !bottomSpace,
+            },
+            className
+          )}
         >
           {children}
         </InnerComponent>

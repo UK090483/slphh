@@ -3,6 +3,7 @@ import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 
 const sectionBlockQuery = (locale: string = "") => `
 _type == "section" => {
+  ...,
   decoration,
   bgColor,
   _key,

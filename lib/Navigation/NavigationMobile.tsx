@@ -3,7 +3,6 @@ import Portal from "@components/Portal";
 import Svg from "@components/Svg";
 import useAnimationDelay from "@hooks/useAnimationDelay";
 import useKeyPress from "@hooks/useKeyPress";
-import { LangSwitch } from "@lib/LangSwitcherService/LangSwitch";
 import React from "react";
 import { useLockBodyScroll } from "react-use";
 import DefaultNavigationItemBase from "./components/NavItem/NavigationItemBase";

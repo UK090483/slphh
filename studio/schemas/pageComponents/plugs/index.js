@@ -6,8 +6,10 @@ import PlayerPlug from "./PlayerPlug";
 import AutoGallery from "./AutoGallery";
 import SeoText from "./SeoText";
 import Trust from "./Trust";
+import Embed from "./Embed";
 
 const Plugs = [
+  Embed,
   ...Trust,
   Button,
   Spacer,

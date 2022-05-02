@@ -11,6 +11,7 @@ import NavigationMobile from "@lib/Navigation/NavigationMobile";
 import SanityImage from "@lib/SanityImage";
 import clsx from "clsx";
 import React from "react";
+import Burger from "./Burger";
 
 const Nav: React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -51,6 +52,7 @@ const Nav: React.FC = () => {
             className="menu:hidden mr-2"
           >
             <Svg className="w-[30px] h-[30px]" icon="hamburger" />
+            {/* <Burger open={open} /> */}
           </button>
         </div>
       </nav>

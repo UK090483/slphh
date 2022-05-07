@@ -1,16 +1,13 @@
 import Section from "@components/Section/Section";
 import Typo from "@components/Typography/Typography";
 import * as React from "react";
+import { useListingBlock } from "../../listingContext";
 
 import PersonListItem from "./PersonListItem";
 
-interface IPersonListProps {
-  items?: any[] | null;
-  title?: string | null;
-}
-
-const PersonList: React.FunctionComponent<IPersonListProps> = (props) => {
-  const { items, title } = props;
+const PersonList: React.FC = (props) => {
+  const { personItems: items, title, showTitle } = useListingBlock();
+  const _title = showTitle && title;
   const [isMounted, setIsMounted] = React.useState(false); // Need this for the react-tooltip
 
   React.useEffect(() => {
@@ -18,8 +15,8 @@ const PersonList: React.FunctionComponent<IPersonListProps> = (props) => {
   }, []);
 
   return (
-    <Section width="l" bg="secondary" className=" overflow-hidden pb-12 ">
-      {title && (
+    <>
+      {_title && (
         <Typo
           variant="h3"
           as="h2"
@@ -28,11 +25,11 @@ const PersonList: React.FunctionComponent<IPersonListProps> = (props) => {
           {title}
         </Typo>
       )}
-      <ul className="w-full flex flex-wrap items-center justify-center">
+      <ul className="relative w-full grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-items-center z-10">
         {isMounted &&
           items?.map((i, index) => <PersonListItem key={index} {...i} />)}
       </ul>
-    </Section>
+    </>
   );
 };
 

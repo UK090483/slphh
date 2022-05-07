@@ -1,6 +1,6 @@
 export default {
-  title: "Trust",
-  name: "trust",
+  title: "List",
+  name: "list",
   type: "object",
   fields: [
     {
@@ -9,7 +9,7 @@ export default {
       title: "Items",
       of: [
         {
-          type: "trust.item",
+          type: "list.item",
         },
       ],
     },
@@ -28,9 +28,10 @@ export default {
   preview: {
     select: {
       label: "label",
+      variation: "variation",
     },
-    prepare(value) {
-      return { title: value.label || "Label" };
+    prepare({ variation }) {
+      return { title: `List ${variation ? "| " + variation : ""}` };
     },
   },
 };

@@ -4,7 +4,7 @@ import eventPlugQuery from "./Plugs/EventPlug/EventPlugQuery";
 import { imageGalleryPlugQuery } from "./Plugs/ImageGalleryPlug/ImageGalleryPlug";
 import { ImagePlugQuery } from "./Plugs/ImagePlug/imagePlugQuery";
 import { spacerPlugQuery } from "./Plugs/Spacer";
-import trustPlugQuery from "./Plugs/Trust/TrustPlugQuery";
+import listPlugQuery from "./Plugs/List/ListPlugQuery";
 
 const marksQuery = `
 markDefs[]{
@@ -21,7 +21,7 @@ export const richTextQuery = (locale: string = "") => {
   ${ImagePlugQuery},
   ${eventPlugQuery(locale)},
   ${autoGalleryPlugQuery},
-  ${trustPlugQuery},
+  ${listPlugQuery},
 `;
 };
 

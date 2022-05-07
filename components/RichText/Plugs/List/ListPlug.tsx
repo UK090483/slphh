@@ -2,9 +2,9 @@ import * as React from "react";
 import { PlugProps } from "../type";
 import Phase from "./Phase";
 import TrustPlugItem from "./TrustPlug.Item";
-import { TrustPlugQueryResult } from "./TrustPlugQuery";
+import { ListPlugQueryResult } from "./ListPlugQuery";
 
-interface ITrustProps extends TrustPlugQueryResult {}
+interface ITrustProps extends ListPlugQueryResult {}
 
 const Trust: React.FunctionComponent<PlugProps<ITrustProps>> = (props) => {
   const { items, variation } = props.node;

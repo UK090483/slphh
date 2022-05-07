@@ -1,16 +1,22 @@
 export default {
-  title: "Trust",
-  name: "trust.item",
+  title: "List Item",
+  name: "list.item",
   type: "object",
   fields: [
+    {
+      name: "title",
+      type: "text",
+      title: "Title",
+    },
     {
       name: "image",
       type: "defaultImage",
       title: "Image",
     },
+
     {
       name: "description",
-      type: "text",
+      type: "easyRichText",
       title: "Text",
     },
   ],

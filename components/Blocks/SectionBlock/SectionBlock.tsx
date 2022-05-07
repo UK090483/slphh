@@ -12,13 +12,14 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
   const {
     content,
     bottomSpace,
-    topSpace = "m",
+    topSpace,
     title,
     image,
     type,
     imagePosition = "l",
     bgColor,
-    decoration,
+    decorationL,
+    decorationR,
   } = props;
 
   const hasImage = image && image.url;
@@ -27,29 +28,36 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
   return (
     <>
       <Section
+        noPadding={!!hasImage}
         bottomSpace={bottomSpace}
         topSpace={topSpace}
-        decoration={decoration}
+        decorationL={decorationL}
+        decorationR={decorationR}
         bg={bgColor}
         data-testid="sectionBlock"
         width={type || autoType}
         {...(title && { id: title })}
         className={clsx({
-          "grid  grid-cols-1  lg:grid-cols-2  gap-8 ": hasImage,
+          "grid   grid-cols-1  lg:grid-cols-2  gap-8 ": hasImage,
         })}
       >
         <div
-          className={clsx("relative overflow-hidden  ", {
-            "order-1": imagePosition === "l",
-            "order-2": imagePosition === "r",
+          className={clsx("relative overflow-hidden  order-1", {
+            " md:order-1": imagePosition === "l",
+            "md:order-2": imagePosition === "r",
           })}
         >
-          <SanityImage image={image} />
+          <SanityImage image={image} layout="responsive" />
         </div>
         <ConditionalWrap
           condition={!!hasImage}
           wrapper={(children) => (
-            <div className={clsx({ "order-2": imagePosition === "l" })}>
+            <div
+              className={clsx("order-2 px-5", {
+                " md:order-2": imagePosition === "l",
+                "md:order-1": imagePosition === "r",
+              })}
+            >
               {children}
             </div>
           )}

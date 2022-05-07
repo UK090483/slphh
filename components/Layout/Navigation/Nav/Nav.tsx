@@ -27,7 +27,7 @@ const Nav: React.FC = () => {
       <nav>
         <div
           className={clsx(
-            "flex items-center justify-between w-full transition-shadow duration-700 px-5",
+            "flex items-center justify-between w-full transition-shadow duration-700 px-5 ",
             { "shadow-lg ": scrolled, "shadow-none": !scrolled }
           )}
         >

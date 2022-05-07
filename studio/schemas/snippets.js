@@ -6,6 +6,76 @@ export const defaultBockContent = {
   of: [{ type: "section" }, { type: "hero" }, { type: "listing" }],
 };
 
+const decorationList = [
+  "line",
+  "line-animated",
+  "circle",
+  "circle-animated",
+  "arrow",
+  "arrow-animated",
+];
+
+export const color = (override) => {
+  return [
+    {
+      title: "Color",
+      name: "color",
+      type: "string",
+      options: {
+        list: [...colorList()],
+      },
+      ...override,
+    },
+  ];
+};
+export const decoration = (override) => {
+  return [
+    {
+      title: "Decoration",
+      name: "decorationL",
+      type: "string",
+      options: {
+        list: decorationList,
+      },
+      ...override,
+    },
+    {
+      title: "Decoration",
+      name: "decorationR",
+      type: "string",
+      options: {
+        list: decorationList,
+      },
+      ...override,
+    },
+  ];
+};
+
+export const space = (override) => {
+  return [
+    {
+      title: "Top Space",
+      name: "topSpace",
+      type: "string",
+
+      options: {
+        list: [...sizesList()],
+      },
+      ...override,
+    },
+    {
+      title: "Bottom Space",
+      name: "bottomSpace",
+      type: "string",
+
+      options: {
+        list: [...sizesList()],
+      },
+      ...override,
+    },
+  ];
+};
+
 export function colorList(skip) {
   const list = [
     { title: "Black", value: "black" },

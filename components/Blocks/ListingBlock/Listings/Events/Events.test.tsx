@@ -1,11 +1,21 @@
 import { mockClient } from "@lib/SanityPageBuilder/lib/MockClient/MockClient";
-import { customRender, screen } from "@tests/test-utils";
+import { customRender as cRender, screen } from "@tests/test-utils";
 import { EventsListQuery } from "./EventsListQuery";
 import EventList from "./EventsList";
 
-import EventsListItem from "./EventsListItem";
+import EventsListItem, { IEventsListItemProps } from "./EventsListItem";
+import { ListingBlockContextProvider } from "../../listingContext";
+import { ListingBlogResult } from "../../listingBlockQuery";
 
 const database: any[] = [];
+
+const customRender = (props?: Partial<ListingBlogResult>) => {
+  cRender(
+    <ListingBlockContextProvider _key="" _type="listing" {...props}>
+      <EventList />
+    </ListingBlockContextProvider>
+  );
+};
 
 describe("EventsListing", () => {
   it("query should be valid ", async () => {
@@ -17,38 +27,46 @@ describe("EventsListing", () => {
     }`);
   });
   it("should render no Items", async () => {
-    customRender(<EventList />);
+    customRender();
     expect(screen.getByTestId("EventList")).toBeInTheDocument();
   });
   it("should render title", async () => {
-    customRender(<EventList title="testTitle" />);
+    customRender({ title: "testTitle", showTitle: true });
     expect(screen.getByText("testTitle")).toBeInTheDocument();
   });
 
   it("should render items", async () => {
-    customRender(
-      <EventList items={[{ date: "", endDate: "", name: "testListitem" }]} />
-    );
+    customRender({
+      //@ts-ignore
+      eventItems: [{ date: "", endDate: "", name: "testListitem" }],
+    });
     expect(screen.getByText("testListitem")).toBeInTheDocument();
   });
 });
 
+const customRenderItem = (props?: Partial<IEventsListItemProps>) => {
+  cRender(
+    <ListingBlockContextProvider _key="" _type="listing" {...props}>
+      <EventsListItem {...{ _id: "testId", ...props }} />
+    </ListingBlockContextProvider>
+  );
+};
+
 describe("EventsListingItem", () => {
   it("should render ", () => {
     //@ts-ignore
-    customRender(<EventsListItem />);
+    customRenderItem();
     expect(screen.getByTestId("EventsListItem")).toBeInTheDocument();
   });
 
   it("should render ", () => {
-    customRender(
-      <EventsListItem
-        _id="testid"
-        description={"testDescription"}
-        link="testLink"
-        name="testName"
-      />
-    );
+    customRenderItem({
+      _id: "testid",
+      description: "testDescription",
+      link: "testLink",
+      name: "testName",
+    });
+
     expect(screen.getByTestId("EventsListItem")).toBeInTheDocument();
     expect(screen.getByText("testDescription")).toBeInTheDocument();
     expect(screen.getByText("testName")).toBeInTheDocument();
@@ -57,6 +75,6 @@ describe("EventsListingItem", () => {
   });
 
   it("should render content", () => {
-    customRender(<EventsListItem _id="testid" content={[{}, {}]} />);
+    customRenderItem({ content: [{}, {}] });
   });
 });

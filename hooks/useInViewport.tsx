@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 type useInViewportOptions = {
   callBack?: (entry: IntersectionObserverEntry) => boolean;
   onChange?: (isIntersecting: boolean) => void;
+  rootMargin?: string;
 };
 
 const useInViewport = (
@@ -24,7 +25,7 @@ const useInViewport = (
       };
       const observer = new IntersectionObserver(handler, {
         root: null,
-        rootMargin: "100px",
+        rootMargin: options?.rootMargin || "100px",
         threshold: 1,
       });
       observer.observe(ref.current);

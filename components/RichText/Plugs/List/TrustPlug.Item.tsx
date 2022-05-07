@@ -1,10 +1,11 @@
+import RichText from "@components/RichText/RichText";
 import Typo from "@components/Typography/Typography";
 import SanityImage from "@lib/SanityImage";
 import * as React from "react";
 
-import { TrustPlugQueryItemResult } from "./TrustPlugQuery";
+import { ListPlugQueryItemResult } from "./ListPlugQuery";
 
-interface ITrustPlugItemProps extends TrustPlugQueryItemResult {}
+interface ITrustPlugItemProps extends ListPlugQueryItemResult {}
 
 const TrustPlugItem: React.FunctionComponent<ITrustPlugItemProps> = (props) => {
   const { image, description } = props;
@@ -17,7 +18,7 @@ const TrustPlugItem: React.FunctionComponent<ITrustPlugItemProps> = (props) => {
         <SanityImage image={image} height={50} />
       </div>
 
-      <Typo className="text-center ">{description}</Typo>
+      {description && <RichText content={description} />}
     </div>
   );
 };

@@ -13,8 +13,10 @@ module.exports = {
       ignore: ["menu"],
     },
     fontFamily: {
-      sans: ["HamburgSans-Regular", "Helvetica", "sans-serif"],
-      header: ["HamburgSans-Bold"],
+      // sans: ["HamburgSans-Regular", "Arial", "sans-serif"],
+      // header: ["HamburgSans-Bold", "Arial"],
+      sans: ["Arial", "sans-serif"],
+      header: ["Arial"],
     },
     fontSize: {
       sm: ["12px", "1.4em"],

@@ -6,17 +6,19 @@ import Filter from "../shared/Filter";
 
 import EventsListItem from "./EventsListItem";
 import { parseItem } from "./helper";
+import { useListingBlock } from "../../listingContext";
 
-interface IEventsListProps {
-  items?: any[] | null;
-  filterItems?: { label: string; value: string }[];
-  accordion?: boolean;
-  title?: string | null;
-  hideDoneEvents?: boolean | null;
-}
+const EventsList: React.FC = (props) => {
+  const {
+    eventItems: items,
+    filterItems,
+    eventVariant,
+    title,
+    hideDoneEvents,
+  } = useListingBlock();
 
-const EventsList: React.FunctionComponent<IEventsListProps> = (props) => {
-  const { items, filterItems, accordion, title, hideDoneEvents } = props;
+  const accordion = eventVariant === "accordion";
+
   const { locale } = useRouter();
   const [filter, setFilter] = useState("all");
   const now = new Date().toISOString().slice(0, 10);
@@ -47,6 +49,7 @@ const EventsList: React.FunctionComponent<IEventsListProps> = (props) => {
       <ul className="w-full pb-9 md:pb-20" data-testid="EventList">
         <div>
           {items?.reduce(
+            //@ts-ignore
             (acc, i) => {
               const preparedProps = parseItem(i, now);
 

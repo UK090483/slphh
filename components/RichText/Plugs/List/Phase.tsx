@@ -1,21 +1,24 @@
+import RichText from "@components/RichText/RichText";
+import { useSection } from "@components/Section/SectionContext";
 import Typo from "@components/Typography/Typography";
 import useInViewport from "@hooks/useInViewport";
 
 import clsx from "clsx";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { PlugProps } from "../type";
 
-import { TrustPlugQueryResult } from "./TrustPlugQuery";
+import { ListPlugQueryItemResult, ListPlugQueryResult } from "./ListPlugQuery";
 
-interface IPhaseProps extends TrustPlugQueryResult {}
+interface IPhaseProps extends ListPlugQueryResult {}
 
 const Phase: React.FunctionComponent<PlugProps<IPhaseProps>> = (props) => {
   const { items } = props.node;
-  const [show, setShow] = useState(true);
+
+  const {} = useSection();
 
   return (
     <div
-      className={clsx("grid  grid-cols-2   md:grid-rows-2   ", {
+      className={clsx("grid  grid-cols-2  md:grid-rows-2   ", {
         "grid-rows-2 md:grid-cols-2": items?.length === 2,
         "grid-rows-3 md:grid-cols-3": items?.length === 3,
         "grid-rows-4 md:grid-cols-4": items?.length === 4,
@@ -43,11 +46,10 @@ const Phase: React.FunctionComponent<PlugProps<IPhaseProps>> = (props) => {
 
 export default Phase;
 
-type DotProps = {
+interface DotProps extends Omit<ListPlugQueryItemResult, "_key"> {
   title?: string;
-  description?: string;
   index: number;
-};
+}
 
 const Dot: React.FC<DotProps> = (props) => {
   const { title, description, index } = props;
@@ -57,7 +59,11 @@ const Dot: React.FC<DotProps> = (props) => {
         <Typo variant="h3" className="text-primary md:text-center">
           {title}
         </Typo>
-        <Typo className="md:text-center">{description} </Typo>
+        {
+          <div className=" md:text-center ">
+            <RichText content={description} />
+          </div>
+        }
       </div>
     </div>
   );

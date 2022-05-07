@@ -7,13 +7,13 @@ import { registerNow } from "@constants/translations";
 import { EventsListItemResult } from "./EventsListQuery";
 import useAccordion from "@hooks/useAccordion/useAccordion";
 
-interface IEventsListItemProps extends EventsListItemResult {
+export interface IEventsListItemProps extends EventsListItemResult {
   accordion?: boolean;
   locale?: string;
   done?: boolean | null;
 }
 
-const EventsListItem: React.FunctionComponent<IEventsListItemProps> = (
+export const EventsListItem: React.FunctionComponent<IEventsListItemProps> = (
   props
 ) => {
   const {

@@ -5,12 +5,12 @@ import ImageGallery from "./ImageGallery/index";
 import PlayerPlug from "./PlayerPlug";
 import AutoGallery from "./AutoGallery";
 import SeoText from "./SeoText";
-import Trust from "./Trust";
+import List from "./List";
 import Embed from "./Embed";
 
 const Plugs = [
   Embed,
-  ...Trust,
+  ...List,
   Button,
   Spacer,
   ImagPlug,

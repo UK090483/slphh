@@ -1,11 +1,24 @@
-import { withLocalization } from "../Localizer";
+import { withLocalization } from "../../Localizer";
 import { AiOutlineOrderedList } from "react-icons/ai";
-
+import { decoration, space, color } from "../../snippets";
 export default withLocalization({
   title: "Listing",
   name: "listing",
   type: "object",
   icon: AiOutlineOrderedList,
+  fieldsets: [
+    {
+      name: "space",
+      title: "Space",
+      options: { collapsible: true, collapsed: true, columns: 2 },
+    },
+
+    {
+      name: "decoration",
+      title: "Decoration",
+      options: { collapsible: true, collapsed: true, columns: 2 },
+    },
+  ],
   fields: [
     { name: "title", type: "string", title: "Title", localize: true },
     {
@@ -18,7 +31,7 @@ export default withLocalization({
           { title: "Documentations", value: "documentations" },
           { title: "Persons", value: "persons" },
           { title: "Testimonials", value: "testimonials" },
-          // { title: "Custom", value: "custom" },
+          { title: "Custom", value: "custom" },
         ],
         layout: "radio",
       },
@@ -94,27 +107,37 @@ export default withLocalization({
       hidden: ({ parent }) => parent?.contentType !== "testimonials",
     },
 
-    // Custom
-    // {
-    //   name: "customItems",
-    //   type: "array",
-    //   of: [{ type: "object", title: "Listing", name: "listing", fields: [] }],
-    //   hidden: ({ parent }) => parent?.contentType !== "custom",
-    // },
+    //Custom
+    {
+      name: "customItems",
+      type: "array",
+      of: [{ type: "listing.custom.item" }],
+      hidden: ({ parent }) => parent?.contentType !== "custom",
+    },
+
+    {
+      name: "customVariants",
+      type: "string",
+      options: {
+        list: [
+          { title: "List (default)", value: "list" },
+          { title: "Icon List", value: "iconList" },
+          { title: "Phases", value: "phases" },
+        ],
+      },
+      hidden: ({ parent }) => parent?.contentType !== "custom",
+    },
 
     {
       title: "Show Title",
       name: "showTitle",
       type: "boolean",
-      hidden: ({ parent }) =>
-        !(
-          parent?.type === "custom" ||
-          parent?.contentType === "persons" ||
-          parent?.contentType === "event" ||
-          parent?.contentType === "documentations" ||
-          parent?.contentType === "testimonials"
-        ),
+      hidden: ({ parent }) => parent?.contentType !== "custom",
     },
+
+    ...color({ name: "bgColor", title: "Background Color" }),
+    ...decoration({ fieldset: "decoration" }),
+    ...space({ fieldset: "space" }),
   ],
   preview: {
     select: {

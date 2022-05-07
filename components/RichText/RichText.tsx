@@ -12,7 +12,7 @@ import EventPlug from "./Plugs/EventPlug/EventPlug";
 import ImagePlug from "./Plugs/ImagePlug/ImagePlug";
 import SeoTextPlug from "./Plugs/SeoTextPlug";
 import SpacerPlug from "./Plugs/Spacer";
-import Trust from "./Plugs/Trust/TrustPlug";
+import ListPlug from "./Plugs/List/ListPlug";
 const ImageGalleryPlug = dynamic(
   () => import("./Plugs/ImageGalleryPlug/ImageGalleryPlug")
 );
@@ -27,7 +27,7 @@ const styles: { [k: string]: string } = {
 };
 
 type RichTextPros = {
-  content?: SanityBlock[];
+  content?: null | SanityBlock[];
 };
 
 const RichText: React.FC<RichTextPros> = (props: any) => {
@@ -44,7 +44,7 @@ const RichText: React.FC<RichTextPros> = (props: any) => {
         seoText: SeoTextPlug,
         playerPlug: PlayerPlug,
         autoGalleryPlug: AutoGalleryPlug,
-        trust: Trust,
+        list: ListPlug,
         embed: EmbedHTML,
       }}
       marks={{ link }}

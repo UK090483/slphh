@@ -14,11 +14,32 @@ import { AppContextProvider } from "@components/AppContext";
 
 import AppConfig from "app.config.json";
 import PageTransition from "@lib/PageTransition/PageTransition";
+import { ParallaxProvider } from "react-scroll-parallax";
+import { LazyMotion, domAnimation, AnimatePresence, m } from "framer-motion";
+import { useRouter } from "next/router";
 
 interface AppPropsWithStaticProps {
   pageProps: PageProps<PageResult>;
   Component: NextComponentType<NextPageContext, any, PageProps<PageResult>>;
 }
+
+const animation = {
+  name: "Fade Back",
+  variants: {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+    },
+    exit: {
+      opacity: 0,
+    },
+  },
+  transition: {
+    duration: 0.7,
+  },
+};
 
 function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   const { data: _data, query, preview } = _pageProps;
@@ -38,15 +59,32 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
     <>
       {/*     
  <AnalyticsContextProvider id="G-YVH817HM4Z"> */}
-      <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
-        <Layout>
-          <Component {...pageProps} key={pageProps?.data?._id} />
-        </Layout>
+      <LazyMotion features={domAnimation}>
+        <AnimatePresence exitBeforeEnter>
+          <AppContextProvider
+            data={pageProps.data}
+            hostName={AppConfig.hostname}
+          >
+            <Layout>
+              <m.div
+                key={pageProps?.data?._id}
+                className="page-wrap"
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={animation.variants}
+                transition={animation.transition}
+              >
+                <Component {...pageProps} key={pageProps?.data?._id} />
+              </m.div>
+            </Layout>
 
-        <PreviewIndicator show={!!preview} />
-        {/* <Cookie /> */}
-        <Seo />
-      </AppContextProvider>
+            <PreviewIndicator show={!!preview} />
+            {/* <Cookie /> */}
+            <Seo />
+          </AppContextProvider>
+        </AnimatePresence>
+      </LazyMotion>
 
       {/* </AnalyticsContextProvider> */}
     </>

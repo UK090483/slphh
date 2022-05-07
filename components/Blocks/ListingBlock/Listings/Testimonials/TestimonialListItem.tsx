@@ -6,21 +6,12 @@ import { TestimonialItemResult } from "./testimonialQuery";
 
 interface ITestimonialListItemProps extends TestimonialItemResult {
   active?: boolean;
-  headerColor?: "primary" | "white" | "black";
 }
 
 const TestimonialListItem: React.FunctionComponent<
   ITestimonialListItemProps
 > = (props) => {
-  const {
-    name,
-    position,
-    text,
-    active,
-    image,
-    children,
-    headerColor = "primary",
-  } = props;
+  const { name, position, text, active, image, children } = props;
 
   return (
     <div
@@ -29,12 +20,7 @@ const TestimonialListItem: React.FunctionComponent<
       }`}
     >
       <div className="flex flex-col justify-center items-center py-12 px-5">
-        <Avatar
-          image={image}
-          title={name}
-          subTitle={position}
-          titleColor={headerColor}
-        />
+        <Avatar image={image} title={name} subTitle={position} />
       </div>
       {children}
       <div className="px-5 p-24 whitespace-pre-line  flex justify-center items-center py-8">

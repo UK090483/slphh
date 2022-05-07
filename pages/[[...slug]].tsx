@@ -8,6 +8,7 @@ import SectionBlock from "@components/Blocks/SectionBlock";
 import sectionBlockQuery from "@components/Blocks/SectionBlock/SectionBlockQuery";
 import type { layoutQueryResult } from "@components/Layout/LayoutQuery";
 import layoutQuery from "@components/Layout/LayoutQuery";
+import useParallax from "@hooks/useParallax/useParallax";
 import BodyParser from "@lib/SanityPageBuilder/lib/BodyParser";
 import fetchStaticPaths from "@lib/SanityPageBuilder/lib/fetchStaticPath/fetchStaticPath";
 import fetchStaticProps from "@lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
@@ -20,6 +21,9 @@ export type PageResult = layoutQueryResult & appQueryResult & { content?: any };
 
 const Page = () => {
   const { data } = useAppContext();
+
+  useParallax();
+
   return (
     <BodyParser
       components={{

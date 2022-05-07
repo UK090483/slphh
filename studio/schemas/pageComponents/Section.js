@@ -1,7 +1,16 @@
 import React from "react";
 import { AiOutlineBorderOuter } from "react-icons/ai";
 import { withLocalization } from "../Localizer";
-import { colorList, sizesList } from "../snippets";
+import { colorList, sizesList, decoration, space, color } from "../snippets";
+
+const decorationList = [
+  "line",
+  "line-animated",
+  "circle",
+  "circle-animated",
+  "arrow",
+  "arrow-animated",
+];
 export default withLocalization({
   type: "object",
   name: "section",
@@ -16,6 +25,11 @@ export default withLocalization({
       name: "Image",
       title: "Image",
       options: { collapsible: true, collapsed: true },
+    },
+    {
+      name: "decoration",
+      title: "Decoration",
+      options: { collapsible: true, collapsed: true, columns: 2 },
     },
   ],
   icon: () => <AiOutlineBorderOuter />,
@@ -45,40 +59,9 @@ export default withLocalization({
         ],
       },
     },
-    {
-      title: "Background Color",
-      name: "bgColor",
-      type: "string",
-      options: {
-        list: [...colorList()],
-      },
-    },
-    {
-      title: "Decoration",
-      name: "decoration",
-      type: "string",
-      options: {
-        list: ["line"],
-      },
-    },
-    {
-      title: "Top Space",
-      name: "topSpace",
-      type: "string",
-      fieldset: "space",
-      options: {
-        list: [...sizesList()],
-      },
-    },
-    {
-      title: "Bottom Space",
-      name: "bottomSpace",
-      type: "string",
-      fieldset: "space",
-      options: {
-        list: [...sizesList()],
-      },
-    },
+    ...color({ name: "bgColor", title: "Background Color" }),
+    ...decoration({ fieldset: "decoration" }),
+    ...space({ fieldset: "space" }),
     {
       title: "Image",
       name: "image",

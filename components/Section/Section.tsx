@@ -1,20 +1,27 @@
 import clsx from "clsx";
 import React from "react";
-import Decoration from "./Decoration";
+import Decoration, { DecorationSettings } from "./Decoration";
 import { SectionContextProvider } from "./SectionContext";
 
-export interface SectionProps {
+export type SectionBGColor =
+  | "white"
+  | "grey"
+  | "black"
+  | "primary"
+  | "secondary";
+export type SectionSpace = "s" | "m" | "l" | "xl" | "xxl";
+
+export interface SectionProps extends DecorationSettings {
   width?: "full" | "m" | "l" | "s" | "responsive";
-  bg?: "white" | "grey" | "black" | "primary" | "secondary";
+  bg?: SectionBGColor;
   className?: string;
   id?: string;
   noPadding?: boolean;
   as?: "section" | "div" | "ul";
   asInner?: "div" | "ul";
-  decoration?: "line";
   style?: React.CSSProperties;
-  topSpace?: "s" | "m" | "l" | "xl" | "xxl";
-  bottomSpace?: "s" | "m" | "l" | "xl" | "xxl";
+  topSpace?: SectionSpace;
+  bottomSpace?: SectionSpace;
   "data-testid"?: string;
 }
 
@@ -35,6 +42,7 @@ export const Section: React.FC<SectionProps> = (props) => {
 
   return (
     <SectionContextProvider {...props}>
+      <div />
       <Component
         data-testid={props["data-testid"] || "section"}
         id={id}
@@ -50,7 +58,7 @@ export const Section: React.FC<SectionProps> = (props) => {
         <InnerComponent
           style={style}
           className={clsx(
-            "z-10 mx-auto container ",
+            "mx-auto ",
             {
               "md:max-w-screen-md ": width === "s",
               "lg:max-w-screen-lg ": width === "m",
@@ -62,7 +70,7 @@ export const Section: React.FC<SectionProps> = (props) => {
               "pt-16 md:pt-44": topSpace === "xl",
               "pt-24 md:pt-60": topSpace === "xxl",
               "pb-5 md:pb-10": bottomSpace === "s",
-              "pb-9 md:pb-20": bottomSpace === "m",
+              "pb-9 md:pb-20": bottomSpace === "m" || topSpace === null,
               "pb-16 md:pb-32": bottomSpace === "l",
               "pb-12 md:pb-44": bottomSpace === "xl",
               "pb-24 md:pb-60": bottomSpace === "xxl",

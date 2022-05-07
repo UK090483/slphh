@@ -1,34 +1,7 @@
 import React from "react";
-import { BlockEditor } from "part:@sanity/form-builder";
-
-class CustomEditor extends React.PureComponent {
-  render() {
-    return (
-      <div>
-        <BlockEditor {...this.props} onPaste={handlePaste} />
-      </div>
-    );
-  }
-}
-
-function handlePaste(input) {
-  console.log(input);
-
-  const { event } = input;
-  const text = event.clipboardData.getData("text/plain");
-  const json = event.clipboardData.getData("application/json");
-  if (json) {
-    console.log(json);
-  }
-  if (text) {
-    console.log(text);
-  }
-  // return undefined to let the defaults do the work
-  return undefined;
-}
 
 export default {
-  name: "defaultRichText",
+  name: "easyRichText",
   type: "array",
   title: "Text",
   of: [
@@ -78,14 +51,5 @@ export default {
         ],
       },
     },
-    { type: "spacer" },
-    { type: "imageGalleryPlug" },
-    { type: "autoGalleryPlug" },
-    { type: "playerPlug" },
-    { type: "imagePlug" },
-    { type: "eventPlug" },
-    { type: "seoText" },
-    { type: "list" },
-    { type: "embed" },
   ],
 };

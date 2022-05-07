@@ -1,10 +1,13 @@
 import { richTextQuery } from "@components/RichText/richTextQuery";
+import { DecorationSettings } from "@components/Section/Decoration";
+import { SectionBGColor, SectionSpace } from "@components/Section/Section";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 
 const sectionBlockQuery = (locale: string = "") => `
 _type == "section" => {
   ...,
-  decoration,
+  decorationL,
+  decorationR,
   bgColor,
   _key,
   _type,
@@ -18,12 +21,11 @@ _type == "section" => {
 }
 `;
 
-export interface SectionResult {
-  decoration?: "line";
-  bgColor?: "white" | "grey" | "black" | "primary" | "secondary" | undefined;
+export interface SectionResult extends DecorationSettings {
+  bgColor?: SectionBGColor;
   title?: string;
-  topSpace?: "s" | "m" | "l" | "xl" | "xxl";
-  bottomSpace?: "s" | "m" | "l" | "xl" | "xxl";
+  topSpace?: SectionSpace;
+  bottomSpace?: SectionSpace;
   content?: null | any;
   bgImage?: ImageMetaResult;
   imagePosition?: "l" | "r";

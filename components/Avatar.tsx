@@ -2,23 +2,28 @@ import SanityImage from "@lib/SanityImage";
 import { ImageMetaResult } from "@lib/SanityImage/query";
 import clsx from "clsx";
 import * as React from "react";
+import { useSection } from "./Section/SectionContext";
 import Typo from "./Typography/Typography";
 
 interface IAvatarProps {
   showFull?: boolean;
   title?: string | null;
-  titleColor?: "primary" | "white" | "black";
+  // titleColor?: "primary" | "white" | "black";
   subTitle?: string | null;
   image?: ImageMetaResult | null;
 }
 
 const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
-  const { showFull, title, image, subTitle, titleColor = "primary" } = props;
+  const { showFull, title, image, subTitle } = props;
+
+  const { bg } = useSection();
+
+  const _bg = bg || "white";
 
   return (
     <div>
       <div
-        className={`relative h-60  overflow-hidden ${
+        className={`relative h-60 shadow-2xl overflow-hidden ${
           showFull
             ? "w-full border-[10px] border-transparent "
             : "rounded-full w-60"
@@ -38,9 +43,9 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
           as="h3"
           space={false}
           className={clsx("uppercase text-center ", {
-            "text-primary": titleColor === "primary",
-            "text-white": titleColor === "white",
-            "text-black": titleColor === "black",
+            "text-black": _bg === "primary",
+            "text-primary":
+              ["white", "black", "secondary", "grey"].includes(_bg) || !_bg,
           })}
         >
           {title}

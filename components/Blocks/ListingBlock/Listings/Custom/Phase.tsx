@@ -22,6 +22,7 @@ const Phase: React.FC = (props) => {
         "grid-rows-7 md:grid-cols-7": items?.length === 7,
         "grid-rows-8 md:grid-cols-7": items?.length === 8,
         "text-white": bgColor === "primary",
+        "text-primary": bgColor === "secondary",
       })}
     >
       <div className="row-span-full md:col-span-full mb-8  h-full">
@@ -56,7 +57,7 @@ const Dot: React.FC<DotProps> = (props) => {
           {title}
         </Typo>
         {
-          <div className=" md:text-center ">
+          <div className={clsx(" md:text-center text-black", {})}>
             <RichText content={description} />
           </div>
         }
@@ -107,7 +108,7 @@ const TimeLine: React.FC<TimeLineProps> = ({ length }) => {
           <div
             key={index}
             className={clsx(
-              "flex col-span-full md:col-auto  justify-center items-center  "
+              "flex col-span-full md:col-auto  justify-center items-center "
             )}
           >
             {isDot && (
@@ -133,8 +134,6 @@ type DottProps = {
 
 const delay = 300;
 const Dott: React.FC<DottProps> = ({ diameter = 40, index, inViewport }) => {
-  const { bg } = useSection();
-
   return (
     <div
       style={{
@@ -158,10 +157,7 @@ const Dott: React.FC<DottProps> = ({ diameter = 40, index, inViewport }) => {
             transitionDelay: inViewport ? index * delay + "ms" : "0ms",
             transitionTimingFunction: "linear",
           }}
-          className={clsx(" transition-all   ", {
-            "stroke-white": bg === "primary",
-            "stroke-primary": bg === "white" || bg === null,
-          })}
+          className={clsx("transition-all  stroke-current")}
           strokeDasharray={100}
           strokeDashoffset={inViewport ? 0 : 100}
           cx="60"
@@ -190,12 +186,13 @@ const Line: React.FC<LineProps> = ({ index, inViewport }) => {
         transformOrigin: "left top",
         transitionTimingFunction: "linear",
       }}
-      className={clsx(" w-1 md:w-full transition-transform  md:h-1 h-full   ", {
-        "scale-y-110 md:scale-x-100 md:scale-y-100  ": inViewport,
-        "scale-y-0  md:scale-x-0 md:scale-y-100 ": !inViewport,
-        "bg-white": bg === "primary",
-        "bg-primary": bg === "white" || bg === null,
-      })}
+      className={clsx(
+        " bg-current w-1 md:w-full transition-transform  md:h-1 h-full   ",
+        {
+          "scale-y-110 md:scale-x-100 md:scale-y-100  ": inViewport,
+          "scale-y-0  md:scale-x-0 md:scale-y-100 ": !inViewport,
+        }
+      )}
     />
   );
 };

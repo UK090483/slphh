@@ -1,5 +1,7 @@
 import Link from "@components/Link";
 import { useSection } from "@components/Section/SectionContext";
+import choose from "@components/utility/choose";
+
 import clsx from "clsx";
 import React from "react";
 
@@ -18,8 +20,9 @@ const Button: React.FC<ButtonProps> = (props) => {
     "inline-block px-8 md:px-12 py-1 md:py-2 whitespace-nowrap rounded-full transition-all duration-500 text-base-mobile md:text-base",
     "border-2   hover:bg-black",
     "text-black hover:text-white",
+
     {
-      "border-black": !bg || ["white", "primary", "grey"].includes(bg),
+      "border-black  ": !bg || ["white", "primary", "grey"].includes(bg),
       "hover:text-primary": bg === "primary",
       "text-black hover:text-secondary border-black": bg === "secondary",
       "hover:text-gray-300 ": bg === "grey",

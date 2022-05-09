@@ -76,13 +76,22 @@ export const space = (override) => {
   ];
 };
 
+export function getColor(color) {
+  if (!color) return;
+  const colorMap = colorList().reduce((acc, item) => {
+    return { ...acc, [item.value]: item.hex };
+  }, {});
+
+  return colorMap[color];
+}
+
 export function colorList(skip) {
   const list = [
-    { title: "Black", value: "black" },
-    { title: "White", value: "white" },
-    { title: "Primary", value: "primary" },
-    { title: "Secondary", value: "secondary" },
-    { title: "Grey", value: "grey" },
+    { title: "Black", value: "black", hex: "#003063" },
+    { title: "White", value: "white", hex: "#FFFFFF" },
+    { title: "Primary", value: "primary", hex: "#CA497C" },
+    { title: "Secondary", value: "secondary", hex: "#B8D7D7" },
+    { title: "Grey", value: "grey", hex: "#ebebeb" },
   ];
   if (!Array.isArray(skip)) return list;
 

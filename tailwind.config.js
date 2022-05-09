@@ -48,10 +48,10 @@ module.exports = {
           DEFAULT: "#ebebeb",
           dark: "#009eeb",
         },
-        black: "#1D355E",
+        black: "#003063",
         white: "#ffffff",
-        primary: "#DB4373",
-        secondary: "#A4CCCC",
+        primary: "#CA497C",
+        secondary: "#B8D7D7",
         red: "#D22D30",
       },
       animation: {

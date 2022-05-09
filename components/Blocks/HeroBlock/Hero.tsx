@@ -1,6 +1,7 @@
 import Button from "@components/Button/Button";
 import Typo from "@components/Typography/Typography";
 import SanityImage from "@lib/SanityImage";
+import clsx from "clsx";
 import React from "react";
 
 import { HeroBlogResult } from "./HeroBlockQuery";
@@ -12,20 +13,44 @@ const Hero: React.FC<HeroProps> = (props) => {
 
   return (
     <div
+      style={{
+        gridTemplateColumns: " 1fr minmax(600px, 70vh)",
+        gridTemplateRows: "1fr auto",
+      }}
       data-testid="heroBlock"
-      className=" grid grid-cols-5 grid-rows-2  md:grid-rows-none h-hero-mobile sm:h-hero px-2 overflow-clip"
+      className={clsx("w-full max-w-[1800px] mx-auto grid ")}
     >
-      <div className="relative w-full  col-start-1 col-span-full md:col-start-2  row-span-1 row-start-1 z-0">
-        <SanityImage
-          image={image}
-          layout="fill"
-          objectFit="cover"
-          objectPosition={"left"}
-        />
+      <div
+        className={clsx(
+          "flex justify-end items-center w-full flex-shrink overflow-hidden",
+          "row-start-1 col-start-1"
+        )}
+      >
+        <div className="min-w-[350px] ">{<Arrow />}</div>
       </div>
-      <div className=" px-4 flex  justify-center items-center col-start-1 md:col-start-1 col-span-full md:col-span-3 z-10 row-span-1 row-start-2 md:row-start-1 ">
+
+      <div
+        className={clsx(
+          " w-full  aspect-w-1 aspect-h-1 ",
+          "row-start-1 col-start-2"
+        )}
+      >
+        <div className=" w-full h-full">
+          <SanityImage image={image} layout="fill" objectFit="cover" />
+        </div>
+      </div>
+
+      <div
+        className={clsx(
+          "row-start-2 col-start-1 col-span-full",
+          "lg:row-start-1 lg:col-start-1 lg:col-span-1",
+          "px-4 flex max-w-2xl  justify-center items-center  z-10  py-20 "
+        )}
+      >
         <div>
-          <Typo variant={"h1"}>{header}</Typo>
+          <Typo className=" !text-[60px]" variant={"h1"}>
+            {header}
+          </Typo>
           <Button>Apply Now</Button>
         </div>
       </div>
@@ -34,3 +59,15 @@ const Hero: React.FC<HeroProps> = (props) => {
 };
 
 export default Hero;
+
+const Arrow: React.FC = () => {
+  return (
+    <svg
+      viewBox="0 0 278 503"
+      className={clsx("   fill-primary")}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M109.622 503L277.5 251.508L109.622 0H0.5L140.316 206.169L171.848 251.487L140.316 296.831L0.5 503H109.622Z" />
+    </svg>
+  );
+};

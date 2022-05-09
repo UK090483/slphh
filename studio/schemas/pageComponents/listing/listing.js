@@ -1,6 +1,8 @@
+import React from "react";
 import { withLocalization } from "../../Localizer";
 import { AiOutlineOrderedList } from "react-icons/ai";
-import { decoration, space, color } from "../../snippets";
+import { IoListCircle } from "react-icons/io";
+import { decoration, space, color, getColor } from "../../snippets";
 export default withLocalization({
   title: "Listing",
   name: "listing",
@@ -143,13 +145,16 @@ export default withLocalization({
     select: {
       title: "title",
       contentType: "contentType",
+      bgColor: "bgColor",
     },
     prepare(selection) {
-      const { contentType, title } = selection;
+      const { contentType, title, bgColor } = selection;
 
+      console.log({ bgColor, c: getColor(bgColor) });
       return {
         title: title,
         subtitle: `Section : ${contentType ? contentType : ""}`,
+        media: () => <AiOutlineOrderedList fill={getColor(bgColor)} />,
       };
     },
   },

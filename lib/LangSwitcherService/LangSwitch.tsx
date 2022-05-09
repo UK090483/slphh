@@ -1,4 +1,5 @@
 import Link from "@components/Link";
+import clsx from "clsx";
 import { useRouter } from "next/router";
 import React from "react";
 import { LangSwitcherResult } from "./LangSwitcherQuery";
@@ -25,8 +26,8 @@ export const LangSwitch: React.FC<LangSwitchProps> = (props) => {
   const { locale } = useRouter();
 
   return (
-    <div className={`flex ${className} pr-2 gap-4 `}>
-      {items.map((item) => {
+    <div className={`flex ${className}  items-center justify-center `}>
+      {items.map((item, index) => {
         return (
           <Link
             aria-label={langAriaMap[item.locale]}
@@ -37,9 +38,15 @@ export const LangSwitch: React.FC<LangSwitchProps> = (props) => {
               (slugs && (slugs[`href_${item.locale}`] || slugs[`href`])) || "/"
             }
             locale={item.locale}
-            className={` w-9 h-9 flex items-center justify-center rounded-full font-bold border-2  border-primary  leading-none hover:underline ${
-              item.locale === locale ? "text-white bg-primary" : "text-primary"
-            } `}
+            className={clsx(
+              ` w-9 h-5 flex justify-center items-center   leading-none hover:underline `,
+              {
+                " font-bold": item.locale === locale,
+              },
+              {
+                " border-r-[1px] border-black": index !== items.length - 1,
+              }
+            )}
           >
             {item.label}
           </Link>

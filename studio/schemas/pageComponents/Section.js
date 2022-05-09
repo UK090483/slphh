@@ -1,16 +1,8 @@
 import React from "react";
 import { AiOutlineBorderOuter } from "react-icons/ai";
 import { withLocalization } from "../Localizer";
-import { colorList, sizesList, decoration, space, color } from "../snippets";
+import { decoration, space, color, getColor } from "../snippets";
 
-const decorationList = [
-  "line",
-  "line-animated",
-  "circle",
-  "circle-animated",
-  "arrow",
-  "arrow-animated",
-];
 export default withLocalization({
   type: "object",
   name: "section",
@@ -86,9 +78,10 @@ export default withLocalization({
       title: "title",
       content: "content",
       image: "image",
+      bgColor: "bgColor",
     },
     prepare(selection) {
-      const { title, content, image } = selection;
+      const { title, content, image, bgColor } = selection;
       const block = (content || []).find((block) => block._type === "block");
 
       return {
@@ -100,7 +93,7 @@ export default withLocalization({
               .map((span) => span.text)
               .join("")
           : "No title",
-        media: image,
+        media: <AiOutlineBorderOuter color={getColor(bgColor)} />,
       };
     },
   },

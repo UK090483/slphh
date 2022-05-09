@@ -4,11 +4,11 @@ import Typo from "@components/Typography/Typography";
 import useInViewport from "@hooks/useInViewport";
 
 import clsx from "clsx";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useListingBlock } from "../../listingContext";
 import { customListItemResult } from "./customListQuery";
 
-const Phase: React.FC = (props) => {
+const Phase: React.FC = () => {
   const { customItems: items, bgColor } = useListingBlock();
 
   return (
@@ -22,7 +22,8 @@ const Phase: React.FC = (props) => {
         "grid-rows-7 md:grid-cols-7": items?.length === 7,
         "grid-rows-8 md:grid-cols-7": items?.length === 8,
         "text-white": bgColor === "primary",
-        "text-primary": bgColor === "secondary",
+        "text-primary":
+          bgColor === "secondary" || bgColor === "white" || bgColor === null,
       })}
     >
       <div className="row-span-full md:col-span-full mb-8  h-full">
@@ -157,7 +158,7 @@ const Dott: React.FC<DottProps> = ({ diameter = 40, index, inViewport }) => {
             transitionDelay: inViewport ? index * delay + "ms" : "0ms",
             transitionTimingFunction: "linear",
           }}
-          className={clsx("transition-all  stroke-current")}
+          className={clsx("transition-all  stroke-current ")}
           strokeDasharray={100}
           strokeDashoffset={inViewport ? 0 : 100}
           cx="60"
@@ -177,7 +178,6 @@ type LineProps = {
   inViewport: boolean;
 };
 const Line: React.FC<LineProps> = ({ index, inViewport }) => {
-  const { bg } = useSection();
   return (
     <div
       style={{
@@ -187,7 +187,7 @@ const Line: React.FC<LineProps> = ({ index, inViewport }) => {
         transitionTimingFunction: "linear",
       }}
       className={clsx(
-        " bg-current w-1 md:w-full transition-transform  md:h-1 h-full   ",
+        " bg-current w-1 md:w-full transition-transform  md:h-1 h-full ",
         {
           "scale-y-110 md:scale-x-100 md:scale-y-100  ": inViewport,
           "scale-y-0  md:scale-x-0 md:scale-y-100 ": !inViewport,

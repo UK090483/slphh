@@ -1,23 +1,35 @@
 import Avatar from "@components/Avatar";
 import Typo from "@components/Typography/Typography";
-import SanityImage from "@lib/SanityImage";
+import clsx from "clsx";
 import * as React from "react";
 import { TestimonialItemResult } from "./testimonialQuery";
 
 interface ITestimonialListItemProps extends TestimonialItemResult {
   active?: boolean;
+  animateIn?: boolean;
+  animateOut?: boolean;
 }
 
 const TestimonialListItem: React.FunctionComponent<
   ITestimonialListItemProps
 > = (props) => {
-  const { name, position, text, active, image, children } = props;
+  const {
+    name,
+    position,
+    text,
+    active,
+    image,
+    children,
+    animateIn = false,
+    animateOut = false,
+  } = props;
 
   return (
-    <div
-      className={`w-full   flex-shrink-0  animate-fadeIn  grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto ${
-        active ? "" : "hidden"
-      }`}
+    <li
+      className={clsx(
+        `w-full  col-start-1 col-span-1 row-start-1 row-span-1 transition-all  duration-500  opacity-0    grid grid-cols-1 md:grid-cols-2 max-w-7xl mx-auto`,
+        { "opacity-100 ": active && animateIn && !animateOut }
+      )}
     >
       <div className="flex flex-col justify-center items-center py-12 px-5">
         <Avatar image={image} title={name} subTitle={position} />
@@ -28,7 +40,7 @@ const TestimonialListItem: React.FunctionComponent<
           »{text}«
         </Typo>
       </div>
-    </div>
+    </li>
   );
 };
 

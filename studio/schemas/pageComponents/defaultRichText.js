@@ -87,5 +87,6 @@ export default {
     { type: "seoText" },
     { type: "list" },
     { type: "embed" },
+    { type: "newsletter" },
   ],
 };

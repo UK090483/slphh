@@ -17,13 +17,29 @@
   font-display: swap;
 }
 
-.tooltip {
-  background-color: white !important;
-  opacity: 1 !important;
-  border: black solid 2px !important;
-  padding: 2rem !important;
-  width: 280px !important;
-  color: black !important;
+@layer components {
+  .tooltip {
+    @apply !bg-secondary !border-2 !rounded-lg !border-primary !opacity-100 !p-8 !text-black !w-60 md:!w-80;
+  }
+
+  .menuItem {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .menuItem::after {
+    @apply bg-black absolute w-full h-[3px] bottom-0 left-0;
+    content: "";
+    transition: transform 0.3s;
+    transform: scaleX(0);
+    transform-origin: center;
+  }
+
+  .menuItem:hover::after,
+  .menuItem:focus::after,
+  .menuItem.active::after {
+    transform: scaleX(1);
+  }
 }
 
 .hero {

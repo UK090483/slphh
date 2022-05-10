@@ -13,6 +13,7 @@ import ImagePlug from "./Plugs/ImagePlug/ImagePlug";
 import SeoTextPlug from "./Plugs/SeoTextPlug";
 import SpacerPlug from "./Plugs/Spacer";
 import ListPlug from "./Plugs/List/ListPlug";
+import Newsletter from "./Plugs/NewsLetterPlug";
 const ImageGalleryPlug = dynamic(
   () => import("./Plugs/ImageGalleryPlug/ImageGalleryPlug")
 );
@@ -46,6 +47,7 @@ const RichText: React.FC<RichTextPros> = (props: any) => {
         autoGalleryPlug: AutoGalleryPlug,
         list: ListPlug,
         embed: EmbedHTML,
+        newsletter: Newsletter,
       }}
       marks={{ link }}
       blockRenderer={(props) => {

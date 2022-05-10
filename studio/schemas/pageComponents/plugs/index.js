@@ -7,8 +7,10 @@ import AutoGallery from "./AutoGallery";
 import SeoText from "./SeoText";
 import List from "./List";
 import Embed from "./Embed";
+import Newsletter from "./Newsletter";
 
 const Plugs = [
+  Newsletter,
   Embed,
   ...List,
   Button,

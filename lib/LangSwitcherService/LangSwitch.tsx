@@ -39,7 +39,7 @@ export const LangSwitch: React.FC<LangSwitchProps> = (props) => {
             }
             locale={item.locale}
             className={clsx(
-              ` w-9 h-5 flex justify-center items-center   leading-none hover:underline `,
+              ` w-9 h-7 flex justify-center items-center text-lg   leading-none hover:underline `,
               {
                 " font-bold": item.locale === locale,
               },

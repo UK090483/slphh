@@ -35,7 +35,7 @@ const NavigationItem: React.FC<NavItemProps> = (props) => {
 
   if (!hasItems && hasLink) {
     return (
-      <NavigationLinkComponent {...link}>
+      <NavigationLinkComponent {...link} active={active}>
         <NavigationItemBaseComponent active={active} props={props} place="link">
           {label}
         </NavigationItemBaseComponent>

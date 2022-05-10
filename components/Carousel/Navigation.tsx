@@ -25,6 +25,7 @@ export const Navigation: React.FC<NavigationProps> = (props) => {
   );
 };
 
+export default Navigation;
 const Arrow = () => {
   return (
     <svg

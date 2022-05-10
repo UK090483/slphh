@@ -13,7 +13,7 @@ export const Logo: React.FC<LogoProps> = ({ className = "", small }) => {
       }`}
     >
       <svg
-        className={`h-full`}
+        className={`h-full w-[160px]`}
         viewBox="0 0 154 84"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

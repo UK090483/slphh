@@ -80,8 +80,9 @@ export default withLocalization({
       image: "image",
       bgColor: "bgColor",
     },
+
     prepare(selection) {
-      const { title, content, image, bgColor } = selection;
+      const { title, content, bgColor } = selection;
       const block = (content || []).find((block) => block._type === "block");
 
       return {

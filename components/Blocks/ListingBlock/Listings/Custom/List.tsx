@@ -19,7 +19,7 @@ const List: React.FC = (props) => {
         return (
           <div
             key={_key}
-            className={clsx(" flex justify-center flex-col items-center", {
+            className={clsx(" flex  flex-col items-center", {
               "max-w-xs ": isIconList,
             })}
           >
@@ -47,7 +47,7 @@ export default List;
 
 const IconImage: React.FC<{ image: ImageMetaResult }> = ({ image }) => {
   return (
-    <div className="w-28 h-28 bg-gray-200  rounded-full flex justify-center items-center mb-10 ">
+    <div className="w-28 h-28 bg-gray-200  rounded-full flex justify-center items-center mb-10 drop-shadow-lg ">
       <SanityImage image={image} height={50} />
     </div>
   );

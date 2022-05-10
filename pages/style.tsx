@@ -1,5 +1,4 @@
-import Typo from "@components/Typography/Typography";
-import Image from "next/image";
+import Pi from "@components/Pi";
 import * as React from "react";
 
 interface IStypeProps {}
@@ -7,7 +6,8 @@ interface IStypeProps {}
 const Style: React.FunctionComponent<IStypeProps> = (props) => {
   return (
     <div className=" ">
-      <Typo variant="body">HEADER 1</Typo>
+      <Pi percent={20} />
+      <Pi percent={45} />
     </div>
   );
 };

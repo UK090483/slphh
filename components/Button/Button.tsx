@@ -1,6 +1,5 @@
 import Link from "@components/Link";
 import { useSection } from "@components/Section/SectionContext";
-import choose from "@components/utility/choose";
 
 import clsx from "clsx";
 import React from "react";

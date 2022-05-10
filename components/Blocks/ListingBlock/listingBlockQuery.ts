@@ -19,7 +19,7 @@ import {
   testimonialItemQuery,
 } from "./Listings/Testimonials/testimonialQuery";
 
-import { DecorationSettings } from "@components/Section/Decoration";
+import { DecorationSettings } from "@components/Section/Decoration/Decoration";
 import { SectionBGColor, SectionSpace } from "@components/Section/Section";
 
 const isDocumentation =

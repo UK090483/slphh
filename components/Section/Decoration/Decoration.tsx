@@ -1,6 +1,9 @@
 import clsx from "clsx";
 import React from "react";
-import { useSection } from "./SectionContext";
+import { useSection } from "../SectionContext";
+import { Arrow } from "./Arrow";
+import { Circle } from "./Circle";
+import { Line } from "./Line";
 
 export type DecorationList =
   | "line"
@@ -26,58 +29,6 @@ const Decoration: React.FC = (props) => {
 };
 
 export default Decoration;
-
-const Circle: React.FC = () => {
-  const { bg } = useSection();
-  return (
-    <div className="">
-      <svg
-        viewBox="0 0 120 120"
-        version="1.1"
-        xmlns="http:www.w3.org/2000/svg"
-        className={clsx("fill-transparent w-96  hidden md:block", {
-          "stroke-primary ": bg !== "primary",
-          "stroke-black ": bg === "primary",
-        })}
-      >
-        <circle strokeWidth="20%" cx="60" cy="60" r="45" />
-      </svg>
-    </div>
-  );
-};
-
-const Arrow: React.FC = () => {
-  const { bg } = useSection();
-  return (
-    <div className="w-[200px] shrink-0 ">
-      <svg
-        viewBox="0 0 278 503"
-        className={clsx("w-full ", {
-          "fill-primary ": bg !== "primary",
-          "fill-black ": bg === "primary",
-        })}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M109.622 503L277.5 251.508L109.622 0H0.5L140.316 206.169L171.848 251.487L140.316 296.831L0.5 503H109.622Z" />
-      </svg>
-    </div>
-  );
-};
-
-type LineProps = {
-  className?: string;
-};
-const Line: React.FC<LineProps> = (props) => {
-  const { bg } = useSection();
-  return (
-    <div
-      className={clsx(" w-full h-20 max-w-[200px]", {
-        "bg-primary ": bg !== "primary",
-        "bg-black ": bg === "primary",
-      })}
-    ></div>
-  );
-};
 
 type DecoratorWrapProps = {
   className?: string;
@@ -117,7 +68,7 @@ const DecoratorWrap: React.FC<DecoratorWrapProps> = (props) => {
       )}
     >
       <div
-        className={clsx(" h-fit w-full overflow-hidden flex ", {
+        className={clsx(" h-fit w-full flex ", {
           "justify-start":
             decorationL && ["line", "line-animated"].includes(decorationL),
           "justify-end":

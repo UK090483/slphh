@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import Decoration, { DecorationSettings } from "./Decoration";
+import Decoration, { DecorationSettings } from "./Decoration/Decoration";
 import { SectionContextProvider } from "./SectionContext";
 
 export type SectionBGColor =
@@ -42,7 +42,6 @@ export const Section: React.FC<SectionProps> = (props) => {
 
   return (
     <SectionContextProvider {...props}>
-      <div />
       <Component
         data-testid={props["data-testid"] || "section"}
         id={id}

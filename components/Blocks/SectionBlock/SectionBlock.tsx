@@ -41,14 +41,16 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
           "grid   grid-cols-1  lg:grid-cols-2  gap-8 ": hasImage,
         })}
       >
-        <div
-          className={clsx("relative overflow-hidden  order-1", {
-            " md:order-1": imagePosition === "l",
-            "md:order-2": imagePosition === "r",
-          })}
-        >
-          <SanityImage image={image} layout="responsive" />
-        </div>
+        {hasImage && (
+          <div
+            className={clsx("relative overflow-hidden  order-1", {
+              " md:order-1": imagePosition === "l",
+              "md:order-2": imagePosition === "r",
+            })}
+          >
+            <SanityImage image={image} layout="responsive" />
+          </div>
+        )}
         <ConditionalWrap
           condition={!!hasImage}
           wrapper={(children) => (

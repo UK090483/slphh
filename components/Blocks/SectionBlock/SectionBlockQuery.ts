@@ -1,5 +1,5 @@
 import { richTextQuery } from "@components/RichText/richTextQuery";
-import { DecorationSettings } from "@components/Section/Decoration";
+import { DecorationSettings } from "@components/Section/Decoration/Decoration";
 import { SectionBGColor, SectionSpace } from "@components/Section/Section";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 

@@ -1,90 +1,35 @@
 import RichText from "@components/RichText/RichText";
-import { useSection } from "@components/Section/SectionContext";
 import Typo from "@components/Typography/Typography";
 import useInViewport from "@hooks/useInViewport";
 
 import clsx from "clsx";
 import React, { useRef } from "react";
 import { useListingBlock } from "../../listingContext";
-import { customListItemResult } from "./customListQuery";
 
 const Phase: React.FC = () => {
-  const { customItems: items, bgColor } = useListingBlock();
-
   return (
-    <div
-      className={clsx("grid  grid-cols-2  md:grid-rows-2   ", {
-        "grid-rows-2 md:grid-cols-2": items?.length === 2,
-        "grid-rows-3 md:grid-cols-3": items?.length === 3,
-        "grid-rows-4 md:grid-cols-4": items?.length === 4,
-        "grid-rows-5 md:grid-cols-5": items?.length === 5,
-        "grid-rows-6 md:grid-cols-6": items?.length === 6,
-        "grid-rows-7 md:grid-cols-7": items?.length === 7,
-        "grid-rows-8 md:grid-cols-7": items?.length === 8,
-        "text-white": bgColor === "primary",
-        "text-primary":
-          bgColor === "secondary" || bgColor === "white" || bgColor === null,
-      })}
-    >
-      <div className="row-span-full md:col-span-full mb-8  h-full">
-        {items && <TimeLine length={items?.length} />}
-      </div>
-
-      {items?.map((i, index) => (
-        <Dot
-          index={index}
-          title={i.title}
-          description={i.description}
-          key={i._key}
-        />
-      ))}
+    <div className=" max-w-xs mx-auto md:max-w-none ">
+      <TimeLine />
     </div>
   );
 };
 
 export default Phase;
 
-interface DotProps extends Omit<customListItemResult, "_key"> {
-  title?: string | null;
-  index: number;
-}
-
-const Dot: React.FC<DotProps> = (props) => {
-  const { title, description, index } = props;
-  return (
-    <div className="w-full flex md:flex-col justify-start items-center">
-      <div className="ml-12 md:ml-0 md:px-5 ">
-        <Typo variant="h3" className=" md:text-center">
-          {title}
-        </Typo>
-        {
-          <div className={clsx(" md:text-center text-black", {})}>
-            <RichText content={description} />
-          </div>
-        }
-      </div>
-    </div>
-  );
-};
-type TimeLineProps = {
-  length: number;
-};
-const TimeLine: React.FC<TimeLineProps> = ({ length }) => {
+const TimeLine: React.FC = () => {
   const ref = useRef(null);
+  const { customItems: content, bgColor } = useListingBlock();
 
+  const length = content ? content.length : 0;
   const inViewport = useInViewport(ref);
 
   const circleWidth = "50px";
   const arr = new Array(length).fill(Math.random());
-  const items = new Array(length * 2 + 1).fill(Math.random());
-  const temp = arr.map((i, index) =>
-    index === 0
-      ? `1fr ${circleWidth} 2fr`
-      : index === length - 1
-      ? `${circleWidth} 1fr`
-      : `${circleWidth} 2fr`
-  );
+  const items = new Array(length * 3).fill(Math.random());
+  const temp = arr.map((i, index) => `1fr ${circleWidth} 1fr`);
+  const tempR = arr.map((i, index) => `0px ${circleWidth} 1fr`);
 
+  if (!content) return null;
   let itemCount = 0;
 
   return (
@@ -92,14 +37,24 @@ const TimeLine: React.FC<TimeLineProps> = ({ length }) => {
       ref={ref}
       style={{
         gridTemplateColumns: temp.join(" "),
-        gridTemplateRows: `0px ${circleWidth} 2fr ` + temp.slice(1).join(" "),
+        gridTemplateRows: tempR.join(" "),
       }}
-      className="grid grid-flow-col   md:grid-flow-row h-full  md:!grid-rows-none "
+      className={clsx(
+        "grid grid-flow-col md:grid-flow-row h-full  md:!grid-rows-none  ",
+        {
+          "text-white": bgColor === "primary",
+          "text-primary":
+            bgColor === "secondary" || bgColor === "white" || bgColor === null,
+        }
+      )}
     >
       {items?.map((i, index) => {
-        const isDot = !!index && !!(index % 2);
-        const isLine =
-          !!index && !!((index + 1) % 2) && index + 1 !== items.length;
+        const isFirst = index === 0;
+        const isLast = index === items.length - 1;
+        const remainder = index % 3;
+
+        const isDot = remainder === 1;
+        const isLine = remainder !== 1 && !isFirst && !isLast;
 
         if (isDot || isLine) {
           itemCount++;
@@ -108,12 +63,10 @@ const TimeLine: React.FC<TimeLineProps> = ({ length }) => {
         return (
           <div
             key={index}
-            className={clsx(
-              "flex col-span-full md:col-auto  justify-center items-center "
-            )}
+            className={clsx("flex  md:col-auto  justify-center items-center ")}
           >
             {isDot && (
-              <Dott
+              <Dot
                 inViewport={inViewport}
                 diameter={circleWidth}
                 index={itemCount}
@@ -123,18 +76,46 @@ const TimeLine: React.FC<TimeLineProps> = ({ length }) => {
           </div>
         );
       })}
+
+      {content.map((i, index) => {
+        return (
+          <div
+            key={index}
+            className="col-span-11 mx-4  md:pt-6 row-span-3 md:row-span-1 md:col-span-3  text-2xl "
+          >
+            <Typo variant="h3" bold className=" md:text-center ">
+              {i.title}
+              {index === 0}
+            </Typo>
+
+            <div key={index} className="md:hidden text-black">
+              <RichText content={i.description} />
+            </div>
+          </div>
+        );
+      })}
+      {content.map((i, index) => {
+        return (
+          <div
+            key={index}
+            className="hidden text-center mx-4 md:block col-span-11 row-span-2 md:row-span-1 md:col-span-3 text-black"
+          >
+            <RichText content={i.description} />
+          </div>
+        );
+      })}
     </div>
   );
 };
 
-type DottProps = {
+type DotProps = {
   diameter?: number | string;
   index: number;
   inViewport: boolean;
 };
 
-const delay = 300;
-const Dott: React.FC<DottProps> = ({ diameter = 40, index, inViewport }) => {
+const delay = 200;
+const Dot: React.FC<DotProps> = ({ diameter = 40, index, inViewport }) => {
   return (
     <div
       style={{
@@ -143,7 +124,7 @@ const Dott: React.FC<DottProps> = ({ diameter = 40, index, inViewport }) => {
       }}
       className="rotate-180"
     >
-      <svg viewBox="0 0 120 120">
+      <svg viewBox="0 0 120 120" className=" drop-shadow-lg">
         <circle
           className="stroke-transparent "
           cx="60"
@@ -187,7 +168,7 @@ const Line: React.FC<LineProps> = ({ index, inViewport }) => {
         transitionTimingFunction: "linear",
       }}
       className={clsx(
-        " bg-current w-1 md:w-full transition-transform  md:h-1 h-full ",
+        " bg-current w-1 md:w-full transition-transform  md:h-1 h-full  drop-shadow-lg",
         {
           "scale-y-110 md:scale-x-100 md:scale-y-100  ": inViewport,
           "scale-y-0  md:scale-x-0 md:scale-y-100 ": !inViewport,

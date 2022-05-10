@@ -6,14 +6,37 @@ import useKeyPress from "@hooks/useKeyPress";
 import useCounter from "@hooks/useCounter";
 import { Navigation } from "./Navigation";
 import { Dots } from "./Dots";
-import Typo from "@components/Typography/Typography";
+
 import clsx from "clsx";
 
 import { useListingBlock } from "../../listingContext";
 import { useSection } from "@components/Section/SectionContext";
 
+function shuffle<Type>(_array: Type[] | null | undefined) {
+  if (!_array) return;
+  const array = [..._array];
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
 const TestimonialList: React.FC = () => {
-  const { testimonialItems: items, title } = useListingBlock();
+  const { testimonialItems: _items, title } = useListingBlock();
+  const items = shuffle(_items) as TestimonialItemResult[] | null | undefined;
   const { bg } = useSection();
   const length = items ? items.length : 0;
 

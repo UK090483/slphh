@@ -36,7 +36,9 @@ function shuffle<Type>(_array: Type[] | null | undefined) {
 
 const TestimonialList: React.FC = () => {
   const { testimonialItems: _items, title } = useListingBlock();
-  const items = shuffle(_items) as TestimonialItemResult[] | null | undefined;
+  const items = React.useMemo(() => {
+    return shuffle(_items) as TestimonialItemResult[] | null | undefined;
+  }, [_items]);
   const { bg } = useSection();
   const length = items ? items.length : 0;
 

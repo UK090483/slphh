@@ -14,11 +14,13 @@ const Hero: React.FC<HeroProps> = (props) => {
   return (
     <div
       style={{
-        gridTemplateColumns: " 1fr minmax(600px, 70vh)",
+        // gridTemplateColumns: " 1fr minmax(600px, 70vh)",
         gridTemplateRows: "1fr auto",
       }}
       data-testid="heroBlock"
-      className={clsx("w-full max-w-[1800px] mx-auto grid ")}
+      className={clsx(
+        "w-full max-w-[1800px] mx-auto grid grid-cols-heroSmall md:grid-cols-hero"
+      )}
     >
       <div
         className={clsx(
@@ -48,7 +50,7 @@ const Hero: React.FC<HeroProps> = (props) => {
         )}
       >
         <div>
-          <Typo className=" !text-[60px]" variant={"h1"}>
+          <Typo className="text-[40px] sm:!text-[60px]" variant={"h1"}>
             {header}
           </Typo>
           <Button>Apply Now</Button>

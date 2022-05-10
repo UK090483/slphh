@@ -35,6 +35,10 @@ module.exports = {
     },
 
     extend: {
+      gridTemplateColumns: {
+        hero: " 1fr minmax(600px, 70vh)",
+        heroSmall: " 1fr minmax(310px, 70vh)",
+      },
       screens: {
         menu: "1166px",
       },

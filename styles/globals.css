@@ -28,17 +28,18 @@
   }
 
   .menuItem::after {
-    @apply bg-black absolute w-full h-[3px] bottom-0 left-0;
+    @apply bg-black absolute w-0  h-[3px] bottom-0 left-1/2;
     content: "";
-    transition: transform 0.3s;
-    transform: scaleX(0);
-    transform-origin: center;
+    transition-property: width, left;
+    transition-duration: 0.3s, 0.3s;
+    transition-timing-function: ease, ease;
+    transition-delay: 0s, 0s;
   }
 
   .menuItem:hover::after,
   .menuItem:focus::after,
   .menuItem.active::after {
-    transform: scaleX(1);
+    @apply w-full left-0;
   }
 }
 

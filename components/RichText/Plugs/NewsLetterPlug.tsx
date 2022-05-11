@@ -4,13 +4,14 @@ import { PlugProps } from "./type";
 
 interface INewsletterPlugProps {
   html?: string;
+  link?: string;
 }
 
 const NewsletterPlug: React.FunctionComponent<
   PlugProps<INewsletterPlugProps>
 > = (props) => {
-  const { html } = props.node;
-  return <Newsletter html={html} />;
+  const { html, link } = props.node;
+  return <Newsletter html={html} link={link} />;
 };
 
 export default NewsletterPlug;

@@ -13,8 +13,11 @@ import { ListingBlogResult } from "./listingBlockQuery";
 import { ListingBlockContextProvider } from "./listingContext";
 import Section from "@components/Section/Section";
 
-const getWidth = (contentType: ListingBlogResult["contentType"]) => {
-  if (contentType === "persons") return "m";
+const getWidth = (props: ListingBlogResult) => {
+  const { contentType, personItems } = props;
+  if (contentType === "persons") {
+    return personItems && personItems.length > 3 ? "full" : "m";
+  }
   if (contentType === "custom") return "l";
   return "full";
 };
@@ -24,7 +27,7 @@ const ListingBlock: React.FC<ListingBlogResult> = (props) => {
 
   return (
     <Section
-      width={getWidth(contentType)}
+      width={getWidth(props)}
       bg={bgColor}
       bottomSpace={bottomSpace}
       topSpace={topSpace}

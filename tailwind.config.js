@@ -39,6 +39,10 @@ module.exports = {
         hero: " 1fr minmax(600px, 70vh)",
         heroSmall: " 1fr minmax(310px, 70vh)",
       },
+      gridTemplateRows: {
+        hero: "auto 0px",
+        heroSmall: "40vh auto",
+      },
       screens: {
         menu: "1166px",
       },

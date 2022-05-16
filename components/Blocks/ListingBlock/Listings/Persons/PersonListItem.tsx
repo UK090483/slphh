@@ -1,5 +1,3 @@
-import Typo from "@components/Typography/Typography";
-import SanityImage from "@lib/SanityImage";
 import type { ImageMetaResult } from "@lib/SanityImage/query";
 import ReactTooltip from "react-tooltip";
 
@@ -24,51 +22,50 @@ const PersonListItem: React.FunctionComponent<IPersonListItemProps> = (
 
   const { locale } = useRouter();
 
-  const isImage = variant === "image";
   const readMoreText = locale ? readMore[locale] : "mehr Erfahren";
 
   return (
     <li className="flex flex-col items-center justify-center sm:min-w-[250px] w-full   sm:w-1/4 py-8 self-start ">
       <div className="tooltip hidden" />
 
-      <Avatar image={avatar} title={name} subTitle={position} />
-
-      {description && (
-        <>
-          <button
-            className="underline text-sm sm:text-base"
-            data-tip
-            data-for={_id}
-          >
-            {readMoreText}
-          </button>
-          <ReactTooltip
-            overridePosition={(position) => {
-              const wWidth = window.innerWidth;
-              const needFitLeft = position.left < 0;
-              const needFitRight = position.left + 280 > wWidth;
-              const needFitTop = position.top < 0;
-              let p = { ...position };
-              if (needFitLeft) {
-                p = { ...p, left: 20 };
-              }
-              if (needFitRight) {
-                p = { ...p, left: wWidth - 300 };
-              }
-              if (needFitTop) {
-                p = { ...p, top: 20 };
-              }
-              return p;
-            }}
-            id={_id}
-            effect="float"
-            multiline={true}
-            className="tooltip"
-          >
-            {description}
-          </ReactTooltip>{" "}
-        </>
-      )}
+      <Avatar image={avatar} title={name} subTitle={position}>
+        {description && (
+          <>
+            <button
+              className="underline text-sm sm:text-base"
+              data-tip
+              data-for={_id}
+            >
+              {readMoreText}
+            </button>
+            <ReactTooltip
+              overridePosition={(position) => {
+                const wWidth = window.innerWidth;
+                const needFitLeft = position.left < 0;
+                const needFitRight = position.left + 280 > wWidth;
+                const needFitTop = position.top < 0;
+                let p = { ...position };
+                if (needFitLeft) {
+                  p = { ...p, left: 20 };
+                }
+                if (needFitRight) {
+                  p = { ...p, left: wWidth - 300 };
+                }
+                if (needFitTop) {
+                  p = { ...p, top: 20 };
+                }
+                return p;
+              }}
+              id={_id}
+              effect="float"
+              multiline={true}
+              className="tooltip"
+            >
+              {description}
+            </ReactTooltip>
+          </>
+        )}
+      </Avatar>
     </li>
   );
 };

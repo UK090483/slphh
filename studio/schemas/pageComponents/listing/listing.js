@@ -100,6 +100,18 @@ export default withLocalization({
       of: [{ type: "reference", to: [{ type: "person" }] }],
       hidden: ({ parent }) => parent?.contentType !== "persons",
     },
+    {
+      title: "Variant",
+      name: "personVariant",
+      type: "string",
+      options: {
+        list: [
+          { title: "List (default)", value: "list" },
+          { title: "Carousel (min 4 elements)", value: "carousel" },
+        ],
+      },
+      hidden: ({ parent }) => parent?.contentType !== "persons",
+    },
 
     // Testimonials
     {

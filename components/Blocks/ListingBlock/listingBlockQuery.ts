@@ -37,6 +37,7 @@ _type == "listing" => {
   bgColor,
   variant,
   customVariants,
+  personVariant,
   'filterItems': select( contentType == 'event' || (contentType  == 'documentations' && !defined(documentationsIncludeTags) )  => *[_type == "tag"]{'label':coalesce(name_${locale},name),'value':_id},null ),
   'title':coalesce(title_${locale},title),
   'personItems': personItems[]->{${personItemQuery(locale)}},
@@ -75,6 +76,7 @@ export interface ListingBlogResult {
   title?: string;
   filterItems?: { label: string; value: string }[];
   personItems?: PersonItemResult[] | null;
+  personVariant?: "list" | "carousel" | null;
   testimonialItems?: TestimonialItemResult[] | null;
   showTitle?: boolean;
   eventVariant?: "open" | "accordion" | null;

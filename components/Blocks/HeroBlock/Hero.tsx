@@ -13,13 +13,15 @@ const Hero: React.FC<HeroProps> = (props) => {
 
   return (
     <div
-      style={{
-        // gridTemplateColumns: " 1fr minmax(600px, 70vh)",
-        gridTemplateRows: "1fr auto",
-      }}
+      style={
+        {
+          // gridTemplateColumns: " 1fr minmax(600px, 70vh)",
+          // gridTemplateRows: "1fr auto",
+        }
+      }
       data-testid="heroBlock"
       className={clsx(
-        "w-full max-w-[1800px] mx-auto grid grid-cols-heroSmall md:grid-cols-hero"
+        "w-full max-w-[1800px] mx-auto grid grid-cols-heroSmall md:grid-cols-hero "
       )}
     >
       <div
@@ -28,7 +30,7 @@ const Hero: React.FC<HeroProps> = (props) => {
           "row-start-1 col-start-1"
         )}
       >
-        <div className="min-w-[350px] ">{<Arrow />}</div>
+        <div className="sm:min-w-[350px]  ">{<Arrow />}</div>
       </div>
 
       <div
@@ -46,7 +48,7 @@ const Hero: React.FC<HeroProps> = (props) => {
         className={clsx(
           "row-start-2 col-start-1 col-span-full",
           "lg:row-start-1 lg:col-start-1 lg:col-span-1",
-          "px-4 flex max-w-2xl  justify-center items-center  z-10  py-20 "
+          "px-4 flex max-w-2xl  justify-center items-center  z-10  py-12 "
         )}
       >
         <div>

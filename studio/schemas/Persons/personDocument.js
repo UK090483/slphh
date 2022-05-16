@@ -23,6 +23,7 @@ export default withLocalization({
       type: "text",
       localize: true,
     },
+
     {
       name: "avatar",
       type: "defaultImage",

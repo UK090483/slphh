@@ -22,6 +22,14 @@ export default {
         });
       },
     },
+    {
+      title: "Image Credit",
+      name: "credit",
+      type: "string",
+      options: {
+        isHighlighted: true,
+      },
+    },
   ],
   preview: {
     select: {

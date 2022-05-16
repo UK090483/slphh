@@ -8,22 +8,21 @@ import Typo from "./Typography/Typography";
 interface IAvatarProps {
   showFull?: boolean;
   title?: string | null;
-  // titleColor?: "primary" | "white" | "black";
   subTitle?: string | null;
   image?: ImageMetaResult | null;
 }
 
 const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
-  const { showFull, title, image, subTitle } = props;
+  const { showFull, title, image, subTitle, children } = props;
 
   const { bg } = useSection();
 
   const _bg = bg || "white";
 
   return (
-    <div>
+    <div className="flex flex-col items-center ">
       <div
-        className={`relative h-60 shadow-2xl overflow-hidden ${
+        className={`relative   h-60 shadow-2xl overflow-hidden ${
           showFull
             ? "w-full border-[10px] border-transparent "
             : "rounded-full w-60"
@@ -51,7 +50,10 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
           {title}
         </Typo>
       </div>
-      <Typo className="whitespace-pre-line text-center w-60">{subTitle}</Typo>
+      <Typo space={false} className="whitespace-pre-line text-center w-60 mb-4">
+        {subTitle}
+      </Typo>
+      {children}
     </div>
   );
 };

@@ -51,7 +51,7 @@ const DecoratorWrap: React.FC<DecoratorWrapProps> = (props) => {
   return (
     <div
       className={clsx(
-        "absolute  flex inset-0   pointer-events-none  z-10",
+        "absolute  flex inset-0   pointer-events-none  z-10 ",
         {
           "top-5 md:top-10": topSpace === "s",
           "top-9 md:top-20": topSpace === "m" || topSpace === null,

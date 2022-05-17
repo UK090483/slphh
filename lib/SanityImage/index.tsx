@@ -9,7 +9,14 @@ const SanityImage: SanityImageComponent = (props) => {
 
   let imageProps = useSanityImage(image, rest);
   if (!imageProps) return null;
-  return <NextImage alt={image?.alt || ""} {...imageProps} />;
+  return (
+    <>
+      <NextImage alt={image?.alt || ""} {...imageProps} />
+      {image?.credit && (
+        <div className="text-right mr-5 opacity-60 text-sm">{image.credit}</div>
+      )}
+    </>
+  );
 };
 
 const sizesMap = {

@@ -49,3 +49,31 @@
 .hero {
   height: calc(100vh - 128px);
 }
+
+@layer base {
+  p {
+    @apply text-base-mobile md:text-base pb-[2em];
+  }
+  h1 {
+    @apply text-5xl-mobile md:text-5xl;
+  }
+  h2 {
+    @apply text-4xl-mobile md:text-4xl;
+  }
+  h3 {
+    @apply text-3xl-mobile md:text-3xl;
+  }
+  h4 {
+    @apply text-2xl-mobile md:text-2xl;
+  }
+  h5 {
+    @apply text-xl;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply font-header font-black pb-[0.8em];
+  }
+}

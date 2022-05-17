@@ -18,6 +18,7 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import { LazyMotion, domAnimation, AnimatePresence, m } from "framer-motion";
 import { useRouter } from "next/router";
 
+
 interface AppPropsWithStaticProps {
   pageProps: PageProps<PageResult>;
   Component: NextComponentType<NextPageContext, any, PageProps<PageResult>>;

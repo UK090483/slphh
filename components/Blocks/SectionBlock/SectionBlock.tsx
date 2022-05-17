@@ -3,6 +3,7 @@ import Section from "@components/Section/Section";
 import SanityImage from "@lib/SanityImage";
 import type { ImageMetaResult } from "@lib/SanityImage/query";
 import clsx from "clsx";
+import { divide } from "lodash";
 import React from "react";
 import type { SectionResult } from "./SectionBlockQuery";
 
@@ -49,6 +50,9 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
             })}
           >
             <SanityImage image={image} layout="responsive" />
+            {image.credit && (
+              <div className="text-right mr-5 opacity-60">{image.credit}</div>
+            )}
           </div>
         )}
         <ConditionalWrap

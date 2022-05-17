@@ -34,13 +34,16 @@ type DecoratorWrapProps = {
   className?: string;
 };
 
-const decorationMap: Record<DecorationList, React.ReactElement> = {
-  arrow: <Arrow />,
-  "arrow-animated": <Arrow />,
-  circle: <Circle />,
-  "circle-animated": <Circle />,
-  line: <Line />,
-  "line-animated": <Line />,
+const decorationMap: Record<
+  DecorationList,
+  (side: "r" | "l") => React.ReactElement
+> = {
+  arrow: (side) => <Arrow side={side} />,
+  "arrow-animated": (side) => <Arrow side={side} />,
+  circle: (side) => <Circle side={side} />,
+  "circle-animated": (side) => <Circle side={side} />,
+  line: () => <Line />,
+  "line-animated": () => <Line />,
 };
 
 const DecoratorWrap: React.FC<DecoratorWrapProps> = (props) => {
@@ -51,7 +54,7 @@ const DecoratorWrap: React.FC<DecoratorWrapProps> = (props) => {
   return (
     <div
       className={clsx(
-        "absolute  flex inset-0   pointer-events-none  z-10 ",
+        "absolute  flex inset-0  pointer-events-none  z-10 ",
         {
           "top-5 md:top-10": topSpace === "s",
           "top-9 md:top-20": topSpace === "m" || topSpace === null,
@@ -68,7 +71,7 @@ const DecoratorWrap: React.FC<DecoratorWrapProps> = (props) => {
       )}
     >
       <div
-        className={clsx(" h-fit w-full flex ", {
+        className={clsx("h-fit  w-full flex  overflow-hidden  ", {
           "justify-start":
             decorationL && ["line", "line-animated"].includes(decorationL),
           "justify-end":
@@ -76,7 +79,7 @@ const DecoratorWrap: React.FC<DecoratorWrapProps> = (props) => {
           parallax: decorationL && decorationL.includes("animated"),
         })}
       >
-        {decorationL && decorationMap[decorationL]}
+        {decorationL && decorationMap[decorationL]("l")}
       </div>
 
       <div
@@ -88,11 +91,11 @@ const DecoratorWrap: React.FC<DecoratorWrapProps> = (props) => {
       ></div>
 
       <div
-        className={clsx(" h-fit w-full overflow-hidden", {
+        className={clsx(" h-fit w-full  overflow-hidden  ", {
           parallax: decorationR && decorationR.includes("animated"),
         })}
       >
-        {decorationR && decorationMap[decorationR]}
+        {decorationR && decorationMap[decorationR]("r")}
       </div>
     </div>
   );

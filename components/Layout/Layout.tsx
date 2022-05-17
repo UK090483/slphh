@@ -9,18 +9,6 @@ export const Layout: React.FC = (props) => {
 
   return (
     <>
-      <style global jsx>
-        {`
-          @font-face {
-            font-family: "grotesk";
-            src: url("/fonts/PPRightGrotesk-CompactBlack.woff2") format("woff2"),
-              url("/fonts/PPRightGrotesk-CompactBlack.woff") format("woff");
-            font-style: normal;
-            font-weight: 800;
-            font-display: swap;
-          }
-        `}
-      </style>
       <SkipToContent containerId="main-content" />
       <Header>
         <Nav />

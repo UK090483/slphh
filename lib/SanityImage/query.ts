@@ -8,7 +8,8 @@ hotspot,
 "aspectRatio": asset->metadata.dimensions.aspectRatio,
 "lqip": asset->metadata.lqip,
 'width': asset->metadata.dimensions.width,
-'height': asset->metadata.dimensions.height
+'height': asset->metadata.dimensions.height,
+credit
 `;
 
 export const imageMetaN = `
@@ -41,6 +42,7 @@ export type ImageMetaResult = {
   height: number;
   lqip: string;
   fill?: "fill" | "contain";
+  credit?: string | null;
   // asset?: {
   //   url?: string | null;
   //   _id: string;

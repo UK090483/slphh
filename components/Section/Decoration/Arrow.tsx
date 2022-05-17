@@ -2,15 +2,19 @@ import clsx from "clsx";
 import React from "react";
 import { useSection } from "../SectionContext";
 
-export const Arrow: React.FC = () => {
+export const Arrow: React.FC<{ side: "r" | "l" }> = ({ side }) => {
   const { bg } = useSection();
   return (
-    <div className="w-[200px] shrink-0  ">
+    <div
+      className={clsx(" w-full flex ", {
+        " justify-end": side === "l",
+      })}
+    >
       <svg
         aria-hidden="true"
         focusable="false"
         viewBox="0 0 278 503"
-        className={clsx("w-full ", {
+        className={clsx(" w-[200px] min-w-[200px] h-fit  mx-auto", {
           "fill-primary ": bg !== "primary",
           "fill-black ": bg === "primary",
         })}

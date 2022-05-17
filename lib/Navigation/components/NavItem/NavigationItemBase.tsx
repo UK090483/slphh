@@ -19,7 +19,7 @@ export const NavigationItemBase: React.FC<NavItemBaseProps> = ({
   return (
     <span
       className={clsx(
-        `block w-full px-5 py-4 leading-none whitespace-nowrap transition-colors duration-500 font-bold text-base-mobile xl:text-base truncate`,
+        `block w-full px-7 py-2 leading-none whitespace-nowrap transition-colors duration-500 font-bold text-base-mobile xl:text-base truncate`,
         {
           "decoration-2 underline-offset-2": false,
           "no-underline ": true,

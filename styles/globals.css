@@ -37,9 +37,12 @@
   }
 
   .menuItem:hover::after,
-  .menuItem:focus::after,
-  .menuItem.active::after {
+  .menuItem:focus::after {
     @apply w-full left-0;
+  }
+
+  .menuItem.active::after {
+    @apply w-[calc(100%-20px)] left-[10px];
   }
 }
 

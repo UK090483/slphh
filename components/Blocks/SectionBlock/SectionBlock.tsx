@@ -51,7 +51,9 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
           >
             <SanityImage image={image} layout="responsive" />
             {image.credit && (
-              <div className="text-right mr-5 opacity-60">{image.credit}</div>
+              <div className="text-right mr-5 opacity-60 text-sm">
+                {image.credit}
+              </div>
             )}
           </div>
         )}

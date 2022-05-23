@@ -34,13 +34,12 @@ const TimeLine: React.FC = () => {
 
   return (
     <div
-      ref={ref}
       style={{
         gridTemplateColumns: temp.join(" "),
         gridTemplateRows: tempR.join(" "),
       }}
       className={clsx(
-        "grid grid-flow-col md:grid-flow-row h-full  md:!grid-rows-none  ",
+        "grid grid-flow-col md:grid-flow-row h-full  md:!grid-rows-none  relative",
         {
           "text-white": bgColor === "primary",
           "text-primary":
@@ -48,6 +47,7 @@ const TimeLine: React.FC = () => {
         }
       )}
     >
+      <div className="absolute " ref={ref}></div>
       {items?.map((i, index) => {
         const isFirst = index === 0;
         const isLast = index === items.length - 1;

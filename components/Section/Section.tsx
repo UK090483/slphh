@@ -1,5 +1,7 @@
+import useInViewport from "@hooks/useInViewport";
 import clsx from "clsx";
 import React from "react";
+import { useRef } from "react";
 import Decoration, { DecorationSettings } from "./Decoration/Decoration";
 import { SectionContextProvider } from "./SectionContext";
 
@@ -40,12 +42,15 @@ export const Section: React.FC<SectionProps> = (props) => {
     style,
   } = props;
 
+  const ref = useRef(null);
+
   return (
     <SectionContextProvider {...props}>
+      <div ref={ref}></div>
       <Component
         data-testid={props["data-testid"] || "section"}
         id={id}
-        className={clsx(`w-full relative`, {
+        className={clsx(`w-full relative `, {
           "bg-black text-white": bg === "black",
           "bg-white": bg === "white",
           "bg-primary text-white": bg === "primary",
@@ -57,7 +62,7 @@ export const Section: React.FC<SectionProps> = (props) => {
         <InnerComponent
           style={style}
           className={clsx(
-            "mx-auto ",
+            "mx-auto    duration-300 transition-all ",
             {
               "md:max-w-screen-md ": width === "s",
               "lg:max-w-screen-lg ": width === "m",

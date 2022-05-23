@@ -3,17 +3,27 @@ import NextImage from "next/image";
 import useSanityImage from "@lib/SanityImage/useSanityImage";
 
 import { SanityImageComponent } from "./types";
+import clsx from "clsx";
 
 const SanityImage: SanityImageComponent = (props) => {
   const { image, ...rest } = props;
 
   let imageProps = useSanityImage(image, rest);
   if (!imageProps) return null;
+
+  const isAbsolutePositioned = imageProps.layout === "fill";
+
   return (
     <>
       <NextImage alt={image?.alt || ""} {...imageProps} />
       {image?.credit && (
-        <div className="text-right mr-5 opacity-60 text-sm">{image.credit}</div>
+        <div
+          className={clsx(" text-right mr-5 opacity-60 text-sm", {
+            "absolute -bottom-5 right-0 ": isAbsolutePositioned,
+          })}
+        >
+          {image.credit}
+        </div>
       )}
     </>
   );

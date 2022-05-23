@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { useCarousel } from "./CarouselContext";
 
 type NavigationProps = {
@@ -13,12 +13,20 @@ export const Navigation: React.FC<NavigationProps> = (props) => {
   if (itemCount < 2) return <></>;
 
   return (
-    <div className={` w-full flex  justify-between ${className}`}>
-      <button className=" px-3 " onClick={prev}>
+    <div className={`w-full flex  justify-between ${className}`}>
+      <button
+        className=" px-3 "
+        onClick={prev}
+        aria-label="carousel button previous"
+      >
         <Arrow />
       </button>
       {children}
-      <button className=" px-3  rotate-180 " onClick={next}>
+      <button
+        className=" px-3  rotate-180 "
+        onClick={next}
+        aria-label="carousel button next"
+      >
         <Arrow />
       </button>
     </div>

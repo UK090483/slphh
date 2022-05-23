@@ -54,20 +54,27 @@ const Typo: React.FC<TypographyProps> = ({
   return (
     <Component
       className={
-        clsx({
-          "pb-[0.8em]": space !== false && variant !== "body",
-          "pb-[2em]": space !== false && variant === "body",
-          "font-hand": hand,
-          "text-sm": variant === "body-s",
-          "text-base-mobile md:text-base ": variant === "body",
-          "text-lg font-header ": ["body-l", "h6"].includes(variant as string),
-          "text-xl font-header ": variant === "h5",
-          "text-2xl-mobile md:text-2xl font-header ": variant === "h4",
-          "text-3xl-mobile md:text-3xl font-header ": variant === "h3",
-          "text-4xl-mobile md:text-4xl font-header ": variant === "h2",
-          "text-5xl-mobile md:text-5xl font-header ": variant === "h1",
-          "font-black tracking-wide": isBold,
-        }) + ` ${className}`
+        clsx(
+          variant,
+          {
+            "pb-0": space === false,
+            "text-sm": variant === "body-s",
+            // "pb-[0.8em]": space !== false && variant !== "body",
+            // "pb-[2em]": space !== false && variant === "body",
+
+            // "text-base-mobile md:text-base ": variant === "body",
+            // "text-lg font-header ": ["body-l", "h6"].includes(
+            //   variant as string
+            // ),
+            // "text-xl font-header ": variant === "h5",
+            // "text-2xl-mobile md:text-2xl font-header ": variant === "h4",
+            // "text-3xl-mobile md:text-3xl font-header ": variant === "h3",
+            // "text-4xl-mobile md:text-4xl font-header ": variant === "h2",
+            // "text-5xl-mobile md:text-5xl font-header ": variant === "h1",
+            //  "font-black tracking-wide": isBold,
+          },
+          className
+        ) || undefined
       }
     >
       {children}

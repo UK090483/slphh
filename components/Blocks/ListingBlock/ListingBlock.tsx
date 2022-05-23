@@ -23,10 +23,11 @@ const getWidth = (props: ListingBlogResult) => {
 };
 
 const ListingBlock: React.FC<ListingBlogResult> = (props) => {
-  const { contentType, bgColor, bottomSpace, topSpace } = props;
+  const { contentType, bgColor, bottomSpace, topSpace, title } = props;
 
   return (
     <Section
+      data-testid={title}
       width={getWidth(props)}
       bg={bgColor}
       bottomSpace={bottomSpace}

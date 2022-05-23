@@ -9,7 +9,7 @@ class MyDocument extends Document {
         <Head>
           <link rel="icon" href="/favicon.ico" />
 
-          <link
+          {/* <link
             rel="preload"
             href="/fonts/HamburgSans-Bold.woff2"
             as="font"
@@ -22,7 +22,13 @@ class MyDocument extends Document {
             as="font"
             type="font/woff2"
             crossOrigin=""
-          />
+          /> */}
+          <script
+            async
+            defer
+            data-website-id="0c4b96a7-a904-4c2e-8f63-3c74f508be46"
+            src="https://umami-neon-pi.vercel.app/umami.js"
+          ></script>
         </Head>
 
         <body

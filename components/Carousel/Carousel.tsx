@@ -2,7 +2,7 @@ import * as React from "react";
 import { CarouselContextProvider } from "./CarouselContext";
 
 interface ICarouselProps {
-  children: React.ReactElement;
+  children: React.ReactNode | undefined;
   items: any[];
 }
 

@@ -15,7 +15,7 @@ interface ICarouselItemWrapProps {
 function CarouselItemWrap(props: ICarouselItemWrapProps) {
   const { children, delay = 500 } = props;
 
-  const { activeItem: _active } = useCarousel();
+  const { activeItem: _active, next } = useCarousel();
 
   const [animateIn, setAnimateIn] = useState(false);
   const [animateOut, setAnimateOut] = useState(false);
@@ -34,7 +34,7 @@ function CarouselItemWrap(props: ICarouselItemWrapProps) {
     return () => {
       clearTimeout(timeOut);
     };
-  }, [_active, delay]);
+  }, [_active, activeItem, delay]);
 
   React.useEffect(() => {
     if (animateOut) return;
@@ -47,13 +47,12 @@ function CarouselItemWrap(props: ICarouselItemWrapProps) {
   }, [animateOut, delay]);
 
   return (
-    <ul className="w-full grid grid-cols-1 grid-rows-1">
+    <ul onClick={next} className="w-full grid grid-cols-1 grid-rows-1">
       {children &&
         children({
           activeItem,
           animateIn,
           animateOut,
-
           animateOutIndex,
         })}
     </ul>

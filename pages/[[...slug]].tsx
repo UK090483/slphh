@@ -8,11 +8,13 @@ import SectionBlock from "@components/Blocks/SectionBlock";
 import sectionBlockQuery from "@components/Blocks/SectionBlock/SectionBlockQuery";
 import type { layoutQueryResult } from "@components/Layout/LayoutQuery";
 import layoutQuery from "@components/Layout/LayoutQuery";
+import useAnimation from "@lib/Animation/useAnimation";
 import useParallax from "@hooks/useParallax/useParallax";
 import BodyParser from "@lib/SanityPageBuilder/lib/BodyParser";
 import fetchStaticPaths from "@lib/SanityPageBuilder/lib/fetchStaticPath/fetchStaticPath";
 import fetchStaticProps from "@lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
 import { sanityClient as client } from "@lib/SanityService/sanity.server";
+
 import type { GetStaticPaths, GetStaticProps } from "next";
 import appConfig from "../app.config.json";
 const locales = appConfig.locales;
@@ -21,7 +23,13 @@ export type PageResult = layoutQueryResult & appQueryResult & { content?: any };
 
 const Page = () => {
   const { data } = useAppContext();
-
+  // useAnimation([
+  //   {
+  //     selector: "section p,h1,h2",
+  //     initialClass: "animator",
+  //     showClass: "animator-show",
+  //   },
+  // ]);
   useParallax();
 
   return (

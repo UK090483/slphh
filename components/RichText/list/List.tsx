@@ -10,7 +10,7 @@ const List: React.FC<IListProps> = (props: any) => {
       data-testid="list"
       className={`${
         props?.type === "number" ? "list-decimal" : "list-disc"
-      } list-inside pb-4`}
+      } list-outside pl-[2em] lg:pl-[3em] marker: pb-4`}
     >
       {props.children}
     </ul>

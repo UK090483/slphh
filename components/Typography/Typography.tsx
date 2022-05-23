@@ -55,11 +55,13 @@ const Typo: React.FC<TypographyProps> = ({
     <Component
       className={
         clsx(
+          variant,
           {
+            "pb-0": space === false,
+            "text-sm": variant === "body-s",
             // "pb-[0.8em]": space !== false && variant !== "body",
             // "pb-[2em]": space !== false && variant === "body",
 
-            "text-sm": variant === "body-s",
             // "text-base-mobile md:text-base ": variant === "body",
             // "text-lg font-header ": ["body-l", "h6"].includes(
             //   variant as string

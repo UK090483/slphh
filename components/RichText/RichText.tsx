@@ -14,6 +14,7 @@ import SeoTextPlug from "./Plugs/SeoTextPlug";
 import SpacerPlug from "./Plugs/Spacer";
 import ListPlug from "./Plugs/List/ListPlug";
 import Newsletter from "./Plugs/NewsLetterPlug";
+import RssEmbedPlug from "./Plugs/RssEmbedPlug/RssEmbedPlug";
 const ImageGalleryPlug = dynamic(
   () => import("./Plugs/ImageGalleryPlug/ImageGalleryPlug")
 );
@@ -48,6 +49,7 @@ const RichText: React.FC<RichTextPros> = (props: any) => {
         list: ListPlug,
         embed: EmbedHTML,
         newsletter: Newsletter,
+        rssEmbed: RssEmbedPlug,
       }}
       marks={{ link }}
       blockRenderer={(props) => {

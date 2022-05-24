@@ -41,7 +41,7 @@ const Nav: React.FC = () => {
           />
 
           <div className="flex gap-4   flex-shrink-0 items-center">
-            <LangSwitch className="hidden menu:flex" slugs={langSwitchData} />
+            {/* <LangSwitch className="hidden menu:flex" slugs={langSwitchData} /> */}
           </div>
 
           <button
@@ -63,12 +63,12 @@ const Nav: React.FC = () => {
           setOpen(false);
         }}
       >
-        <LangSwitch
+        {/* <LangSwitch
           slugs={langSwitchData}
           onClick={() => {
             setOpen(false);
           }}
-        />
+        /> */}
       </NavigationMobile>
 
       <div

@@ -9,7 +9,8 @@ import { HeroBlogResult } from "./HeroBlockQuery";
 interface HeroProps extends HeroBlogResult {}
 
 const Hero: React.FC<HeroProps> = (props) => {
-  const { header, image } = props;
+  const { header, image, linkText, link } = props;
+  console.log(props);
 
   return (
     <div
@@ -55,7 +56,11 @@ const Hero: React.FC<HeroProps> = (props) => {
           <Typo className="text-[40px] sm:!text-[60px]" variant={"h1"}>
             {header}
           </Typo>
-          <Button>Apply Now</Button>
+          {link?.href && (
+            <Button href={link.href} external={link.external}>
+              {linkText || "More"}
+            </Button>
+          )}
         </div>
       </div>
     </div>

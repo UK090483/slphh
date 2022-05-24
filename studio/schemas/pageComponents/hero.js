@@ -14,12 +14,22 @@ export default withLocalization({
       title: "Title",
       name: "title",
       type: "string",
-      localize: true,
     },
     {
       title: "Header",
       name: "header",
       type: "text",
+      localize: true,
+    },
+    {
+      title: "Link",
+      name: "link",
+      type: "link",
+    },
+    {
+      title: "Link text",
+      name: "linkText",
+      type: "string",
       localize: true,
     },
     {

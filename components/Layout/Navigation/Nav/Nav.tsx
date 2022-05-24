@@ -5,13 +5,10 @@ import { Logo } from "@components/Layout/Logo";
 import Link from "@components/Link";
 import Svg from "@components/Svg";
 import { useScrollThreshold } from "@hooks/useScrollThreshold";
-import { LangSwitch } from "@lib/LangSwitcherService/LangSwitch";
 import { HeaderNavigation } from "@lib/Navigation";
 import NavigationMobile from "@lib/Navigation/NavigationMobile";
-import SanityImage from "@lib/SanityImage";
 import clsx from "clsx";
 import React from "react";
-import Burger from "./Burger";
 
 const Nav: React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -27,7 +24,7 @@ const Nav: React.FC = () => {
       <nav>
         <div
           className={clsx(
-            "flex items-center justify-between w-full transition-shadow duration-700  px-[30px] lg:px-[60px] ",
+            "flex items-center justify-between w-full transition-shadow duration-700  px-4 lg:px-[60px] ",
             { "shadow-lg ": scrolled, "shadow-none": !scrolled }
           )}
         >

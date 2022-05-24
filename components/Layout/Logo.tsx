@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Image from "next/image";
 import React from "react";
 
@@ -8,12 +9,15 @@ type LogoProps = {
 export const Logo: React.FC<LogoProps> = ({ className = "", small }) => {
   return (
     <div
-      className={`transition-all duration-700 w-32 py-2 ${
-        small ? " h-16" : "h-32"
+      className={`transition-all duration-700  py-2 ${
+        small ? " h-16 " : "h-32"
       }`}
     >
       <svg
-        className={`h-full w-[160px]`}
+        className={clsx(`h-full transition-all duration-700 w-[160px]`, {
+          "w-[90px]": small,
+          "w-[160px]": !small,
+        })}
         viewBox="0 0 154 84"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

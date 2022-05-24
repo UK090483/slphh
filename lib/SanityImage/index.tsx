@@ -15,7 +15,11 @@ const SanityImage: SanityImageComponent = (props) => {
 
   return (
     <>
-      <NextImage alt={image?.alt || ""} {...imageProps} />
+      <NextImage
+        className="border-2 border-red grayscale-[60%]"
+        alt={image?.alt || ""}
+        {...imageProps}
+      />
       {image?.credit && (
         <div
           className={clsx(" text-right mr-5 opacity-60 text-sm", {

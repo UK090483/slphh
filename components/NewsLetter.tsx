@@ -1,8 +1,7 @@
 import Portal from "@components/Portal/Portal";
 import Typo from "@components/Typography/Typography";
-import Script from "next/script";
-
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import { useScrollThreshold } from "@hooks/useScrollThreshold";
+import React from "react";
 
 interface INewsletterProps {
   html?: string;
@@ -11,28 +10,18 @@ interface INewsletterProps {
 
 const Newsletter: React.FunctionComponent<INewsletterProps> = (props) => {
   const { html, link } = props;
-
-  const [clicked, setClicked] = useState(false);
-
-  // useEffect(() => {
-  //   if (!clicked) return;
-  //   if (window.grecaptcha) {
-  //     renderCaptcha();
-  //   }
-  //   if (!window.grecaptcha) {
-  //     window.onloadCapCallback = () => {
-  //       renderCaptcha();
-  //     };
-  //   }
-  // }, [clicked]);
-
+  const scrolled = useScrollThreshold(50);
   if (!link) return null;
 
   return (
-    <>
+    <div>
+      <style jsx>{`
+        .parallax-active {
+        }
+      `}</style>
       <button
-        onClick={() => setClicked(true)}
-        className="absolute  top-0 right-0 -translate-y-2/3 md:-translate-y-1/3 overflow-hidden z-10 "
+        data-parallax-speed={0.9}
+        className="absolute hidden lg:block drop-shadow-2xl parallax top-0 right-0  overflow-hidden z-20 "
       >
         <a
           href={link}
@@ -46,76 +35,24 @@ const Newsletter: React.FunctionComponent<INewsletterProps> = (props) => {
         </a>
       </button>
 
-      {/* {clicked && (
-        <>
-          <Portal>
-            <div className="bla fixed top-0 h-screen w-screen  backdrop-blur-sm bg-opacity-60 inset-0 z-50 flex justify-center items-center animate-fadeIn">
-              <div
-                onClick={() => setClicked(false)}
-                className=" absolute top-6 right-6 border-2 border-primary bg-primary w-12 h-12 rounded-full flex justify-center items-center text-white "
-              >
-                X
-              </div>
-
-              <div dangerouslySetInnerHTML={{ __html: html }} />
-            </div>
-          </Portal>
-          <Script
-            src="https://www.google.com/recaptcha/api.js?onload=onloadCapCallback&render=explicit"
-            async
-            defer
-          ></Script>
-        </>
-      )}
-      <style global jsx>{`
-        .cr_page {
-          width: 100% !important;
-        }
-        .badge {
-          display: none;
-        }
-      `}</style> */}
-    </>
+      <Portal>
+        {scrolled && (
+          <div className="fixed animate-slideInLeft flex justify-center items-center   h-16 pointer-events-none    lg:hidden  bottom-0 right-0 left-0  overflow-hidden z-30 ">
+            <a
+              href={link}
+              target="_blank"
+              rel="noreferrer"
+              className=" px-5 py-2 bg-primary drop-shadow-2xl border-2 border-white rounded-full pointer-events-auto   flex justify-center items-center "
+            >
+              <Typo space={false} bold className="text-white text-center ">
+                Join our newsletter
+              </Typo>
+            </a>
+          </div>
+        )}
+      </Portal>
+    </div>
   );
 };
 
 export default Newsletter;
-
-// async function waitUntilElementExists(
-//   selector: string,
-//   tryCount: number = 1
-// ): Promise<Element | null> {
-//   const el = document.querySelector(selector);
-//   console.log("try" + tryCount);
-//   if (el) {
-//     return el;
-//   }
-//   if (tryCount > 10) {
-//     return null;
-//   }
-//   await new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve("");
-//     }, tryCount * 10);
-//   });
-//   return await waitUntilElementExists(selector, tryCount + 1);
-// }
-
-// const renderCaptcha = async () => {
-//   const item = await waitUntilElementExists("#recaptcha_v2_widget");
-//   if (!item) {
-//     console.error("no captcha item found");
-//     return;
-//   }
-//   const captcha = window.grecaptcha;
-//   if (!captcha) {
-//     console.error("captcha not on window");
-//     return;
-//   }
-
-//   try {
-//     captcha.render(item);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };

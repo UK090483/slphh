@@ -6,7 +6,7 @@ import { useLockBodyScroll } from "react-use";
 const Portal: React.FC = ({ children }) => {
   const [mounted, setMounted] = useState(false);
 
-  useLockBodyScroll();
+  // useLockBodyScroll();
 
   useEffect(() => {
     setMounted(true);

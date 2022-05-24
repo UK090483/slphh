@@ -14,12 +14,6 @@ const Hero: React.FC<HeroProps> = (props) => {
 
   return (
     <div
-      style={
-        {
-          // gridTemplateColumns: " 1fr minmax(600px, 70vh)",
-          // gridTemplateRows: "1fr auto",
-        }
-      }
       data-testid="heroBlock"
       className={clsx(
         "w-full max-w-[1800px] mx-auto grid grid-cols-heroSmall md:grid-cols-hero "
@@ -31,7 +25,7 @@ const Hero: React.FC<HeroProps> = (props) => {
           "row-start-1 col-start-1"
         )}
       >
-        <div className="sm:min-w-[350px]  ">{<Arrow />}</div>
+        <div className="sm:min-w-[350px]">{<Arrow />}</div>
       </div>
 
       <div
@@ -73,7 +67,7 @@ const Arrow: React.FC = () => {
   return (
     <svg
       viewBox="0 0 278 503"
-      className={clsx("   fill-primary")}
+      className={clsx(" max-h-[600px]  fill-primary")}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path d="M109.622 503L277.5 251.508L109.622 0H0.5L140.316 206.169L171.848 251.487L140.316 296.831L0.5 503H109.622Z" />

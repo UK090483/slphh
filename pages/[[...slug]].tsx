@@ -25,9 +25,14 @@ const Page = () => {
   const { data } = useAppContext();
   // useAnimation([
   //   {
-  //     selector: "section p,h1,h2",
-  //     initialClass: "animator",
-  //     showClass: "animator-show",
+  //     selector: "section p,h1,h2,h3,h4",
+  //     initialStyle: {
+  //       opacity: 0,
+  //       transform: "translate3d(0,200px,0)",
+  //       transition: "all 0.5s",
+  //     },
+  //     hideStyle: { opacity: 0, transform: "translate3d(0,200px,0)" },
+  //     showStyle: { opacity: 100, transform: "translate3d(0,0,0)" },
   //   },
   // ]);
   useParallax();

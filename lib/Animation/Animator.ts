@@ -137,7 +137,6 @@ class AnimationItem {
     this.showClass && this.element.classList.add(this.showClass);
     this.hideClass && this.element.classList.remove(this.hideClass);
   }
-
   hide() {
     this.hideStyle && this.setStyles(this.hideStyle);
     this.showClass && this.element.classList.remove(this.showClass);

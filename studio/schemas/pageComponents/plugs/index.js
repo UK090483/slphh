@@ -8,8 +8,10 @@ import SeoText from "./SeoText";
 import List from "./List";
 import Embed from "./Embed";
 import Newsletter from "./Newsletter";
+import RssEmbed from "./RssEmbed";
 
 const Plugs = [
+  RssEmbed,
   Newsletter,
   Embed,
   ...List,

@@ -23,7 +23,7 @@ const config = {
 
   reactStrictMode: true,
   images: {
-    domains: ["picsum.photos", "cdn.sanity.io"],
+    domains: ["picsum.photos", "cdn.sanity.io", "hamburg-news.hamburg"],
   },
 
   webpack(config, options) {

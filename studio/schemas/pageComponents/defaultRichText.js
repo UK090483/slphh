@@ -88,5 +88,6 @@ export default {
     { type: "list" },
     { type: "embed" },
     { type: "newsletter" },
+    { type: "rssEmbed" },
   ],
 };

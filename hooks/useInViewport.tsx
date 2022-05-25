@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 type useInViewportOptions = {
-  callBack?: (entry: IntersectionObserverEntry) => boolean;
+  callBack?: (
+    entry: IntersectionObserverEntry,
+    observer: IntersectionObserver
+  ) => boolean;
   onChange?: (isIntersecting: boolean) => void;
   rootMargin?: string;
+  once?: boolean;
 };
 
 const useInViewport = (
@@ -14,10 +18,14 @@ const useInViewport = (
 
   useEffect(() => {
     if (ref.current && typeof IntersectionObserver === "function") {
-      const handler = (entries: IntersectionObserverEntry[]) => {
+      const handler = (
+        entries: IntersectionObserverEntry[],
+        _observer: IntersectionObserver
+      ) => {
         const isIntersecting = options?.callBack
-          ? options.callBack(entries[0])
+          ? options.callBack(entries[0], _observer)
           : !(entries[0].intersectionRatio < 1);
+
         if (intersecting !== isIntersecting) {
           options?.onChange && options?.onChange(isIntersecting);
           setIntersecting(isIntersecting);

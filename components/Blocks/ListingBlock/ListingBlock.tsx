@@ -14,9 +14,12 @@ import { ListingBlockContextProvider } from "./listingContext";
 import Section from "@components/Section/Section";
 
 const getWidth = (props: ListingBlogResult) => {
-  const { contentType, personItems, type } = props;
+  const { contentType, personItems, type, personVariant } = props;
   if (contentType === "persons") {
-    return personItems && personItems.length > 3 ? "full" : "m";
+    console.log(props);
+    return personItems && personItems.length > 3 && personVariant === "carousel"
+      ? "full"
+      : "m";
   }
   if (contentType === "custom") return type || "l";
   return "full";

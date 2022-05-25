@@ -21,7 +21,15 @@ const TimeLine: React.FC = () => {
   const { customItems: content, bgColor } = useListingBlock();
 
   const length = content ? content.length : 0;
-  const inViewport = useInViewport(ref);
+  const inViewport = useInViewport(ref, {
+    callBack: (entry, observer) => {
+      if (entry.isIntersecting) {
+        observer.unobserve(entry.target);
+        return true;
+      }
+      return false;
+    },
+  });
 
   const circleWidth = "50px";
   const arr = new Array(length).fill(Math.random());

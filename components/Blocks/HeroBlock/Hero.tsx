@@ -11,7 +11,6 @@ interface HeroProps extends HeroBlogResult {}
 
 const Hero: React.FC<HeroProps> = (props) => {
   const { header, image, linkText, link, content } = props;
-  console.log(props);
 
   return (
     <div

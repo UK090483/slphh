@@ -1,5 +1,5 @@
 {
-  "hostname": "https://www.perspektivregion.eu",
+  "hostname": "https://www.slp.com",
   "locales": {
     "en": { "title": "Englisch", "isDefault": true, "flag": "🇺🇸" },
     "de": { "title": "Deutsch", "flag": "🇩🇪" }

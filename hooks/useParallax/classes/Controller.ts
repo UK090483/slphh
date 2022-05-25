@@ -2,6 +2,7 @@ import ParallaxItem from "./Item";
 
 class ParallaxController {
   _ticking: boolean;
+  _lastUpdate = 0;
   elements: ParallaxItem[];
   _supportsPassive: boolean;
   constructor() {
@@ -10,6 +11,7 @@ class ParallaxController {
     this._supportsPassive = testForPassiveScroll();
     this._bindAllMethods();
     this._addListeners();
+    this._loop();
   }
 
   static init(): ParallaxController {
@@ -24,6 +26,7 @@ class ParallaxController {
 
   _bindAllMethods() {
     [
+      "_loop",
       "_addListeners",
       "_removeListeners",
       "_handleScroll",
@@ -43,18 +46,24 @@ class ParallaxController {
       this._supportsPassive ? { passive: true } : false
     );
   }
+  _loop() {
+    console.log("update loop");
+
+    // window.requestAnimationFrame(this._loop);
+  }
 
   _removeListeners() {
     window.removeEventListener("scroll", this._handleScroll, false);
   }
 
-  _handleScroll() {
+  _handleScroll(e: Event) {
     // Only called if the last animation request has been
     // completed and there are parallax elements to update
     if (!this._ticking && this.elements.length > 0) {
       this._ticking = true;
       // @ts-ignore
       window.requestAnimationFrame(this._updateAllElements);
+      this._lastUpdate = e.timeStamp;
     }
   }
 

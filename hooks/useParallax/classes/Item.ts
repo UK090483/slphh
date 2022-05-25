@@ -4,6 +4,7 @@ class ParallaxItem {
   element: HTMLElement;
   speed = 0.4;
   boundaryTop: number | null = null;
+  id = "item" + Math.random();
 
   constructor(element: HTMLElement) {
     this.element = element;
@@ -24,6 +25,7 @@ class ParallaxItem {
       return;
     }
     this.setActiveState(true);
+
     this.element.style.willChange = `transform`;
     this.element.style.transform = `translate3d(0,${delta * this.speed}px,0)`;
   }

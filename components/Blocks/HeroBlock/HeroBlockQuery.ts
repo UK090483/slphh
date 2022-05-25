@@ -1,3 +1,7 @@
+import {
+  richTextQuery,
+  richTextQueryShort,
+} from "@components/RichText/richTextQuery";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import { LinkResult, linkQuery } from "@lib/Navigation/query";
 
@@ -9,6 +13,9 @@ _type == "hero" => {
   'image':image{${imageMeta}},
   'link':link{${linkQuery(locale)}},
   'linkText':(coalesce(linkText_${locale},linkText)),
+  'content':(coalesce(content_${locale},content))[]{${richTextQueryShort(
+  locale
+)}}
 }
 `;
 
@@ -19,6 +26,7 @@ export interface HeroBlogResult {
   image?: ImageMetaResult;
   link?: LinkResult | null;
   linkText?: string | null;
+  content?: any;
 }
 
 export default heroBlockQuery;

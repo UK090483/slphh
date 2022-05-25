@@ -1,4 +1,5 @@
 import Button from "@components/Button/Button";
+import RichText from "@components/RichText/RichText";
 import Typo from "@components/Typography/Typography";
 import SanityImage from "@lib/SanityImage";
 import clsx from "clsx";
@@ -9,7 +10,7 @@ import { HeroBlogResult } from "./HeroBlockQuery";
 interface HeroProps extends HeroBlogResult {}
 
 const Hero: React.FC<HeroProps> = (props) => {
-  const { header, image, linkText, link } = props;
+  const { header, image, linkText, link, content } = props;
   console.log(props);
 
   return (
@@ -47,9 +48,10 @@ const Hero: React.FC<HeroProps> = (props) => {
         )}
       >
         <div>
-          <Typo className="text-[40px] sm:!text-[60px]" variant={"h1"}>
+          <RichText content={content} />
+          {/* <Typo className="text-[40px] sm:!text-[60px]" variant={"h1"}>
             {header}
-          </Typo>
+          </Typo> */}
           {link?.href && (
             <Button href={link.href} external={link.external}>
               {linkText || "More"}

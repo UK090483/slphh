@@ -15,10 +15,12 @@ export default withLocalization({
       name: "title",
       type: "string",
     },
+
     {
-      title: "Header",
-      name: "header",
+      title: "Content",
+      name: "content",
       type: "text",
+      type: "easyRichText",
       localize: true,
     },
     {

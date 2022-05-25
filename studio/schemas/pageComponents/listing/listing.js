@@ -143,6 +143,20 @@ export default withLocalization({
     },
 
     {
+      title: "Type",
+      name: "type",
+      type: "string",
+      options: {
+        list: [
+          { title: "Medium", value: "m" },
+          { title: "Wide", value: "l" },
+          { title: "Narrow", value: "s" },
+        ],
+      },
+      hidden: ({ parent }) => parent?.contentType !== "custom",
+    },
+
+    {
       title: "Show Title",
       name: "showTitle",
       type: "boolean",

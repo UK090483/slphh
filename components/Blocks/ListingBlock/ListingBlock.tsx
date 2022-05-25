@@ -14,11 +14,11 @@ import { ListingBlockContextProvider } from "./listingContext";
 import Section from "@components/Section/Section";
 
 const getWidth = (props: ListingBlogResult) => {
-  const { contentType, personItems } = props;
+  const { contentType, personItems, type } = props;
   if (contentType === "persons") {
     return personItems && personItems.length > 3 ? "full" : "m";
   }
-  if (contentType === "custom") return "l";
+  if (contentType === "custom") return type || "l";
   return "full";
 };
 

@@ -28,6 +28,7 @@ const isDocumentation =
 const listingBlockQuery = (locale: string = "") => `
 _type == "listing" => {
   ...,
+  type,
   hideDoneEvents,
   eventVariant,
   _type,
@@ -81,6 +82,7 @@ export interface ListingBlogResult {
   showTitle?: boolean;
   eventVariant?: "open" | "accordion" | null;
   hideDoneEvents?: boolean | null;
+  type?: null | "s" | "m" | "l";
 }
 
 export default listingBlockQuery;

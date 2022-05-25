@@ -116,6 +116,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     require("tailwindcss-debug-screens"),
     require("@tailwindcss/aspect-ratio"),

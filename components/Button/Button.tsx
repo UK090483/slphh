@@ -9,10 +9,20 @@ type ButtonProps = {
   href?: string | null;
   external?: boolean;
   tabIndex?: -1 | 0;
+  className?: string;
+  type?: "button" | "submit";
 };
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { children, onClick = () => {}, href, external, tabIndex = 0 } = props;
+  const {
+    children,
+    onClick = () => {},
+    href,
+    external,
+    tabIndex = 0,
+    className: _className,
+    type = "button",
+  } = props;
   const { bg } = useSection();
 
   const className = clsx(
@@ -42,8 +52,8 @@ const Button: React.FC<ButtonProps> = (props) => {
     <button
       tabIndex={tabIndex}
       onClick={onClick}
-      className={className}
-      type="button"
+      className={className + " " + _className}
+      type={type}
     >
       {children}
     </button>

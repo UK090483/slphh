@@ -8,6 +8,7 @@ _type == "section" => {
   ...,
   decorationL,
   decorationR,
+  textPosition,
   bgColor,
   _key,
   _type,
@@ -22,6 +23,7 @@ _type == "section" => {
 `;
 
 export interface SectionResult extends DecorationSettings {
+  textPosition?: "left" | "center" | "right" | null;
   bgColor?: SectionBGColor;
   title?: string;
   topSpace?: SectionSpace;

@@ -1,12 +1,7 @@
 /* eslint-disable react/display-name */
 import clsx from "clsx";
-import React, { InputHTMLAttributes, memo } from "react";
-import {
-  FieldValues,
-  RegisterOptions,
-  useFormContext,
-  UseFormReturn,
-} from "react-hook-form";
+import React, { InputHTMLAttributes } from "react";
+import { RegisterOptions, useFormContext } from "react-hook-form";
 import { FieldContextProvider } from "./FieldContext";
 import { FieldError } from "./FieldError";
 import { FormLable } from "./FormLable";

@@ -63,6 +63,20 @@ export default {
                 name: "asButton",
                 type: "boolean",
               },
+              {
+                title: "Variants",
+                name: "variant",
+                type: "string",
+                options: {
+                  list: [
+                    { title: "Button", value: "button" },
+                    {
+                      title: "Sticky Button (just one per page !)",
+                      value: "stickyButton",
+                    },
+                  ],
+                },
+              },
             ],
             blockEditor: {
               icon: () => "Link",

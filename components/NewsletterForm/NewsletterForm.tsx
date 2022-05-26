@@ -19,7 +19,6 @@ const NewsletterForm: React.FC<INewsletterFormProps> = (props) => {
       .then((r) => r.json())
       .then((r) => {
         console.log(r);
-
         //@ts-ignore
         setSteps(r["success"] ? "success" : "error");
       });
@@ -72,7 +71,6 @@ const RawForm: React.FC<{ handleSubmit: (data: any) => void }> = ({
         }}
         className="w-full  max-w-lg mx-auto"
       >
-        <Typo variant="h3">Subscribe to our Newsletter</Typo>
         <Field
           name="email"
           placeholder="YOUR BEST EMAIL *"

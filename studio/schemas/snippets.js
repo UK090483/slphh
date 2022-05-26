@@ -31,7 +31,7 @@ export const color = (override) => {
 export const decoration = (override) => {
   return [
     {
-      title: "Decoration",
+      title: "Decoration Left",
       name: "decorationL",
       type: "string",
       options: {
@@ -40,7 +40,7 @@ export const decoration = (override) => {
       ...override,
     },
     {
-      title: "Decoration",
+      title: "Decoration Right",
       name: "decorationR",
       type: "string",
       options: {

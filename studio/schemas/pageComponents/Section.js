@@ -23,6 +23,11 @@ export default withLocalization({
       title: "Decoration",
       options: { collapsible: true, collapsed: true, columns: 2 },
     },
+    {
+      name: "properties",
+      title: "Properties",
+      options: { collapsible: true, collapsed: true, columns: 2 },
+    },
   ],
   icon: () => <AiOutlineBorderOuter />,
   fields: [
@@ -43,6 +48,7 @@ export default withLocalization({
       title: "Type",
       name: "type",
       type: "string",
+      fieldset: "properties",
       options: {
         list: [
           { title: "Medium", value: "m" },
@@ -51,7 +57,24 @@ export default withLocalization({
         ],
       },
     },
-    ...color({ name: "bgColor", title: "Background Color" }),
+    {
+      title: "Text Position",
+      name: "textPosition",
+      type: "string",
+      fieldset: "properties",
+      options: {
+        list: [
+          { title: "Left (default)", value: "left" },
+          { title: "Center", value: "center" },
+          { title: "Right", value: "right" },
+        ],
+      },
+    },
+    ...color({
+      name: "bgColor",
+      title: "Background Color",
+      fieldset: "properties",
+    }),
     ...decoration({ fieldset: "decoration" }),
     ...space({ fieldset: "space" }),
     {

@@ -1,4 +1,4 @@
-import Newsletter from "@components/NewsLetter";
+import NewsletterForm from "@components/NewsletterForm/NewsletterForm";
 import React from "react";
 import { PlugProps } from "./type";
 
@@ -10,8 +10,7 @@ interface INewsletterPlugProps {
 const NewsletterPlug: React.FunctionComponent<
   PlugProps<INewsletterPlugProps>
 > = (props) => {
-  const { html, link } = props.node;
-  return <Newsletter html={html} link={link} />;
+  return <NewsletterForm />;
 };
 
 export default NewsletterPlug;

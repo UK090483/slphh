@@ -13,6 +13,7 @@ export type SectionBGColor =
 export type SectionSpace = "s" | "m" | "l" | "xl" | "xxl";
 
 export interface SectionProps extends DecorationSettings {
+  textPosition?: "left" | "center" | "right" | null;
   width?: "full" | "m" | "l" | "s" | "responsive";
   bg?: SectionBGColor;
   className?: string;
@@ -28,6 +29,7 @@ export interface SectionProps extends DecorationSettings {
 
 export const Section: React.FC<SectionProps> = (props) => {
   const {
+    textPosition,
     topSpace,
     bottomSpace,
     children,
@@ -46,7 +48,7 @@ export const Section: React.FC<SectionProps> = (props) => {
       <Component
         data-testid={props["data-testid"] || "section"}
         id={id}
-        className={clsx(`w-full relative `, {
+        className={clsx(`w-full relative  `, {
           "bg-black text-white": bg === "black",
           "bg-white": bg === "white",
           "bg-primary text-white": bg === "primary",
@@ -75,6 +77,8 @@ export const Section: React.FC<SectionProps> = (props) => {
               "pb-12 md:pb-44": bottomSpace === "xl",
               "pb-24 md:pb-60": bottomSpace === "xxl",
               "pb-0.5": !bottomSpace,
+              "text-center": textPosition === "center",
+              "text-right": textPosition === "right",
             },
             className
           )}

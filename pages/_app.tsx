@@ -57,8 +57,6 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
 
   return (
     <>
-      {/*     
- <AnalyticsContextProvider id="G-YVH817HM4Z"> */}
       <LazyMotion features={domAnimation}>
         <AnimatePresence exitBeforeEnter>
           <AppContextProvider
@@ -68,7 +66,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
             <Layout>
               <m.div
                 key={pageProps?.data?._id}
-                className="page-wrap"
+                className="page-wrap  overflow-hidden "
                 initial="initial"
                 animate="animate"
                 exit="exit"
@@ -85,8 +83,6 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
           </AppContextProvider>
         </AnimatePresence>
       </LazyMotion>
-
-      {/* </AnalyticsContextProvider> */}
     </>
   );
 }

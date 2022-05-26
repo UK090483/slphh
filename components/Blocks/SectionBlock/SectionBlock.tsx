@@ -21,14 +21,18 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
     bgColor,
     decorationL,
     decorationR,
+    textPosition,
   } = props;
 
   const hasImage = image && image.url;
   const autoType = hasImage ? "l" : "s";
 
+  console.log(textPosition);
+
   return (
     <>
       <Section
+        textPosition={textPosition}
         noPadding={!!hasImage}
         bottomSpace={bottomSpace}
         topSpace={topSpace}

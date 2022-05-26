@@ -39,47 +39,51 @@ export default () =>
             ])
         ),
 
-      S.listItem({
-        id: "pages",
-        title: "Pages",
-        schemaType: "page",
-        child: async () => {
-          const pageTypes = await client.fetch(
-            '*[_type == "pageType"]{_id ,name}'
-          );
-          const root = S.listItem()
-            .id("page")
-            .title("Root")
-            .child(
-              S.documentTypeList("page")
-                .title(`Pages`)
-                .filter(`_type == "page" && !defined(pageType) `)
-            );
+      // S.listItem({
+      //   id: "pages",
+      //   title: "Pages",
+      //   schemaType: "page",
+      //   child: async () => {
+      //     const pageTypes = await client.fetch(
+      //       '*[_type == "pageType"]{_id ,name}'
+      //     );
+      //     const root = S.listItem()
+      //       .id("page")
+      //       .title("Root")
+      //       .child(
+      //         S.documentTypeList("page")
+      //           .title(`Pages`)
+      //           .filter(`_type == "page" && !defined(pageType) `)
+      //       );
 
-          const items = pageTypes.map(({ _id: pageTypeId, name }) =>
-            S.listItem()
-              .id(pageTypeId)
-              .title(name)
-              .child(
-                S.documentTypeList("page")
-                  .title(`${name}`)
-                  .filter("_type == $type && pageType._ref == $pageTypeId")
-                  .params({ pageTypeId, type: "page" })
-                  .initialValueTemplates([
-                    S.initialValueTemplateItem("page-by-pageType", {
-                      pageTypeId,
-                    }),
-                  ])
-              )
-          );
-          return S.list({ id: "li", items: [root, ...items] });
-        },
-      }),
-
+      //     const items = pageTypes.map(({ _id: pageTypeId, name }) =>
+      //       S.listItem()
+      //         .id(pageTypeId)
+      //         .title(name)
+      //         .child(
+      //           S.documentTypeList("page")
+      //             .title(`${name}`)
+      //             .filter("_type == $type && pageType._ref == $pageTypeId")
+      //             .params({ pageTypeId, type: "page" })
+      //             .initialValueTemplates([
+      //               S.initialValueTemplateItem("page-by-pageType", {
+      //                 pageTypeId,
+      //               }),
+      //             ])
+      //         )
+      //     );
+      //     return S.list({ id: "li", items: [root, ...items] });
+      //   },
+      // }),
       S.listItem()
-        .title("Events")
+        .title("Pages")
         .icon(CgCalendar)
-        .child(S.documentTypeList("event")),
+        .child(S.documentTypeList("page")),
+
+      // S.listItem()
+      //   .title("Events")
+      //   .icon(CgCalendar)
+      //   .child(S.documentTypeList("event")),
 
       S.listItem()
         .title("Persons/Institutions")

@@ -9,20 +9,8 @@ class MyDocument extends Document {
         <Head>
           <link rel="icon" href="/favicon.ico" />
 
-          {/* <link
-            rel="preload"
-            href="/fonts/HamburgSans-Bold.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/HamburgSans-Regular.woff2"
-            as="font"
-            type="font/woff2"
-            crossOrigin=""
-          /> */}
+          <meta name="theme-color" content="#003063"></meta>
+
           <script
             async
             defer

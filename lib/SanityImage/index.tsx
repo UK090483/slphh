@@ -6,7 +6,7 @@ import { SanityImageComponent } from "./types";
 import clsx from "clsx";
 
 const SanityImage: SanityImageComponent = (props) => {
-  const { image, ...rest } = props;
+  const { image, filter = true, ...rest } = props;
 
   let imageProps = useSanityImage(image, rest);
   if (!imageProps) return null;
@@ -16,7 +16,7 @@ const SanityImage: SanityImageComponent = (props) => {
   return (
     <>
       <NextImage
-        className="border-2 border-red grayscale-[60%]"
+        className={clsx({ "grayscale-[60%]": filter })}
         alt={image?.alt || ""}
         {...imageProps}
       />

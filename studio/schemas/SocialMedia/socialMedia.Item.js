@@ -1,10 +1,17 @@
-import { BsFacebook, BsTwitter, BsInstagram, BsYoutube } from "react-icons/Bs";
+import {
+  BsFacebook,
+  BsTwitter,
+  BsInstagram,
+  BsYoutube,
+  BsLinkedin,
+} from "react-icons/Bs";
 
 const socialMediaItems = [
   { title: "FaceBook", value: "facebook", icon: BsFacebook },
   { title: "Twitter", value: "twitter", icon: BsTwitter },
   { title: "Instagram", value: "instagram", icon: BsInstagram },
   { title: "Youtube", value: "youtube", icon: BsYoutube },
+  { title: "LinkedIn", value: "linkedin", icon: BsLinkedin },
 ];
 
 export default {

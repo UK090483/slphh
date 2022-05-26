@@ -18,6 +18,7 @@ export type UseSanityImage = (
 
 export type SanityImageComponentProps = {
   image?: ImageMetaResult | null;
+  filter?: boolean;
 } & UseSanityImageOptions;
 
 export type SanityImageComponent = React.FC<SanityImageComponentProps>;

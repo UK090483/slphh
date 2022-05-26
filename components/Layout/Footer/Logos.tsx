@@ -14,8 +14,7 @@ const Logos: React.FC = (props) => {
           return (
             <div key={i._key} className={`relative`}>
               {i.text && <div className=" text-sm pb-4 ">{i.text}</div>}
-
-              <SanityImage image={i.image} width={200} />
+              <SanityImage image={i.image} width={200} filter={false} />
             </div>
           );
         })}

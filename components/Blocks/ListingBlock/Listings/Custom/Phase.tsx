@@ -178,7 +178,7 @@ const Line: React.FC<LineProps> = ({ index, inViewport }) => {
       className={clsx(
         " bg-current w-1 md:w-full transition-transform  md:h-1 h-full  drop-shadow-lg",
         {
-          "scale-y-110 md:scale-x-100 md:scale-y-100  ": inViewport,
+          " md:scale-x-100 md:scale-y-100  ": inViewport,
           "scale-y-0  md:scale-x-0 md:scale-y-100 ": !inViewport,
         }
       )}

@@ -1,10 +1,10 @@
 import Link from "@components/Link";
 import Portal from "@components/Portal/Portal";
 import Typo from "@components/Typography/Typography";
-import useInViewport from "@hooks/useInViewport";
+
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 
 interface IStickyButtonProps {
   href?: string | null;
@@ -14,13 +14,11 @@ interface IStickyButtonProps {
 const StickyButton: React.FunctionComponent<IStickyButtonProps> = (props) => {
   const { href, external, children } = props;
 
-  const ref = useRef(null);
   const [out, setOut] = useState(false);
 
   return (
     <>
       <motion.div
-        ref={ref}
         initial={{ opacity: 1, x: 10 }}
         whileInView={{ opacity: 1, x: 10 }}
         transition={{ delay: 0.2 }}
@@ -49,12 +47,12 @@ const StickyButton: React.FunctionComponent<IStickyButtonProps> = (props) => {
             <Dot
               href={href || "/"}
               external={external}
-              className="hidden md:flex translate-x-4 -translate-y-6"
+              className="hidden md:flex translate-x-4 -translate-y-6 pointer-events-auto"
             >
               {children}
             </Dot>
             <Link
-              className=" bg-primary w-full h-full flex md:hidden justify-center items-center"
+              className=" bg-primary w-full h-full flex md:hidden justify-center items-center pointer-events-auto"
               href={href || "/"}
               external={external}
             >

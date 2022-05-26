@@ -66,6 +66,7 @@ module.exports = {
         fadeIn: "fadeIn 1s ease-in forwards",
         fadeInFast: "slideDown 0.25s ease-in forwards",
         fadeInMenuItemFast: "menuFade 0.25s ease-in forwards",
+        slideInMobileMenu: "slideInMobileMenu 0.25s ease-in forwards",
         slideDown: "slideDown 0.25s ease-in forwards",
         slideUp: "slideUp 0.25s ease-in forwards",
         slideInRight: "slideInRight 0.5s ease-out forwards",
@@ -97,6 +98,10 @@ module.exports = {
         fadeIn: {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 },
+        },
+        slideInMobileMenu: {
+          "0%": { transform: "translate3d(10vw,50vh,0)", opacity: 0 },
+          "100%": { transform: "translate3d(0,0,0)", opacity: 1 },
         },
         slideUp: {
           "0%": { transform: "translateY(100%)", opacity: 0 },

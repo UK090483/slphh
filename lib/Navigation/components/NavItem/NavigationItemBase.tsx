@@ -4,9 +4,10 @@ export type NavItemBaseProps = {
   icon?: boolean;
   hover?: boolean;
   bold?: boolean;
-  place?: "link" | "dropdown" | "header" | "dropdown/link";
+  place?: "link" | "dropdown" | "header" | "dropdown/link" | "mobile/link";
   props: { [k: string]: any };
   active: boolean;
+  index?: number;
 };
 
 export const NavigationItemBase: React.FC<NavItemBaseProps> = ({
@@ -15,16 +16,27 @@ export const NavigationItemBase: React.FC<NavItemBaseProps> = ({
   hover,
   bold,
   place,
+  index,
+  active,
 }) => {
+  const _index = index || 0;
+
   return (
     <span
+      style={{
+        animationDuration: `${175 * (_index + 2)}ms`,
+        animationTimingFunction: "ease-out",
+      }}
       className={clsx(
-        `block w-full px-7 py-2 leading-none whitespace-nowrap transition-colors duration-500 font-bold text-base-mobile xl:text-base truncate`,
+        `block w-full px-7 py-2 leading-none  whitespace-nowrap transition-colors  font-bold text-base-mobile xl:text-base truncate`,
         {
-          "decoration-2 underline-offset-2": false,
-          "no-underline ": true,
+          menuItem: true,
+          active: active,
+          "no-underline  ": true,
           "hover:bg-black ": place === "dropdown/link",
           "font-bold": bold,
+          "text-3xl-mobile pl-3 pt-5 animate-slideInMobileMenu ":
+            place === "mobile/link",
         }
       )}
     >

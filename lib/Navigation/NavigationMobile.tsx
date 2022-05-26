@@ -7,6 +7,8 @@ import React from "react";
 import { useLockBodyScroll } from "react-use";
 import DefaultNavigationItemBase from "./components/NavItem/NavigationItemBase";
 import DefaultNavigationLink from "./components/NavItem/NavigationLink";
+import useIsActive from "./helper/useIsActive";
+import { useNavigation } from "./NavigationContext";
 import {
   NavigationItemBaseComponent,
   NavigationLinkComponent,
@@ -81,7 +83,7 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
         <Portal>
           <div
             ref={ref}
-            className={`flex flex-col items-center justify-center h-screen bg-white  fixed inset-0  z-10  transition-all transform duration-300 ${
+            className={`flex flex-col items-start justify-center h-screen bg-white pl-2 sm:pl-24 fixed inset-0  z-10  transition-all transform duration-300 ${
               animation
                 ? " translate-y-0 opacity-100 "
                 : "-translate-y-96  opacity-0"
@@ -91,6 +93,7 @@ const NavigationMobile: React.FC<NavigationMobileProps> = ({
               items.map((item, index) => {
                 return (
                   <ConditionalButton
+                    index={index}
                     onClick={(type) => handleClick(type, item)}
                     key={item.label}
                     {...item}
@@ -142,9 +145,12 @@ const ConditionalButton: React.FC<
     onClick: (type: "link" | "item") => void;
     NavigationLink?: NavigationLinkComponent;
     NavigationItemBase?: NavigationItemBaseComponent;
+    index?: number;
   }
 > = (props) => {
-  const { label, onClick, NavigationLink, NavigationItemBase } = props;
+  const { label, onClick, NavigationLink, NavigationItemBase, index } = props;
+
+  const { active } = useIsActive(props);
 
   const NavigationLinkComponent = NavigationLink
     ? NavigationLink
@@ -157,13 +163,23 @@ const ConditionalButton: React.FC<
   const hasChildren = props.items && props.items.length > 0;
   return hasChildren ? (
     <button onClick={() => onClick("item")}>
-      <NavigationItemBaseComponent active={true} icon props={props}>
+      <NavigationItemBaseComponent
+        active={active}
+        icon
+        props={props}
+        index={index}
+      >
         {label}
       </NavigationItemBaseComponent>
     </button>
   ) : (
     <NavigationLinkComponent onClick={() => onClick("link")} {...props.link}>
-      <NavigationItemBaseComponent active={false} props={props}>
+      <NavigationItemBaseComponent
+        index={index}
+        active={active}
+        props={props}
+        place="mobile/link"
+      >
         {label}
       </NavigationItemBaseComponent>
     </NavigationLinkComponent>

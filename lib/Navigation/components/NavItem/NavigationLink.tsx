@@ -16,10 +16,9 @@ const NavigationLink: React.FC<NavigationLinkProps> = (props) => {
     <Link
       onClick={onClick}
       className={clsx(
-        `flex menuItem items-center leading-none text-center no-underline ${
+        `flex  items-center leading-none text-center no-underline ${
           focus ? "" : ""
-        }`,
-        { active: active }
+        }`
       )}
       href={href || "/"}
       external={external}

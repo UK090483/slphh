@@ -43,24 +43,23 @@ const StickyButton: React.FunctionComponent<IStickyButtonProps> = (props) => {
 
       <Portal>
         {out && (
-          <div className="fixed  animate-slideUp md:animate-slideDown  flex justify-center items-center h-16 md:h-40 pointer-events-none   bottom-0 md:top-0 md:bottom-auto right-0 left-0   z-30 ">
+          <div className="fixed  animate-slideUp   flex justify-center items-center h-10  md:h-40 pointer-events-none   bottom-0   right-0 left-0   z-30 ">
             <Dot
               href={href || "/"}
               external={external}
-              className="hidden md:flex translate-x-4 -translate-y-6 pointer-events-auto"
+              className="hidden md:flex translate-x-4 translate-y-4 pointer-events-auto"
             >
               {children}
             </Dot>
             <Link
-              className=" bg-primary w-full h-full flex md:hidden justify-center items-center pointer-events-auto"
+              className=" bg-primary bg-opacity-80 w-full h-full flex md:hidden justify-center items-center pointer-events-auto"
               href={href || "/"}
               external={external}
             >
               <Typo
                 space={false}
                 as={"span"}
-                bold
-                className="text-white text-center "
+                className="text-white text-center font-bold "
               >
                 {children}
               </Typo>

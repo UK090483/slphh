@@ -9,7 +9,8 @@ hotspot,
 "lqip": asset->metadata.lqip,
 'width': asset->metadata.dimensions.width,
 'height': asset->metadata.dimensions.height,
-credit
+credit,
+filter
 `;
 
 export const imageMetaN = `
@@ -43,6 +44,7 @@ export type ImageMetaResult = {
   lqip: string;
   fill?: "fill" | "contain";
   credit?: string | null;
+  filter?: "noFilter" | "futureHamburgFilter";
   // asset?: {
   //   url?: string | null;
   //   _id: string;

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+/* @font-face {
   font-family: "HamburgSans";
   src: url("/fonts/HamburgSans-Bold.woff2") format("woff2");
   font-style: normal;
@@ -15,7 +15,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-}
+} */
 
 @layer components {
   .tooltip {
@@ -51,6 +51,9 @@
 }
 
 @layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
   p {
     @apply text-base-mobile md:text-base pb-[2em];
   }

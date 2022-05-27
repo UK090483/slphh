@@ -16,7 +16,7 @@ const SanityImage: SanityImageComponent = (props) => {
   return (
     <>
       <NextImage
-        className={clsx({ "grayscale-[60%]": filter })}
+        className={clsx({ "grayscale-[60%]": image?.filter !== "noFilter" })}
         alt={image?.alt || ""}
         {...imageProps}
       />

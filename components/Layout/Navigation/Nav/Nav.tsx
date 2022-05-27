@@ -9,6 +9,7 @@ import { HeaderNavigation } from "@lib/Navigation";
 import NavigationMobile from "@lib/Navigation/NavigationMobile";
 import clsx from "clsx";
 import React from "react";
+import Burger from "./Burger";
 
 const Nav: React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -24,7 +25,7 @@ const Nav: React.FC = () => {
       <nav>
         <div
           className={clsx(
-            "flex items-center justify-between w-full transition-shadow duration-700  px-4 lg:px-[60px] ",
+            "flex items-center justify-between w-full transition-shadow duration-700  pl-4 lg:px-[60px] ",
             { "shadow-lg ": scrolled, "shadow-none": !scrolled }
           )}
         >
@@ -37,7 +38,7 @@ const Nav: React.FC = () => {
             className="items-center justify-center hidden  menu:flex "
           />
 
-          <div className="flex gap-4   flex-shrink-0 items-center">
+          <div className="flex gap-4 flex-shrink-0 items-center">
             {/* <LangSwitch className="hidden menu:flex" slugs={langSwitchData} /> */}
           </div>
 
@@ -46,10 +47,11 @@ const Nav: React.FC = () => {
             onClick={() => setOpen((s) => !s)}
             aria-label={"Open the menu"}
             aria-expanded={open}
-            className="menu:hidden mr-2"
+            className="menu:hidden h-14 px-4"
           >
-            <Svg className="w-[30px] h-[30px]" icon="hamburger" />
-            {/* <Burger open={open} /> */}
+            {/* <Svg className="w-[30px] h-[30px]" icon="hamburger" /> */}
+
+            <Burger open={open} />
           </button>
         </div>
       </nav>

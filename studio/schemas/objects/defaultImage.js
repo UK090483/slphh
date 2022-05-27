@@ -30,6 +30,22 @@ export default {
         isHighlighted: true,
       },
     },
+
+    {
+      title: "Filter",
+      name: "filter",
+      type: "string",
+      options: {
+        isHighlighted: true,
+        list: [
+          { title: "No Filter", value: "noFilter" },
+          {
+            title: "Future Hamburg Filter (default)",
+            value: "futureHamburgFilter",
+          },
+        ],
+      },
+    },
   ],
   preview: {
     select: {

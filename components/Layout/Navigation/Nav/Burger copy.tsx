@@ -12,7 +12,7 @@ const Burger: React.FunctionComponent<IBurgerProps> = (props) => {
   );
 
   return (
-    <div className="relative w-6  ">
+    <div className="absolute w-6 -translate-x-1/2  left-1/2 -translate-y-1/2 top-1/2 ">
       <span
         aria-hidden={true}
         className={clsx(baseClass, {

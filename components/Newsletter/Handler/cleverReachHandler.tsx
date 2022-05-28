@@ -16,9 +16,11 @@ export default async function cleverReachHandler(
   const doidata = { user_agent, user_ip, referer };
 
   if (!formID) {
+    console.error("formID missing");
     return res.json({ error: "formID missing" });
   }
   if (!groupID) {
+    console.error("groupID missing");
     return res.json({ error: "groupID missing" });
   }
 

@@ -5,8 +5,6 @@ const Social: React.FC = () => {
   const { data } = useAppContext();
   const items = data?.footer?.socialMedia;
 
-  console.log(items);
-
   return (
     <div className="w-full flex justify-center gap-6">
       {items &&

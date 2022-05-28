@@ -47,8 +47,7 @@ class ParallaxController {
     );
   }
   _loop() {
-    console.log("update loop");
-
+    // console.log("update loop");
     // window.requestAnimationFrame(this._loop);
   }
 

@@ -16,6 +16,24 @@ class CleverReach {
     this.checkEnvVars();
   }
 
+  async healthCheck() {
+    const token = await this.getToken();
+    const groups = await this.getGroups();
+    const findGroup =
+      groups &&
+      Array.isArray(groups) &&
+      groups.find((i) => i.id === this.groupID);
+    const forms = await this.getForms();
+    const findForm =
+      forms && Array.isArray(forms) && forms.find((i) => i.id === this.formID);
+
+    return {
+      accountValid: !!token,
+      groupIDValid: findGroup || false,
+      formIDValid: findForm || false,
+    };
+  }
+
   async addRecipient(data: {
     email: string;
     global_attributes: {
@@ -26,7 +44,7 @@ class CleverReach {
   }) {
     return await this.fetch(
       this.buildUrl(`groups.json/${this.groupID}/receivers`),
-      { body: JSON.stringify(data) }
+      { method: "POST", body: JSON.stringify(data) }
     );
   }
 
@@ -35,15 +53,16 @@ class CleverReach {
     doidata: { user_ip: string; referer: string; user_agent: string };
   }) {
     return await fetch(this.buildUrl(`forms/${this.formID}/send/activate`), {
+      method: "POST",
       body: JSON.stringify(data),
     });
   }
 
   async getGroups() {
-    return await this.fetch(this.buildUrl("groups"), {});
+    return await this.fetch<any[]>(this.buildUrl("groups"), {});
   }
   async getForms() {
-    return await this.fetch(this.buildUrl("forms"), {});
+    return await this.fetch<any[]>(this.buildUrl("forms"), {});
   }
   buildUrl(url: string) {
     return `https://rest.cleverreach.com/v3/${url}.json`;
@@ -66,11 +85,11 @@ class CleverReach {
       console.error(message);
     }
   }
-  async fetch(url: string, options: RequestInit) {
+  async fetch<T = any>(url: string, options: RequestInit) {
     if (!this.token) {
       this.token = await this.getToken();
     }
-    return this.client(url, options);
+    return this.client<T>(url, options);
   }
 
   async getToken() {
@@ -89,7 +108,7 @@ class CleverReach {
     }
     return null;
   }
-  async client(url: string, options: RequestInit) {
+  async client<T = any>(url: string, options: RequestInit) {
     try {
       const fetchResult = await fetch(url, {
         headers: {
@@ -104,7 +123,7 @@ class CleverReach {
         const json = await fetchResult.json();
         this.logger(json);
 
-        return json as { [t: string]: any };
+        return json as T;
       } else {
         this.logger(await fetchResult.text());
         return null;

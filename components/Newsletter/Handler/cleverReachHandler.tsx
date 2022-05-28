@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import CleverReach from "./CleverReach";
 
 const token_url = "https://rest.cleverreach.com/oauth/token.php";
 const clientId = process.env.CLEVER_REACH_CLIENT_ID;
@@ -15,18 +16,19 @@ export default async function cleverReachHandler(
   const referer = req.headers["host"] || "1";
   const doidata = { user_agent, user_ip, referer };
 
-  if (!formID) {
-    console.error("formID missing");
-    return res.json({ error: "formID missing" });
-  }
-  if (!groupID) {
-    console.error("groupID missing");
-    return res.json({ error: "groupID missing" });
-  }
+  const cR = new CleverReach();
+  // if (!formID) {
+  //   console.error("formID missing");
+  //   return res.json({ error: "formID missing" });
+  // }
+  // if (!groupID) {
+  //   console.error("groupID missing");
+  //   return res.json({ error: "groupID missing" });
+  // }
 
   const data = JSON.parse(req.body);
-
   const email = data.email;
+  if (!email) return res.json({ error: "missing email" });
 
   const recipientData = {
     email,
@@ -40,15 +42,14 @@ export default async function cleverReachHandler(
           : undefined,
     },
   };
-  if (!email) return res.json({ error: "missing email" });
 
   const token = await getToken();
   if (!token) return res.json({ error: "no token" });
 
-  if (!(await addRecipient(groupID, token, recipientData)))
+  if (!(await cR.addRecipient(recipientData)))
     return res.json({ error: "not able to create recipient" });
 
-  if (!(await activateRecipient(formID, token, { email, doidata }))) {
+  if (!(await cR.activateRecipient({ email, doidata }))) {
     return res.json({ error: "not able to activate recipient" });
   }
   return res.json({ success: true });

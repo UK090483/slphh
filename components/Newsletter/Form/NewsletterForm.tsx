@@ -30,7 +30,7 @@ type FormSteps = "init" | "submitting" | "success" | "error";
 
 const NewsletterForm: React.FC<INewsletterFormProps> = (props) => {
   const { onSubmit } = props;
-  const [steps, setSteps] = React.useState<FormSteps>("error");
+  const [steps, setSteps] = React.useState<FormSteps>("init");
   const handleSubmit = (data: any) => {
     setSteps("submitting");
     onSubmit(data).then((res) => {

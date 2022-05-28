@@ -6,9 +6,6 @@ export default async function cleverReachHandler(
   res: NextApiResponse
 ) {
   const cR = new CleverReach();
-
-  const groups = await cR.getGroups();
-  const forms = await cR.getForms();
-
-  return res.json({ success: true, groups, forms });
+  const Newsletter = await cR.healthCheck();
+  return res.json({ Newsletter });
 }

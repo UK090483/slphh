@@ -22,13 +22,13 @@ describe("NewsletterForm", () => {
   });
 
   it("should handle Input  ", () => {
-    // act(() => {
-    //   user.type(email, "konradullrich@me.com");
-    // });
-    // expect(email).toHaveValue("konradullrich@me.com");
-    // act(() => {
-    //   fireEvent.click(submit);
-    // });
-    // expect(fakeOnSubmit).toBeCalledTimes(1);
+    act(() => {
+      user.type(email, "konradullrich@me.com");
+    });
+    expect(email).toHaveValue("konradullrich@me.com");
+    act(() => {
+      fireEvent.click(submit);
+    });
+    expect(fakeOnSubmit).toBeCalledTimes(1);
   });
 });

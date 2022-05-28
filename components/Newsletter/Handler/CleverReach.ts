@@ -1,5 +1,6 @@
 const token_url = "https://rest.cleverreach.com/oauth/token.php";
 const client_url = "https://rest.cleverreach.com/v3/";
+
 class CleverReach {
   clientId;
   clientSecret;
@@ -33,10 +34,9 @@ class CleverReach {
     email: string;
     doidata: { user_ip: string; referer: string; user_agent: string };
   }) {
-    return await this.fetch(
-      this.buildUrl(`forms/${this.formID}/send/activate`),
-      { body: JSON.stringify(data) }
-    );
+    return await fetch(this.buildUrl(`forms/${this.formID}/send/activate`), {
+      body: JSON.stringify(data),
+    });
   }
 
   async getGroups() {

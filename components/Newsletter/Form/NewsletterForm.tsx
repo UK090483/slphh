@@ -15,7 +15,7 @@ const fakeFetch = () =>
   });
 
 const sendForm = async (data: any) => {
-  return fakeFetch();
+  // return fakeFetch();
   return fetch("/api/cl", { method: "POST", body: JSON.stringify(data) });
 };
 type FormSteps = "init" | "submitting" | "success" | "error";

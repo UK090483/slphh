@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, act } from "@testing-library/react";
 import user from "@testing-library/user-event";
 import NewsletterForm from "./NewsletterForm";
 
@@ -15,7 +15,13 @@ describe("NewsletterForm", () => {
 
   it("should validate email  ", () => {
     render(<NewsletterForm />);
-    user.type(screen.getByLabelText("Email* :"), "TestMail");
-    user.click(screen.getByRole("button"));
+    const input = screen.getByLabelText("Email* :");
+    act(() => {
+      user.type(input, "TestMailAddress");
+    });
+    expect(input).toHaveValue("TestMailAddress");
+    act(() => {
+      fireEvent.click(screen.getByRole("button"));
+    });
   });
 });

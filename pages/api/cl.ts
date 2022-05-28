@@ -1,3 +1,3 @@
-import cleverReachHandler from "@components/Newsletter/cleverReachHandler";
+import cleverReachHandler from "@components/Newsletter/Handler/cleverReachHandler";
 
 export default cleverReachHandler;

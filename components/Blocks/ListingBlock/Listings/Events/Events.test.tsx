@@ -75,6 +75,6 @@ describe("EventsListingItem", () => {
   });
 
   it("should render content", () => {
-    customRenderItem({ content: [{}, {}] });
+    customRenderItem({ content: [{ _id: "testid" }, { _id: "testid2" }] });
   });
 });

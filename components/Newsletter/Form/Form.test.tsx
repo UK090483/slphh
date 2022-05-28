@@ -2,26 +2,33 @@ import { fireEvent, render, screen, act } from "@testing-library/react";
 import user from "@testing-library/user-event";
 import NewsletterForm from "./NewsletterForm";
 
-describe("NewsletterForm", () => {
-  it("should render correctly ", () => {
-    render(<NewsletterForm />);
+const fakeOnSubmit = jest.fn();
 
-    expect(screen.getByLabelText("Email* :"));
-    expect(screen.getByLabelText("First Name :"));
-    expect(screen.getByLabelText("Last Name :"));
-    expect(screen.getByLabelText("Company :"));
-    expect(screen.getByRole("button"));
+describe("NewsletterForm", () => {
+  let email: HTMLElement;
+  let firstName: HTMLElement;
+  let lastName: HTMLElement;
+  let company: HTMLElement;
+  let submit: HTMLElement;
+
+  beforeEach(() => {
+    render(<NewsletterForm onSubmit={fakeOnSubmit} />);
+    email = screen.getByLabelText("Email* :");
+    firstName = screen.getByLabelText("First Name :");
+    lastName = screen.getByLabelText("Last Name :");
+    company = screen.getByLabelText("Company :");
+    submit = screen.getByText("Submit");
+    fakeOnSubmit.mockReset();
   });
 
-  it("should validate email  ", () => {
-    render(<NewsletterForm />);
-    const input = screen.getByLabelText("Email* :");
-    act(() => {
-      user.type(input, "TestMailAddress");
-    });
-    expect(input).toHaveValue("TestMailAddress");
-    act(() => {
-      fireEvent.click(screen.getByRole("button"));
-    });
+  it("should handle Input  ", () => {
+    // act(() => {
+    //   user.type(email, "konradullrich@me.com");
+    // });
+    // expect(email).toHaveValue("konradullrich@me.com");
+    // act(() => {
+    //   fireEvent.click(submit);
+    // });
+    // expect(fakeOnSubmit).toBeCalledTimes(1);
   });
 });

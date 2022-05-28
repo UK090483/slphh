@@ -3,8 +3,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 const token_url = "https://rest.cleverreach.com/oauth/token.php";
 const clientId = process.env.CLEVER_REACH_CLIENT_ID;
 const clientSecret = process.env.CLEVER_REACH_CLIENT_SECRET;
-const groupID = "526730";
-const formID = "325411";
+const groupID = process.env.CLEVER_REACH_GROUPE_ID;
+const formID = process.env.CLEVER_REACH_FORM_ID;
 
 export default async function cleverReachHandler(
   req: NextApiRequest,
@@ -15,15 +15,35 @@ export default async function cleverReachHandler(
   const referer = req.headers["host"] || "1";
   const doidata = { user_agent, user_ip, referer };
 
+  if (!formID) {
+    return res.json({ error: "formID missing" });
+  }
+  if (!groupID) {
+    return res.json({ error: "groupID missing" });
+  }
+
   const data = JSON.parse(req.body);
 
   const email = data.email;
+
+  const recipientData = {
+    email,
+    global_attributes: {
+      firstname: data["first-name"],
+      lastname: data["family-name"],
+      unternehmen: data["company"],
+      name:
+        data["first-name"] && data["family-name"]
+          ? `${data["first-name"]} ${data["family-name"]}`
+          : undefined,
+    },
+  };
   if (!email) return res.json({ error: "missing email" });
 
   const token = await getToken();
   if (!token) return res.json({ error: "no token" });
 
-  if (!(await addRecipient(groupID, token, { email })))
+  if (!(await addRecipient(groupID, token, recipientData)))
     return res.json({ error: "not able to create recipient" });
 
   if (!(await activateRecipient(formID, token, { email, doidata }))) {
@@ -35,13 +55,21 @@ export default async function cleverReachHandler(
 const addRecipient = async (
   groupID: string,
   token: string,
-  data: { email: string }
+  data: {
+    email: string;
+    global_attributes: {
+      firstname?: string;
+      lastname?: string;
+      unternehmen?: string;
+    };
+  }
 ) => {
   return await cr({
     url: `groups.json/${groupID}/receivers`,
     token,
     method: "POST",
     data: {
+      global_attributes: data.global_attributes,
       email: data.email,
       registered: Date.now(),
       activated: 0,
@@ -76,30 +104,26 @@ const cr = async ({
   data?: any;
   method?: "GET" | "POST";
 }) => {
-  try {
-    const fetchResult = await fetch(
-      `https://rest.cleverreach.com/v3/${url}.json`,
-      {
-        method: method,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        ...(data ? { body: JSON.stringify(data) } : {}),
-      }
-    );
-    console.log(fetchResult.status);
-    console.log(fetchResult.statusText);
-    if (fetchResult.ok) {
-      const json = await fetchResult.json();
-
-      return json as { [t: string]: any };
-    } else {
-      console.log(await fetchResult.text());
-      return null;
+  const fetchResult = await fetch(
+    `https://rest.cleverreach.com/v3/${url}.json`,
+    {
+      method: method,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      ...(data ? { body: JSON.stringify(data) } : {}),
     }
-  } catch (error) {
-    console.log(error);
+  );
+  console.log(fetchResult.status);
+  console.log(fetchResult.statusText);
+  if (fetchResult.ok) {
+    const json = await fetchResult.json();
+    console.log(json);
+
+    return json as { [t: string]: any };
+  } else {
+    console.log(await fetchResult.text());
     return null;
   }
 };

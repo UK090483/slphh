@@ -16,7 +16,6 @@ import Section from "@components/Section/Section";
 const getWidth = (props: ListingBlogResult) => {
   const { contentType, personItems, type, personVariant } = props;
   if (contentType === "persons") {
-    console.log(props);
     return personItems && personItems.length > 3 && personVariant === "carousel"
       ? "full"
       : "m";

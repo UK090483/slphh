@@ -7,7 +7,7 @@ export const RawForm: React.FC<{ handleSubmit: (data: any) => void }> = ({
   handleSubmit,
 }) => {
   return (
-    <Animation>
+    <Animation className="max-w-lg mx-auto">
       <Form
         onSubmit={(v) => {
           handleSubmit(v);

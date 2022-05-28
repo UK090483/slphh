@@ -5,32 +5,37 @@ import { Submitting } from "./Submitting";
 import { Error } from "./Error";
 import { Success } from "./Success";
 
-interface INewsletterFormProps {}
+interface INewsletterFormProps {
+  onSubmit: (data: any) => Promise<boolean>;
+}
 
 const fakeFetch = () =>
   new Promise<any>((resolve, reject) => {
     setTimeout(() => {
-      resolve({ json: () => ({ success: true }) });
+      resolve(false);
     }, 2000);
   });
 
-const sendForm = async (data: any) => {
-  // return fakeFetch();
-  return fetch("/api/cl", { method: "POST", body: JSON.stringify(data) });
+export const sendForm = async (data: any) => {
+  // return await fakeFetch();
+  const res = await fetch("/api/cl", {
+    method: "POST",
+    body: JSON.stringify(data),
+  });
+  const json = await res.json();
+  return !!json.success;
 };
+
 type FormSteps = "init" | "submitting" | "success" | "error";
 
 const NewsletterForm: React.FC<INewsletterFormProps> = (props) => {
-  const [steps, setSteps] = React.useState<FormSteps>("init");
+  const { onSubmit } = props;
+  const [steps, setSteps] = React.useState<FormSteps>("error");
   const handleSubmit = (data: any) => {
     setSteps("submitting");
-    sendForm(data)
-      .then((r) => r.json())
-      .then((r) => {
-        console.log(r);
-        //@ts-ignore
-        setSteps(r["success"] ? "success" : "error");
-      });
+    onSubmit(data).then((res) => {
+      setSteps(res ? "success" : "error");
+    });
   };
   // Resets Form after Error message is shown
   React.useEffect(() => {
@@ -45,7 +50,7 @@ const NewsletterForm: React.FC<INewsletterFormProps> = (props) => {
 
   return (
     <AnimatePresence>
-      <div className="w-full  max-w-lg mx-auto ">
+      <div className="w-full   mx-auto ">
         {steps === "init" && <RawForm handleSubmit={handleSubmit} />}
         {steps === "submitting" && <Submitting />}
         {steps === "success" && <Success />}

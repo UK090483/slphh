@@ -13,10 +13,11 @@ export const Input: React.FC = () => {
   if (!name) return null;
   return (
     <input
+      style={{ backgroundColor: "transparent" }}
       readOnly={isSubmitting}
       placeholder={placeholder}
       className={clsx(
-        "w-full transition-all bg-primary text-white placeholder:text-white  placeholder:text-center placeholder:font-bold rounded-full border-2 border-primary",
+        "w-full pt-4 pl-2  leading-none flex justify-center  transition-all border-dotted border-0 border-b-2  border-primary p-0 focus:outline-dotted  focus:outline-0 outline-primary  placeholder:text-center placeholder:font-bold ",
         {
           "border-red": !!errors[name],
         }

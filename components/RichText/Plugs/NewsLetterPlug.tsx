@@ -1,4 +1,4 @@
-import NewsletterForm from "@components/NewsletterForm/NewsletterForm";
+import NewsletterForm from "@components/Newsletter/Form/NewsletterForm";
 import React from "react";
 import { PlugProps } from "./type";
 

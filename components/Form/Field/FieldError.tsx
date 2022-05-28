@@ -8,9 +8,12 @@ export const FieldError: React.FC = () => {
     formState: { errors },
   } = useFormContext();
   if (!errors[name]) return null;
+
   return (
-    <p className="text-red text-sm italic pb-0 leading-none ">
-      {errors[name].message || "something is wrong"}
-    </p>
+    <div className="">
+      <p className="absolute bottom-1 animate-slideUp text-red text-sm italic pb-0 leading-none ">
+        {errors[name].message || "something is wrong"}
+      </p>
+    </div>
   );
 };

@@ -1,4 +1,5 @@
 import Button from "@components/Button/Button";
+import clsx from "clsx";
 import * as React from "react";
 import {
   useForm,
@@ -20,14 +21,18 @@ function Form<TFieldValues extends FieldValues>(
   const { children, options, className, onSubmit } = props;
   const methods = useForm<TFieldValues>(options);
 
-  const {} = methods;
-
   return (
     <FormProvider {...methods}>
-      <form className={className} onSubmit={methods.handleSubmit(onSubmit)}>
+      <form
+        className={className}
+        noValidate={true}
+        onSubmit={methods.handleSubmit(onSubmit)}
+      >
         {children}
         <button
-          className="w-full bg-black text-white py-2 rounded-full"
+          className={clsx(
+            "mt-8 w-full  border-2 border-black bg-black text-white py-2 rounded-full"
+          )}
           type="submit"
         >
           Submit

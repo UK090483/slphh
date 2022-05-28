@@ -47,7 +47,7 @@ const TestimonialListItem: React.FunctionComponent<
           { "animate-slideInRight": active && !animateOut }
         )}
       >
-        <Typo space={false} variant="h6">
+        <Typo space={false} as="h4" variant="h6">
           »{text}«
         </Typo>
       </div>

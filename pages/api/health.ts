@@ -7,5 +7,5 @@ export default async function cleverReachHandler(
 ) {
   const cR = new CleverReach();
   const Newsletter = await cR.healthCheck();
-  return res.json({ Newsletter });
+  return res.json({ vercel_url: process.env.VERCEL_URL, Newsletter });
 }

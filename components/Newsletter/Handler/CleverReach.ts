@@ -36,6 +36,7 @@ class CleverReach {
 
   async addRecipient(data: {
     email: string;
+
     global_attributes: {
       firstname?: string;
       lastname?: string;
@@ -44,7 +45,10 @@ class CleverReach {
   }) {
     return await this.fetch(
       this.buildUrl(`groups.json/${this.groupID}/receivers`),
-      { method: "POST", body: JSON.stringify(data) }
+      {
+        method: "POST",
+        body: JSON.stringify({ activated: 0, registered: Date.now(), ...data }),
+      }
     );
   }
 
@@ -52,20 +56,29 @@ class CleverReach {
     email: string;
     doidata: { user_ip: string; referer: string; user_agent: string };
   }) {
-    return await fetch(this.buildUrl(`forms/${this.formID}/send/activate`), {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
+    return await this.fetch(
+      this.buildUrl(`forms/${this.formID}/send/activate`),
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    );
   }
 
   async getGroups() {
-    return await this.fetch<any[]>(this.buildUrl("groups"), {});
+    return await this.fetch<any[]>(this.buildUrl("groups.json"), {});
+  }
+  async getReceivers() {
+    return await this.fetch<any[]>(
+      this.buildUrl(`groups.json/${this.groupID}/receivers`),
+      {}
+    );
   }
   async getForms() {
-    return await this.fetch<any[]>(this.buildUrl("forms"), {});
+    return await this.fetch<any[]>(this.buildUrl("forms.json"), {});
   }
   buildUrl(url: string) {
-    return `https://rest.cleverreach.com/v3/${url}.json`;
+    return `https://rest.cleverreach.com/v3/${url}`;
   }
 
   checkEnvVars() {

@@ -82,7 +82,7 @@ const Dot: React.FC<IStickyButtonProps & { className?: string }> = ({
   return (
     <Link
       className={clsx(
-        `absolute   right-0  overflow-hidden text-base-mobile md:text-base `,
+        `absolute right-0 text-base-mobile md:text-base`,
         `w-28 h-28 md:w-40 md:h-40`,
         `bg-primary text-white font-bold  text-center`,
         `rounded-full drop-shadow-2xl   flex justify-center items-center z-20 ${className}`

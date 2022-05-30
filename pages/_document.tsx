@@ -17,6 +17,13 @@ class MyDocument extends Document {
             data-website-id="0c4b96a7-a904-4c2e-8f63-3c74f508be46"
             src="https://umami-neon-pi.vercel.app/umami.js"
           ></script>
+          <script
+            id="usercentrics-cmp"
+            src="https://app.usercentrics.eu/browser-ui/latest/loader.js"
+            data-version="preview"
+            data-settings-id="KVgeJnah"
+            async
+          ></script>
         </Head>
 
         <body

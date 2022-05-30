@@ -93,22 +93,30 @@ class CleverReach {
   }
 
   async getToken() {
-    const res = await this.client(token_url, {
-      method: "POST",
-      headers: {
-        Authorization: `Basic   ${new Buffer(
-          this.clientId + ":" + this.clientSecret
-        ).toString("base64")}`,
-        "Content-Type": "application/json",
+    const res = await this.client(
+      token_url,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Basic   ${Buffer.from(
+            this.clientId + ":" + this.clientSecret
+          ).toString("base64")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ grant_type: "client_credentials" }),
       },
-      body: JSON.stringify({ grant_type: "client_credentials" }),
-    });
+      false
+    );
     if (res && res["access_token"]) {
       return res["access_token"] as string;
     }
     return null;
   }
-  async client<T = any>(url: string, options: RequestInit) {
+  async client<T = any>(
+    url: string,
+    options: RequestInit,
+    logResult: boolean = true
+  ) {
     try {
       const fetchResult = await fetch(url, {
         headers: {
@@ -121,7 +129,7 @@ class CleverReach {
       this.logger(fetchResult.statusText);
       if (fetchResult.ok) {
         const json = await fetchResult.json();
-        this.logger(json);
+        logResult && this.logger(json);
 
         return json as T;
       } else {

@@ -1,10 +1,11 @@
 import Link from "@components/Link";
 import Portal from "@components/Portal/Portal";
 import Typo from "@components/Typography/Typography";
+import useInViewport from "@hooks/useInViewport";
 
 import clsx from "clsx";
-import { motion } from "framer-motion";
-import React, { useState } from "react";
+
+import React, { useState, useRef } from "react";
 
 interface IStickyButtonProps {
   href?: string | null;
@@ -13,59 +14,42 @@ interface IStickyButtonProps {
 
 const StickyButton: React.FunctionComponent<IStickyButtonProps> = (props) => {
   const { href, external, children } = props;
+  const ref = useRef(null);
 
-  const [out, setOut] = useState(false);
+  const show = useInViewport(ref, {
+    callBack: (e) => {
+      const y = e.boundingClientRect.top;
+      return e.isIntersecting || y < 0;
+    },
+  });
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 1, x: 10 }}
-        whileInView={{ opacity: 1, x: 10 }}
-        transition={{ delay: 0.2 }}
-        className="h-0  bg-red absolute w-full left-0 z-10 "
-        onViewportLeave={(e) => {
-          const y = e?.boundingClientRect.y;
-
-          y && y < 100 && setOut(true);
-        }}
-        onViewportEnter={() => {
-          setOut(false);
-        }}
-      >
-        <Dot
-          href={href || "/"}
-          external={external}
-          className="-translate-y-full top-1/2"
-        >
-          {children}
-        </Dot>
-      </motion.div>
-
+      <span ref={ref}></span>
       <Portal>
-        {out && (
-          <div className="fixed  animate-slideUp   flex justify-center items-center h-10  md:h-40 pointer-events-none   bottom-0   right-0 left-0   z-30 ">
-            <Dot
-              href={href || "/"}
-              external={external}
-              className="hidden md:flex translate-x-4 translate-y-4 pointer-events-auto"
-            >
-              {children}
-            </Dot>
-            <Link
-              className=" bg-primary bg-opacity-80 w-full h-full flex md:hidden justify-center items-center pointer-events-auto"
-              href={href || "/"}
-              external={external}
-            >
-              <Typo
-                space={false}
-                as={"span"}
-                className="text-white text-center font-bold "
-              >
-                {children}
-              </Typo>
-            </Link>
-          </div>
-        )}
+        <div
+          className={clsx(
+            "fixed flex justify-center items-center h-10 transition-transform  md:h-40 pointer-events-none bottom-0 right-0 left-0 ",
+            { "translate-y-0 z-30": show, "translate-y-full": !show }
+          )}
+        >
+          <Dot
+            tabIndex={show ? 0 : -1}
+            href={href || "/"}
+            external={external}
+            className="hidden md:flex translate-x-4 translate-y-4 pointer-events-auto"
+          >
+            {children}
+          </Dot>
+          <Link
+            tabIndex={show ? 0 : -1}
+            className=" bg-primary bg-opacity-80 text-white text-center font-bold w-full h-full flex md:hidden justify-center items-center pointer-events-auto"
+            href={href || "/"}
+            external={external}
+          >
+            {children}
+          </Link>
+        </div>
       </Portal>
     </>
   );
@@ -73,14 +57,12 @@ const StickyButton: React.FunctionComponent<IStickyButtonProps> = (props) => {
 
 export default StickyButton;
 
-const Dot: React.FC<IStickyButtonProps & { className?: string }> = ({
-  href,
-  external,
-  children,
-  className,
-}) => {
+const Dot: React.FC<
+  IStickyButtonProps & { className?: string; tabIndex: number }
+> = ({ href, external, children, className, tabIndex }) => {
   return (
     <Link
+      tabIndex={tabIndex}
       className={clsx(
         `absolute right-0 text-base-mobile md:text-base`,
         `w-28 h-28 md:w-40 md:h-40`,

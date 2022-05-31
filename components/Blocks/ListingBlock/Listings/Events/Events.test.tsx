@@ -1,5 +1,5 @@
 import { mockClient } from "@lib/SanityPageBuilder/lib/MockClient/MockClient";
-import { customRender as cRender, screen } from "@tests/test-utils";
+import { customRender as cRender, screen, testText } from "@tests/test-utils";
 import { EventsListQuery } from "./EventsListQuery";
 import EventList from "./EventsList";
 
@@ -38,7 +38,9 @@ describe("EventsListing", () => {
   it("should render items", async () => {
     customRender({
       //@ts-ignore
-      eventItems: [{ date: "", endDate: "", name: "testListitem" }],
+      eventItems: [
+        { _id: "testid", date: "", endDate: "", name: "testListitem" },
+      ],
     });
     expect(screen.getByText("testListitem")).toBeInTheDocument();
   });
@@ -75,6 +77,6 @@ describe("EventsListingItem", () => {
   });
 
   it("should render content", () => {
-    customRenderItem({ content: [{ _id: "testid" }, { _id: "testid2" }] });
+    customRenderItem({ content: [testText()] });
   });
 });

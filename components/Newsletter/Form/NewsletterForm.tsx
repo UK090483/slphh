@@ -1,6 +1,6 @@
 import * as React from "react";
 import { AnimatePresence } from "framer-motion";
-import { RawForm } from "./RawForm";
+import RawForm from "./RawForm";
 import { Submitting } from "./Submitting";
 import { Error } from "./Error";
 import { Success } from "./Success";

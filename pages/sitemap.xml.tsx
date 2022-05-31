@@ -23,8 +23,6 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     );
   }
 
-  console.log(pages);
-
   const sitemap = await buildSitemap({
     pages: pages || [],
     hostname: AppConfig.hostname,

@@ -3,7 +3,7 @@ import Field from "../../Form/Field/Field";
 import Form from "../../Form/Form";
 import { Animation } from "./Animation";
 
-export const RawForm: React.FC<{ handleSubmit: (data: any) => void }> = ({
+const RawForm: React.FC<{ handleSubmit: (data: any) => void }> = ({
   handleSubmit,
 }) => {
   return (
@@ -33,3 +33,5 @@ export const RawForm: React.FC<{ handleSubmit: (data: any) => void }> = ({
     </Animation>
   );
 };
+
+export default RawForm;

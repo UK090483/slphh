@@ -1,5 +1,5 @@
 {
-  "hostname": "https://www.slp.com",
+  "hostname": "https://landingpad.future.hamburg",
   "locales": {
     "en": { "title": "Englisch", "isDefault": true, "flag": "🇺🇸" },
     "de": { "title": "Deutsch", "flag": "🇩🇪" }

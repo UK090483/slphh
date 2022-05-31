@@ -17,16 +17,18 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
     pages = await getSanityClient().fetch<{ slug: string }[]>(
       `*[_type == 'page'][]{   
       'slug':  coalesce('/'+pageType->slug.current,'') + '/' + slug.current,
-      'slug_en': coalesce('/'+pageType->slug_en.current,pageType->slug.current,'') +'/'+  coalesce(slug_en,slug).current,
-      'slug_da': coalesce('/'+pageType->slug_da.current,pageType->slug.current,'') +'/'+  coalesce(slug_da,slug).current 
+      'slug_de': coalesce('/'+pageType->slug_en.current,pageType->slug.current,'') +'/'+  coalesce(slug_en,slug).current,
     }
       `
     );
   }
+
+  console.log(pages);
+
   const sitemap = await buildSitemap({
     pages: pages || [],
     hostname: AppConfig.hostname,
-    locales: AppConfig.locales,
+    locales: { en: AppConfig.locales.en },
   });
 
   res.setHeader("Content-Type", "text/xml");

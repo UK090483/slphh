@@ -19,6 +19,10 @@ const PersonList: React.FC = (props) => {
 
   const asCarousel = personVariant === "carousel" && items && items.length > 3;
 
+  const length = personItems ? personItems.length : 0;
+
+  const isTwoColumn = length === 2 || length === 4;
+
   React.useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -38,7 +42,13 @@ const PersonList: React.FC = (props) => {
       {asCarousel && <PersonCarousel />}
 
       {!asCarousel && (
-        <ul className="relative w-full grid  grid-cols-1 lg:grid-cols-3 justify-items-center z-10">
+        <ul
+          className={clsx(
+            "relative w-full grid  grid-cols-1  justify-items-center z-10",
+            { "lg:grid-cols-2": isTwoColumn },
+            { "lg:grid-cols-3": !isTwoColumn }
+          )}
+        >
           {isMounted &&
             items?.map((i, index) => <PersonListItem key={index} {...i} />)}
         </ul>

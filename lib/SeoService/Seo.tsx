@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useAppContext } from "@components/AppContext";
 
 const metaImageParams = "?w=1200&h=630&bg=fff&fit=fillmax";
-const titlePrefix = "Scale up Hamburg | ";
+const titlePrefix = "Scaleup Landing Pad Hamburg | ";
 
 type SeoProps = {
   hostName?: string;

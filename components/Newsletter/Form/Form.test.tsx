@@ -4,6 +4,13 @@ import NewsletterForm from "./NewsletterForm";
 
 const fakeOnSubmit = jest.fn();
 
+const inputs = [
+  { name: "email" },
+  { name: "firstName" },
+  { name: "lastName" },
+  { name: "company" },
+];
+
 describe("NewsletterForm", () => {
   let email: HTMLElement;
   let firstName: HTMLElement;
@@ -26,9 +33,7 @@ describe("NewsletterForm", () => {
       user.type(email, "konradullrich@me.com");
     });
     expect(email).toHaveValue("konradullrich@me.com");
-    act(() => {
-      fireEvent.click(submit);
-    });
+
     expect(fakeOnSubmit).toBeCalledTimes(1);
   });
 });

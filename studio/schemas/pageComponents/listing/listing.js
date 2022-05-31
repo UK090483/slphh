@@ -28,9 +28,9 @@ export default withLocalization({
       type: "string",
       options: {
         list: [
-          { title: "Pages", value: "pages" },
-          { title: "Events", value: "event" },
-          { title: "Documentations", value: "documentations" },
+          // { title: "Pages", value: "pages" },
+          // { title: "Events", value: "event" },
+          // { title: "Documentations", value: "documentations" },
           { title: "Persons", value: "persons" },
           { title: "Testimonials", value: "testimonials" },
           { title: "Custom", value: "custom" },

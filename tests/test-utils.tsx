@@ -71,8 +71,8 @@ export const testImage: TestImage = (props = {}) => {
   return {
     alt: "testImage",
     aspectRatio: 1,
-    height: 10,
-    width: 10,
+    height: 100,
+    width: 100,
     id: "testid",
     lqip: "any",
     type: "any",

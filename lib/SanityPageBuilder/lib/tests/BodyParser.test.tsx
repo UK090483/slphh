@@ -13,21 +13,7 @@ const testComponents = {
   test2: { component: TestComponent2 },
 };
 
-const PackedFactory = () => {
-  // const factory = BlockFactory.getInstance();
-  // factory.registerComponents([
-  //   //@ts-ignore
-  //   ...rootComponents,
-  //   {
-  //     component: TestComponent1,
-  //     name: "test",
-  //     //@ts-ignore
-  //     type: "normal",
-  //   },
-  // ]);
-};
-
-describe.only("ComponentFactory", () => {
+describe.only("BodyParser", () => {
   it("smoke ", () => {
     render(<BodyParser components={{}} content={[]} />);
   });
@@ -50,7 +36,7 @@ describe.only("ComponentFactory", () => {
         content={[
           { _type: "test", _key: 1, testProp: "testProp" },
           { _type: "test2", _key: 2, testProp: "testProp" },
-          { _type: "test5", _key: 2, testProp: "testProp" },
+          { _type: "test5", _key: 3, testProp: "testProp" },
         ]}
         components={testComponents}
       />
@@ -67,7 +53,7 @@ describe.only("ComponentFactory", () => {
         content={[
           { _type: "test", _key: 1, testProp: "testProp" },
           { _type: "test2", _key: 2, testProp: "testProp" },
-          { _type: "test5", _key: 2, testProp: "testProp" },
+          { _type: "test5", _key: 3, testProp: "testProp" },
         ]}
         //@ts-ignore
         components={{ bla: {}, ...testComponents }}

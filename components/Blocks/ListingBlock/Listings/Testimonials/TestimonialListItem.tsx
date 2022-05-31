@@ -43,7 +43,8 @@ const TestimonialListItem: React.FunctionComponent<
       {children}
       <div
         className={clsx(
-          "px-5 p-24 whitespace-pre-line  flex justify-center items-center py-8",
+          "  whitespace-pre-line  flex justify-center items-center py-8",
+
           { "animate-slideInRight": active && !animateOut }
         )}
       >

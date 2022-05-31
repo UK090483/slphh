@@ -50,9 +50,9 @@ const Avatar: React.FunctionComponent<IAvatarProps> = (props) => {
           {title}
         </Typo>
       </div>
-      <Typo space={false} className="whitespace-pre-line text-center w-60 mb-4">
+      <p className="whitespace-pre-line pb-0 text-center w-60 mb-4 text-base-mobile">
         {subTitle}
-      </Typo>
+      </p>
       {children}
     </div>
   );

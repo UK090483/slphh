@@ -57,4 +57,21 @@ describe("Clever Reach", () => {
     const res = await cR.getToken();
     expect(res).toBe("testToken");
   });
+
+  it("should get token", async () => {
+    getCleverReach();
+    Mock({ json: { access_token: "testToken" } });
+    const cR = new CleverReach();
+    const res = await cR.getToken();
+    expect(res).toBe("testToken");
+  });
+  it("should get Groups Receivers and Forms", async () => {
+    getCleverReach();
+    Mock({ json: ["anything"] });
+    const cR = new CleverReach();
+    cR.token = "testToken";
+    expect(await cR.getGroups()).toEqual(["anything"]);
+    expect(await cR.getForms()).toEqual(["anything"]);
+    expect(await cR.getReceivers()).toEqual(["anything"]);
+  });
 });

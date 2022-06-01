@@ -5,7 +5,7 @@ export default async function cleverReachHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const a = req.rawHeaders;
+  const raw = req.rawHeaders;
   const cR = new CleverReach();
   //   const result = await cR.eraseRecipient("konradullrich@me.com");
   //   const add = await cR.addRecipient({
@@ -17,5 +17,7 @@ export default async function cleverReachHandler(
   //     doidata: { referer: "asd", user_agent: "dfg", user_ip: "1.2.3.4" },
   //   });
 
-  return res.json({ recipents: await cR.getReceivers(), a });
+  return res.json({
+    header: req.headers,
+  });
 }

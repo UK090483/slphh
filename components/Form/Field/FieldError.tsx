@@ -10,7 +10,7 @@ export const FieldError: React.FC = () => {
   if (!errors[name]) return null;
 
   return (
-    <div className="">
+    <div data-testid={`error-message-${name}`} className="">
       <p className="absolute bottom-1 animate-slideUp text-red text-sm italic pb-0 leading-none ">
         {errors[name].message || "something is wrong"}
       </p>

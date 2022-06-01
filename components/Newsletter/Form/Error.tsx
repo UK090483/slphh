@@ -6,7 +6,10 @@ import Rocket from "./rocket";
 
 export const Error = () => {
   return (
-    <Message icon={<Rocket className={"rotate-180"} />}>
+    <Message
+      testId="form-message-error"
+      icon={<Rocket className={"rotate-180"} />}
+    >
       <Typo variant="h2" className="text-primary">
         OOOPS!
       </Typo>

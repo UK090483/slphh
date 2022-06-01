@@ -91,6 +91,7 @@ class CleverReach {
   }
 
   logger(message: string | number, type: "info" | "error" = "info") {
+    if (process.env.NODE_ENV === "test") return;
     if (type === "info") {
       console.log(message);
     }
@@ -143,7 +144,6 @@ class CleverReach {
       if (fetchResult.ok) {
         const json = await fetchResult.json();
         logResult && this.logger(json);
-
         return json as T;
       } else {
         this.logger(await fetchResult.text());

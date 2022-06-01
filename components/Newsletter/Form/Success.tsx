@@ -5,7 +5,7 @@ import Rocket from "./rocket";
 
 export const Success = () => {
   return (
-    <Message icon={<Rocket />}>
+    <Message testId="form-message-success" icon={<Rocket />}>
       <Typo variant="h2" className="text-primary">
         SUCCESS
       </Typo>

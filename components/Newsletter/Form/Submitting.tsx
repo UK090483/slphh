@@ -4,7 +4,7 @@ import { Animation } from "./Animation";
 
 export const Submitting = () => {
   return (
-    <Animation>
+    <Animation testId="form-message-loading">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 45 45"

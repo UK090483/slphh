@@ -77,7 +77,7 @@ const PersonCarousel: React.FC = () => {
     <Carousel items={_items || []}>
       <>
         <Navigation>
-          <CarouselItemWrap>
+          <CarouselItemWrap nextOnClick={false}>
             {({ activeItem, animateOutIndex }) => {
               return (
                 <div className="w-full max-w-4xl mx-auto grid grid-cols-1 grid-rows-1 ">

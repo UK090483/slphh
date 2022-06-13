@@ -4,6 +4,7 @@ import { ICarouselContextState, useCarousel } from "./CarouselContext";
 
 interface ICarouselItemWrapProps {
   delay?: number;
+  nextOnClick?: boolean;
   children: (props: {
     activeItem: number;
     animateIn: boolean;
@@ -13,7 +14,7 @@ interface ICarouselItemWrapProps {
 }
 
 function CarouselItemWrap(props: ICarouselItemWrapProps) {
-  const { children, delay = 500 } = props;
+  const { children, delay = 500, nextOnClick = true } = props;
 
   const { activeItem: _active, next } = useCarousel();
 
@@ -47,7 +48,10 @@ function CarouselItemWrap(props: ICarouselItemWrapProps) {
   }, [animateOut, delay]);
 
   return (
-    <ul onClick={next} className="w-full grid grid-cols-1 grid-rows-1">
+    <ul
+      onClick={() => nextOnClick && next()}
+      className="w-full grid grid-cols-1 grid-rows-1"
+    >
       {children &&
         children({
           activeItem,

@@ -31,8 +31,9 @@ const Button: React.FC<ButtonProps> = (props) => {
     "text-black hover:text-white",
 
     {
-      "border-black  ": !bg || ["white", "primary", "grey"].includes(bg),
-      "hover:text-primary": bg === "primary",
+      "border-black  ": !bg || ["white", "grey"].includes(bg),
+      "hover:text-primary text-white border-white hover:bg-white ":
+        bg === "primary",
       "text-black hover:text-secondary border-black": bg === "secondary",
       "hover:text-gray-300 ": bg === "grey",
       "border-primary text-primary hover:text-black hover:bg-primary":

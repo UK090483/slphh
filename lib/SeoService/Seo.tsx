@@ -26,8 +26,8 @@ const Seo: React.FC<SeoProps> = (props) => {
 
   return (
     <NextSeo
-      nofollow={true}
-      noindex={true}
+      nofollow={false}
+      noindex={false}
       title={title}
       description={metaDesc}
       canonical={canUrl}

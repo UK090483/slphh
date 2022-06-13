@@ -9,6 +9,7 @@ import * as React from "react";
 import { useListingBlock } from "../../listingContext";
 
 import PersonListItem from "./PersonListItem";
+import { PersonItemResult } from "./PersonListQuery";
 
 const PersonList: React.FC = (props) => {
   const { personItems, title, showTitle, personVariant } = useListingBlock();
@@ -62,12 +63,15 @@ export default PersonList;
 const PersonCarousel: React.FC = () => {
   const { personItems } = useListingBlock();
 
-  const items = React.useMemo(
-    () => shuffle(personItems?.map((i) => ({ ...i, _id: Math.random() + "" }))),
-    [personItems]
+  const [preparedItems, setPreparedItems] = React.useState<PersonItemResult[]>(
+    []
   );
 
-  const _items = chunkItems(items || [], 3);
+  React.useEffect(() => {
+    personItems && setPreparedItems(personItems);
+  }, [personItems]);
+
+  const _items = chunkItems(preparedItems || [], 3);
 
   return (
     <Carousel items={_items || []}>

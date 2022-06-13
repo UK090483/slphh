@@ -11,6 +11,7 @@ module.exports = {
     "<rootDir>/.next/",
     "<rootDir>/cypress/",
     "<rootDir>/studio/",
+    ".config.js",
   ],
 
   testPathIgnorePatterns: [

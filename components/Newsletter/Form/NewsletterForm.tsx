@@ -9,12 +9,12 @@ interface INewsletterFormProps {
   onSubmit: (data: any) => Promise<boolean>;
 }
 
-const fakeFetch = () =>
-  new Promise<any>((resolve, reject) => {
-    setTimeout(() => {
-      resolve(false);
-    }, 2000);
-  });
+// const fakeFetch = () =>
+//   new Promise<any>((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(false);
+//     }, 2000);
+//   });
 
 export const sendForm = async (data: any) => {
   // return await fakeFetch();

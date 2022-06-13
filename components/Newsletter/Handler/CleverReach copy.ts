@@ -34,17 +34,9 @@ class CleverReach {
     };
   }
 
-  async eraseRecipient(poolId: string) {
-    return await this.fetch(
-      this.buildUrl(`groups.json/${this.groupID}/receivers/${poolId}`),
-      {
-        method: "DELETE",
-      }
-    );
-  }
-
   async addRecipient(data: {
     email: string;
+
     global_attributes: {
       firstname?: string;
       lastname?: string;
@@ -107,12 +99,11 @@ class CleverReach {
       console.error(message);
     }
   }
-
   async fetch<T = any>(url: string, options: RequestInit) {
     if (!this.token) {
       this.token = await this.getToken();
     }
-    return await this.client<T>(url, options);
+    return this.client<T>(url, options);
   }
 
   async getToken() {

@@ -19,7 +19,7 @@
 
 @layer components {
   .tooltip {
-    @apply !bg-secondary !border-2 !rounded-lg !border-primary !opacity-100 !p-8 !text-black !w-60 md:!w-80;
+    @apply !bg-secondary !border-2 !rounded-lg !border-primary !opacity-100 !p-4 !text-black !w-[calc(100vw-20px)] max-w-lg;
   }
 
   .menuItem {

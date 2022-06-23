@@ -2,21 +2,14 @@ import "../styles/globals.css";
 
 import { Layout } from "@components/Layout/Layout";
 import { NextComponentType, NextPageContext } from "next";
-import Cookie from "@lib/Cookie/Cookie";
 import PreviewIndicator from "@lib/SanityPageBuilder/lib/preview/PreviewIndicator";
 import Seo from "@lib/SeoService/Seo";
 import { PageResult } from "./[[...slug]]";
 import { PageProps } from "@lib/SanityPageBuilder/types";
 import usePreviewSubscription from "@lib/SanityPageBuilder/lib/preview/previewSubscription";
 import { AppContextProvider } from "@components/AppContext";
-// import { AnalyticsContextProvider } from "@lib/Analytics/AnalyticsContext";
-// @ts-ignore
-
 import AppConfig from "app.config.json";
-import PageTransition from "@lib/PageTransition/PageTransition";
-import { ParallaxProvider } from "react-scroll-parallax";
 import { LazyMotion, domAnimation, AnimatePresence, m } from "framer-motion";
-import { useRouter } from "next/router";
 import Script from "next/script";
 
 interface AppPropsWithStaticProps {
@@ -59,12 +52,19 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   return (
     <>
       <Script
+        async
+        defer
+        data-website-id="0c4b96a7-a904-4c2e-8f63-3c74f508be46"
+        src="https://umami-neon-pi.vercel.app/umami.js"
+        strategy="afterInteractive"
+      ></Script>
+      <Script
         id="usercentrics-cmp"
         src="https://app.usercentrics.eu/browser-ui/latest/loader.js"
         data-version="preview"
         data-settings-id="KVgeJnah"
         async
-        security="afterInteractive"
+        strategy="afterInteractive"
       ></Script>
       <LazyMotion features={domAnimation}>
         <AnimatePresence exitBeforeEnter>

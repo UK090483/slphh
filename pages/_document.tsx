@@ -10,7 +10,10 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
 
           <meta name="theme-color" content="#003063"></meta>
-
+          <meta
+            name="google-site-verification"
+            content="MYojza2y3frmhPSSTJ4oNnrp-ipGqoJ3VvuPtdT1sMM"
+          />
           <script
             async
             defer

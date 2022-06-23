@@ -17,6 +17,7 @@ import PageTransition from "@lib/PageTransition/PageTransition";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { LazyMotion, domAnimation, AnimatePresence, m } from "framer-motion";
 import { useRouter } from "next/router";
+import Script from "next/script";
 
 interface AppPropsWithStaticProps {
   pageProps: PageProps<PageResult>;
@@ -57,6 +58,14 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
 
   return (
     <>
+      <Script
+        id="usercentrics-cmp"
+        src="https://app.usercentrics.eu/browser-ui/latest/loader.js"
+        data-version="preview"
+        data-settings-id="KVgeJnah"
+        async
+        security="afterInteractive"
+      ></Script>
       <LazyMotion features={domAnimation}>
         <AnimatePresence exitBeforeEnter>
           <AppContextProvider

@@ -26,7 +26,7 @@ class MyDocument extends Document {
             data-version="preview"
             data-settings-id="KVgeJnah"
             async
-          ></script> */}
+          ></script>  */}
         </Head>
 
         <body

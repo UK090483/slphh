@@ -64,6 +64,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
         data-version="preview"
         data-settings-id="KVgeJnah"
         async
+        defer
         strategy="afterInteractive"
       ></Script>
       <LazyMotion features={domAnimation}>

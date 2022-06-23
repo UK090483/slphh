@@ -1,10 +1,8 @@
 import Button from "@components/Button/Button";
 import RichText from "@components/RichText/RichText";
-import Typo from "@components/Typography/Typography";
 import SanityImage from "@lib/SanityImage";
 import clsx from "clsx";
 import React from "react";
-
 import { HeroBlogResult } from "./HeroBlockQuery";
 
 interface HeroProps extends HeroBlogResult {}
@@ -35,7 +33,13 @@ const Hero: React.FC<HeroProps> = (props) => {
         )}
       >
         <div className=" w-full h-full">
-          <SanityImage image={image} layout="fill" objectFit="cover" />
+          <SanityImage
+            priority={true}
+            sizes="600px"
+            image={image}
+            layout="fill"
+            objectFit="cover"
+          />
         </div>
       </div>
 

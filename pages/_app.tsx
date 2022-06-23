@@ -51,7 +51,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
 
   return (
     <>
-      {/* <Script
+      <Script
         async
         defer
         data-website-id="0c4b96a7-a904-4c2e-8f63-3c74f508be46"
@@ -65,7 +65,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
         data-settings-id="KVgeJnah"
         async
         strategy="afterInteractive"
-      ></Script> */}
+      ></Script>
       <LazyMotion features={domAnimation}>
         <AnimatePresence exitBeforeEnter>
           <AppContextProvider

@@ -58,7 +58,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
         src="https://umami-neon-pi.vercel.app/umami.js"
         strategy="afterInteractive"
       ></Script>
-      <Script
+      {/* <Script
         id="usercentrics-cmp"
         src="https://app.usercentrics.eu/browser-ui/latest/loader.js"
         data-version="preview"
@@ -66,7 +66,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
         async
         defer
         strategy="afterInteractive"
-      ></Script>
+      ></Script> */}
       <LazyMotion features={domAnimation}>
         <AnimatePresence exitBeforeEnter>
           <AppContextProvider

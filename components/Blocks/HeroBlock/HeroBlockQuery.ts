@@ -1,7 +1,4 @@
-import {
-  richTextQuery,
-  richTextQueryShort,
-} from "@components/RichText/richTextQuery";
+import { richTextQueryShort } from "@components/RichText/richTextQuery";
 import { imageMeta, ImageMetaResult } from "@lib/SanityImage/query";
 import { LinkResult, linkQuery } from "@lib/Navigation/query";
 

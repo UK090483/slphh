@@ -1,9 +1,7 @@
 import RichText from "@components/RichText/RichText";
 import Section from "@components/Section/Section";
 import SanityImage from "@lib/SanityImage";
-import type { ImageMetaResult } from "@lib/SanityImage/query";
 import clsx from "clsx";
-import { divide } from "lodash";
 import React from "react";
 import type { SectionResult } from "./SectionBlockQuery";
 
@@ -47,7 +45,7 @@ const SectionBlock: React.FC<SectionBlockProps> = (props) => {
         {hasImage && (
           <div
             className={clsx("relative overflow-hidden  order-1", {
-              " md:order-1": imagePosition === "l",
+              "md:order-1": imagePosition === "l",
               "md:order-2": imagePosition === "r",
             })}
           >

@@ -7,6 +7,7 @@ type NavigationProps = {
   className?: string;
   count?: number;
 };
+
 export const Navigation: React.FC<NavigationProps> = (props) => {
   const { children, className } = props;
   const { next, prev, itemCount } = useCarousel();

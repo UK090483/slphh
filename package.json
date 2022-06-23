@@ -71,7 +71,7 @@
     "@types/xml2js": "^0.4.9",
     "autoprefixer": "^10.4.2",
     "babel-plugin-transform-dynamic-import": "^2.1.0",
-    "cypress": "9.7.0",
+    "cypress": "10.1.0",
     "eslint": "7",
     "eslint-config-next": "12.0.2",
     "eslint-config-prettier": "^8.3.0",

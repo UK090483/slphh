@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["es5", "dom", "esnext"],
+    "types": ["cypress", "node"],
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["**/*.tsx", "component/ComponentName.cy.tsx"]
+}

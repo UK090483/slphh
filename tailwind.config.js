@@ -63,6 +63,7 @@ module.exports = {
         red: "#D22D30",
       },
       animation: {
+        pageFadeIn: "fadeIn 0.6s ease-in forwards",
         fadeIn: "fadeIn 1s ease-in forwards",
         fadeInFast: "slideDown 0.25s ease-in forwards",
         fadeInMenuItemFast: "menuFade 0.25s ease-in forwards",

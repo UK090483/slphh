@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import { Layout } from "@components/Layout/Layout";
 import { NextComponentType, NextPageContext } from "next";
 import PreviewIndicator from "@lib/SanityPageBuilder/lib/preview/PreviewIndicator";
+import type { AppProps, NextWebVitalsMetric } from "next/app";
 import Seo from "@lib/SeoService/Seo";
 import { PageResult } from "./[[...slug]]";
 import { PageProps } from "@lib/SanityPageBuilder/types";
@@ -50,8 +51,6 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
   const aData = { ..._data, ...data };
   const pageProps = { ..._pageProps, data: aData } as PageProps<PageResult>;
 
-  console.log(pageProps.data?._id);
-
   return (
     <>
       <Script
@@ -83,7 +82,9 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
                 variants={animation.variants}
                 transition={animation.transition}
               > */}
+
           <Component {...pageProps} key={pageProps?.data?._id} />
+
           {/* </m.div> */}
         </Layout>
 
@@ -98,3 +99,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
 }
 
 export default App;
+
+export function reportWebVitals(metric: NextWebVitalsMetric) {
+  console.log(metric);
+}

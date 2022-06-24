@@ -100,6 +100,6 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
 
 export default App;
 
-export function reportWebVitals(metric: NextWebVitalsMetric) {
-  console.log(metric);
-}
+// export function reportWebVitals(metric: NextWebVitalsMetric) {
+//   console.log(metric);
+// }

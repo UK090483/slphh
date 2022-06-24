@@ -34,6 +34,7 @@ const ListingBlock: React.FC<ListingBlogResult> = (props) => {
       bg={bgColor}
       bottomSpace={bottomSpace}
       topSpace={topSpace}
+      className="overflow-hidden"
     >
       <ListingBlockContextProvider {...props}>
         {contentType === "testimonials" && <TestimonialList />}

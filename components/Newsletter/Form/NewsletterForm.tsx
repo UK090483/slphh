@@ -1,23 +1,17 @@
 import * as React from "react";
 import { AnimatePresence } from "framer-motion";
-import RawForm from "./RawForm";
 import { Submitting } from "./Submitting";
 import { Error } from "./Error";
 import { Success } from "./Success";
+
+import dynamic from "next/dynamic";
+const RawForm = dynamic(() => import("./RawForm"));
 
 interface INewsletterFormProps {
   onSubmit: (data: any) => Promise<boolean>;
 }
 
-// const fakeFetch = () =>
-//   new Promise<any>((resolve, reject) => {
-//     setTimeout(() => {
-//       resolve(false);
-//     }, 2000);
-//   });
-
 export const sendForm = async (data: any) => {
-  // return await fakeFetch();
   const res = await fetch("/api/cl", {
     method: "POST",
     body: JSON.stringify(data),

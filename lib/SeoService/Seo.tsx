@@ -46,7 +46,7 @@ const Seo: React.FC<SeoProps> = (props) => {
             height: 630,
           },
         ],
-        site_name: "Perspektiv Region",
+        site_name: "Scaleup Landing Pad Hamburg",
       }}
     />
   );

@@ -1,7 +1,9 @@
 import NewsletterForm, {
   sendForm,
 } from "@components/Newsletter/Form/NewsletterForm";
+
 import React from "react";
+
 import { PlugProps } from "./type";
 
 interface INewsletterPlugProps {

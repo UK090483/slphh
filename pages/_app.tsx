@@ -10,7 +10,7 @@ import { PageProps } from "@lib/SanityPageBuilder/types";
 import usePreviewSubscription from "@lib/SanityPageBuilder/lib/preview/previewSubscription";
 import { AppContextProvider } from "@components/AppContext";
 import AppConfig from "app.config.json";
-import { LazyMotion, domAnimation, AnimatePresence, m } from "framer-motion";
+// import { LazyMotion, domAnimation, AnimatePresence, m } from "framer-motion";
 import Script from "next/script";
 
 interface AppPropsWithStaticProps {
@@ -60,7 +60,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
         src="https://umami-neon-pi.vercel.app/umami.js"
         strategy="afterInteractive"
       ></Script>
-      {/* <Script
+      <Script
         id="usercentrics-cmp"
         src="https://app.usercentrics.eu/browser-ui/latest/loader.js"
         data-version="preview"
@@ -68,7 +68,7 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
         async
         defer
         strategy="afterInteractive"
-      ></Script> */}
+      ></Script>
       {/* <LazyMotion features={domAnimation}>
         <AnimatePresence exitBeforeEnter> */}
       <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>

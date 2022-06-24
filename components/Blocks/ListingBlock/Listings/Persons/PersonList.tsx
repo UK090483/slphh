@@ -4,7 +4,7 @@ import Dots from "@components/Carousel/Dots";
 import Navigation from "@components/Carousel/Navigation";
 import Typo from "@components/Typography/Typography";
 import clsx from "clsx";
-import { shuffle } from "lodash";
+import shuffle from "lodash/shuffle";
 import * as React from "react";
 import { useListingBlock } from "../../listingContext";
 

@@ -3,7 +3,7 @@ import Section from "@components/Section/Section";
 import SanityImage from "@lib/SanityImage";
 import type { ImageMetaResult } from "@lib/SanityImage/query";
 import clsx from "clsx";
-import { divide } from "lodash";
+import divide from "lodash/divide";
 import React from "react";
 import type { SectionResult } from "./SectionBlockQuery";
 

@@ -31,7 +31,8 @@ const animation = {
     },
   },
   transition: {
-    duration: 0.7,
+    // duration: 0.7,
+    duration: 3,
   },
 };
 
@@ -48,6 +49,8 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
 
   const aData = { ..._data, ...data };
   const pageProps = { ..._pageProps, data: aData } as PageProps<PageResult>;
+
+  console.log(pageProps.data?._id);
 
   return (
     <>
@@ -67,14 +70,11 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
         defer
         strategy="afterInteractive"
       ></Script> */}
-      <LazyMotion features={domAnimation}>
-        <AnimatePresence exitBeforeEnter>
-          <AppContextProvider
-            data={pageProps.data}
-            hostName={AppConfig.hostname}
-          >
-            <Layout>
-              <m.div
+      {/* <LazyMotion features={domAnimation}>
+        <AnimatePresence exitBeforeEnter> */}
+      <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
+        <Layout>
+          {/* <m.div
                 key={pageProps?.data?._id}
                 className="page-wrap  overflow-hidden "
                 initial="initial"
@@ -82,17 +82,17 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
                 exit="exit"
                 variants={animation.variants}
                 transition={animation.transition}
-              >
-                <Component {...pageProps} key={pageProps?.data?._id} />
-              </m.div>
-            </Layout>
+              > */}
+          <Component {...pageProps} key={pageProps?.data?._id} />
+          {/* </m.div> */}
+        </Layout>
 
-            <PreviewIndicator show={!!preview} />
-            {/* <Cookie /> */}
-            <Seo />
-          </AppContextProvider>
-        </AnimatePresence>
-      </LazyMotion>
+        <PreviewIndicator show={!!preview} />
+        {/* <Cookie /> */}
+        <Seo />
+      </AppContextProvider>
+      {/* </AnimatePresence>
+      </LazyMotion> */}
     </>
   );
 }

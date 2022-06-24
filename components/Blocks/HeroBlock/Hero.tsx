@@ -33,13 +33,13 @@ const Hero: React.FC<HeroProps> = (props) => {
         )}
       >
         <div className=" w-full h-full">
-          {/* <SanityImage
+          <SanityImage
             priority={true}
             sizes="(min-width: 500px) 600px,300px"
             image={image}
             layout="fill"
             objectFit="cover"
-          /> */}
+          />
         </div>
       </div>
 

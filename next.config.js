@@ -1,11 +1,18 @@
 /** @type {import('next').NextConfig} */
 
+const withPlugins = require("next-compose-plugins");
+
 const appConfig = require("./app.config.json");
 const withPWA = require("next-pwa");
 const { withSentryConfig } = require("@sentry/nextjs");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
-const config = {
+const shouldAnalyzeBundles = process.env.ANALYZE === "true";
+
+console.log({ analyse: process.env.ANALYZE });
+
+let nextConfig = {
+  productionBrowserSourceMaps: shouldAnalyzeBundles,
   reactStrictMode: true,
   i18n: {
     locales: Object.keys(appConfig.locales),
@@ -50,5 +57,10 @@ const sentryWebpackPluginOptions = {
 };
 
 // module.exports = withSentryConfig(config, sentryWebpackPluginOptions);
+if (shouldAnalyzeBundles) {
+  const withNextBundleAnalyzer =
+    require("next-bundle-analyzer")(/* options come there */);
+  nextConfig = withNextBundleAnalyzer(nextConfig);
+}
 
-module.exports = config;
+module.exports = nextConfig;

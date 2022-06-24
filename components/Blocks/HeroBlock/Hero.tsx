@@ -2,6 +2,7 @@ import Button from "@components/Button/Button";
 import RichText from "@components/RichText/RichText";
 import SanityImage from "@lib/SanityImage";
 import clsx from "clsx";
+import Image from "next/image";
 import React from "react";
 import { HeroBlogResult } from "./HeroBlockQuery";
 
@@ -33,13 +34,24 @@ const Hero: React.FC<HeroProps> = (props) => {
         )}
       >
         <div className=" w-full h-full">
-          <SanityImage
-            priority={true}
+          <Image
+            placeholder="blur"
+            blurDataURL={image?.lqip}
+            className=" grayscale-[60%]"
             sizes="(min-width: 500px) 600px,300px"
+            priority={true}
+            alt="el"
+            layout="fill"
+            objectFit="cover"
+            src={image?.url || ""}
+          />
+          {/* <SanityImage
+            priority={true}
+
             image={image}
             layout="fill"
             objectFit="cover"
-          />
+          /> */}
         </div>
       </div>
 

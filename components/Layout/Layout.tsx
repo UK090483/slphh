@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import SkipToContent from "@lib/SkipToContent/SkipComponent";
 import Footer from "./Footer";
 import { Header } from "./Header";
@@ -10,11 +10,19 @@ const useIsomorphicLayoutEffect =
 export const Layout: React.FC = (props) => {
   const { children } = props;
 
-  const [fadeIn, setFadeIn] = useState(true);
+  const firstRender = useRef(true);
+
+  const [fadeIn, setFadeIn] = useState(false);
 
   const { data } = useAppContext();
 
   useIsomorphicLayoutEffect(() => {
+    console.log("render");
+
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
     setFadeIn(true);
     const timeOut = setTimeout(() => {
       setFadeIn(false);
@@ -35,6 +43,7 @@ export const Layout: React.FC = (props) => {
         className={`min-h-screen mt-[128px] select-none ${
           fadeIn ? "animate-pageFadeIn" : ""
         }`}
+        //className={`min-h-screen mt-[128px] select-none`}
       >
         {children}
       </main>

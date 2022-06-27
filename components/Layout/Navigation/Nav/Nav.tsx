@@ -53,7 +53,12 @@ const Nav: React.FC = () => {
             <Burger open={open} />
           </button>
 
-          <Link className="hidden  menu:block" aria-label="Home" href="/">
+          <Link
+            external={true}
+            className="hidden  menu:block"
+            aria-label="Home"
+            href="https://future.hamburg/"
+          >
             <Logo small={scrolled} variant="b" />
           </Link>
         </div>
@@ -66,9 +71,10 @@ const Nav: React.FC = () => {
         }}
       >
         <Link
-          className="opacity-0  animate-fadeInSlow  pl-4  pt-8"
+          external={true}
+          className="opacity-0  animate-fadeInSlow  pl-4  pt-"
           aria-label="Home"
-          href="/"
+          href="https://future.hamburg/"
         >
           <Logo small={scrolled} variant="b" />
         </Link>

@@ -38,21 +38,29 @@ const Nav: React.FC = () => {
             className="items-center justify-center hidden  menu:flex "
           />
 
-          <div className="flex gap-4 flex-shrink-0 items-center">
-            {/* <LangSwitch className="hidden menu:flex" slugs={langSwitchData} /> */}
+          {/* <div className="flex gap-4 flex-shrink-0 items-center">
+          <LangSwitch className="hidden menu:flex" slugs={langSwitchData} /> 
           </div>
+          */}
 
           <button
             data-testid="menu-overlay-toggle "
             onClick={() => setOpen((s) => !s)}
             aria-label={"Open the menu"}
             aria-expanded={open}
-            className="menu:hidden h-14 px-4"
+            className="menu:hidden h-14  pr-4"
           >
-            {/* <Svg className="w-[30px] h-[30px]" icon="hamburger" /> */}
-
             <Burger open={open} />
           </button>
+
+          <Link
+            external={true}
+            className="hidden  menu:block"
+            aria-label="Home"
+            href="https://future.hamburg/"
+          >
+            <Logo small={scrolled} variant="b" />
+          </Link>
         </div>
       </nav>
       <NavigationMobile
@@ -62,6 +70,14 @@ const Nav: React.FC = () => {
           setOpen(false);
         }}
       >
+        <Link
+          external={true}
+          className="opacity-0  animate-fadeInSlow  pl-4  pt-"
+          aria-label="Home"
+          href="https://future.hamburg/"
+        >
+          <Logo small={scrolled} variant="b" />
+        </Link>
         {/* <LangSwitch
           slugs={langSwitchData}
           onClick={() => {

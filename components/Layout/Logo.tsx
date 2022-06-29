@@ -5,8 +5,17 @@ import React from "react";
 type LogoProps = {
   className?: string;
   small?: boolean;
+  variant?: "a" | "b";
 };
-export const Logo: React.FC<LogoProps> = ({ className = "", small }) => {
+export const Logo: React.FC<LogoProps> = ({
+  className = "",
+  small,
+  variant = "a",
+}) => {
+  if (variant === "a") {
+    return <LogoA small={small} />;
+  }
+
   return (
     <div
       className={`transition-all duration-700  py-2 ${
@@ -14,9 +23,9 @@ export const Logo: React.FC<LogoProps> = ({ className = "", small }) => {
       }`}
     >
       <svg
-        className={clsx(`h-full transition-all duration-700 w-[160px]`, {
-          "w-[90px]": small,
-          "w-[160px]": !small,
+        className={clsx(`h-full transition-all duration-700 w-[90px]`, {
+          // "w-[90px]": small,
+          // "w-[160px]": !small,
         })}
         viewBox="0 0 154 84"
         fill="none"
@@ -36,3 +45,21 @@ export const Logo: React.FC<LogoProps> = ({ className = "", small }) => {
 };
 
 export default Logo;
+
+const LogoA: React.FC<{ small?: boolean }> = ({ small = false }) => {
+  return (
+    <div
+      className={clsx(
+        "   font-bold leading-none transition-all duration-700 ",
+        {
+          "text-[1.4rem] py-4": !small,
+          "text-[1.1rem] py-1": small,
+        }
+      )}
+    >
+      <span className="block">Scaleup</span>
+      <span className="block">Landing Pad</span>
+      <span className="block text-primary">Hamburg</span>
+    </div>
+  );
+};

@@ -65,6 +65,7 @@ module.exports = {
       animation: {
         pageFadeIn: "fadeIn 0.6s ease-in forwards",
         fadeIn: "fadeIn 1s ease-in forwards",
+        fadeInSlow: "fadeIn 1s 1s ease-in forwards",
         fadeInFast: "slideDown 0.25s ease-in forwards",
         fadeInMenuItemFast: "menuFade 0.25s ease-in forwards",
         slideInMobileMenu: "slideInMobileMenu 0.25s ease-in forwards",

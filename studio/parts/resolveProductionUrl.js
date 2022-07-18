@@ -1,4 +1,4 @@
-const remoteUrl = `https://perspectiv.vercel.app/`;
+const remoteUrl = `https://landingpad.future.hamburg/`;
 const localUrl = `http://localhost:3000`;
 
 const previewSecret = "j8heapkqy4rdz6kudrvsc7ywpvfhrv022abyx5zgmuwpc1xv";

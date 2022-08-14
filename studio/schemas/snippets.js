@@ -59,7 +59,11 @@ export const space = (override) => {
       type: "string",
 
       options: {
-        list: [...sizesList()],
+        list: [
+          ...sizesList((i) =>
+            i?.value === "m" ? { title: "m (default)", value: i.value } : i
+          ),
+        ],
       },
       ...override,
     },
@@ -89,8 +93,8 @@ export function colorList(skip) {
   const list = [
     { title: "Black", value: "black", hex: "#003063" },
     { title: "White", value: "white", hex: "#FFFFFF" },
-    { title: "Primary", value: "primary", hex: "#CA497C" },
-    { title: "Secondary", value: "secondary", hex: "#B8D7D7" },
+    { title: "Magenta", value: "primary", hex: "#CA497C" },
+    { title: "Türkis", value: "secondary", hex: "#B8D7D7" },
     { title: "Grey", value: "grey", hex: "#ebebeb" },
   ];
   if (!Array.isArray(skip)) return list;
@@ -98,7 +102,7 @@ export function colorList(skip) {
   return list.filter((listItem) => !skip.includes(listItem.value));
 }
 
-export function sizesList(skip) {
+export function sizesList(map) {
   const list = [
     { title: "s", value: "s" },
     { title: "m", value: "m" },
@@ -106,7 +110,7 @@ export function sizesList(skip) {
     { title: "xl", value: "xl" },
     { title: "xxl", value: "xxl" },
   ];
-  if (!Array.isArray(skip)) return list;
+  if (typeof map !== "function") return list;
 
-  return list.filter((listItem) => !skip.includes(listItem.value));
+  return list.map((listItem) => map(listItem)).filter((i) => !!i);
 }

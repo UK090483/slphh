@@ -13,6 +13,7 @@ import BodyParser from "@lib/SanityPageBuilder/lib/BodyParser";
 import fetchStaticPaths from "@lib/SanityPageBuilder/lib/fetchStaticPath/fetchStaticPath";
 import fetchStaticProps from "@lib/SanityPageBuilder/lib/fetchStaticProps/fetchStaticProps";
 import { sanityClient as client } from "@lib/SanityService/sanity.server";
+import { previewClient as sanityPreviewClient } from "@lib/SanityService/sanity.server";
 
 import type { GetStaticPaths, GetStaticProps } from "next";
 import appConfig from "../app.config.json";
@@ -57,7 +58,7 @@ export const getStaticProps: GetStaticProps = async (props) => {
     locale,
     revalidate: true,
     params,
-    client,
+    client: preview ? sanityPreviewClient : client,
     previewQuery: `content[]{${heroBlockQuery(locale)},${sectionBlockQuery(
       locale
     )}, ${listingBlockQuery(locale)}}`,

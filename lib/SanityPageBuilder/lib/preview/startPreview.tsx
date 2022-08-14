@@ -23,15 +23,17 @@ export default async function preview(
   }
 
   const doc = await client.fetch(
-    `*[ _id == "${req.query.id}" ][0]{ 'slug':select( defined(pageType) => pageType->slug.current +'/'+ slug.current , slug.current)}`
+    `*[ _id in ["${req.query.id}","drafts.${req.query.id}"] ][0]{ 'slug':select( defined(pageType) => pageType->slug.current +'/'+ slug.current , slug.current)}`
   );
+
+  const slug = doc ? doc?.slug : "";
 
   // Enable Preview Mode by setting the cookies
   res.setPreviewData({});
 
   // Redirect to the path from the fetched post
   // We don't redirect to req.query.slug as that might lead to open redirect vulnerabilities
-  res.writeHead(307, { location: doc.slug ? `/${doc.slug}` : "/" });
+  res.writeHead(307, { location: slug ? `/${slug}` : "/" });
 
   return res.end();
 }

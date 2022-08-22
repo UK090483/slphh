@@ -40,7 +40,7 @@ export const Layout: React.FC = (props) => {
       </Header>
       <main
         id="main-content"
-        className={`min-h-screen mt-[99px] select-none ${
+        className={`min-h-screen mt-[99px] ${
           fadeIn ? "animate-pageFadeIn" : ""
         }`}
         //className={`min-h-screen mt-[128px] select-none`}

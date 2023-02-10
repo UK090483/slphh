@@ -60,46 +60,24 @@ function App({ Component, pageProps: _pageProps }: AppPropsWithStaticProps) {
         src="https://umami-neon-pi.vercel.app/umami.js"
         strategy="afterInteractive"
       ></Script>
-      <Script
+      {/* <Script
         id="usercentrics-cmp"
         src="https://app.usercentrics.eu/browser-ui/latest/loader.js"
         data-version="preview"
         data-settings-id="KVgeJnah"
-        async
-        defer
-        strategy="afterInteractive"
-      ></Script>
-      {/* <LazyMotion features={domAnimation}>
-        <AnimatePresence exitBeforeEnter> */}
+      ></Script> */}
+
       <AppContextProvider data={pageProps.data} hostName={AppConfig.hostname}>
         <Layout>
-          {/* <m.div
-                key={pageProps?.data?._id}
-                className="page-wrap  overflow-hidden "
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                variants={animation.variants}
-                transition={animation.transition}
-              > */}
-
           <Component {...pageProps} key={pageProps?.data?._id} />
-
-          {/* </m.div> */}
         </Layout>
 
         <PreviewIndicator show={!!preview} />
-        {/* <Cookie /> */}
+
         <Seo />
       </AppContextProvider>
-      {/* </AnimatePresence>
-      </LazyMotion> */}
     </>
   );
 }
 
 export default App;
-
-// export function reportWebVitals(metric: NextWebVitalsMetric) {
-//   console.log(metric);
-// }

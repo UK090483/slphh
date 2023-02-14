@@ -24,7 +24,7 @@ const PlayerPlug: React.FC<PlugProps<IPlayerPlugProps>> = (props) => {
       })}
     >
       <div className=" aspect-w-16  aspect-h-9 ">
-        <ReactPlayer width="100%" height="100%" url={url} />
+        <ReactPlayer light width="100%" height="100%" url={url} />
       </div>
     </div>
   );

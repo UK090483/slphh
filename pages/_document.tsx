@@ -42,14 +42,6 @@ class MyDocument extends Document {
             type="application/javascript"
             src="https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js"
           ></script>
-
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-            
-          `,
-            }}
-          ></script>
         </Head>
 
         <body

@@ -2,7 +2,7 @@
   "root": true,
   "api": {
     "projectId": "m3d5eg0p",
-    "dataset": "production"
+    "dataset": "development"
   },
   "project": {
     "name": "slphh"
@@ -19,9 +19,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [

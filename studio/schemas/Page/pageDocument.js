@@ -17,12 +17,12 @@ export default withLocalization({
         return parent.redirect;
       },
     },
-    {
-      name: "subTitle",
-      type: "string",
-      title: "SubTitle",
-      localize: true,
-    },
+    // {
+    //   name: "subTitle",
+    //   type: "string",
+    //   title: "SubTitle",
+    //   localize: true,
+    // },
     {
       name: "description",
       type: "text",

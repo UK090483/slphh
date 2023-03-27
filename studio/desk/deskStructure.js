@@ -1,11 +1,9 @@
 import S from "@sanity/desk-tool/structure-builder";
-import client from "part:@sanity/base/client";
 import { CgProfile, CgCalendar, CgTag } from "react-icons/cg";
 import { MdSettings } from "react-icons/md";
 import Iframe from "sanity-plugin-iframe-pane";
-
 import resolveProductionUrl from "../parts/resolveProductionUrl";
-import AppConfig from "../../app.config.json";
+
 export const getDefaultDocumentNode = (doc) => {
   if (doc.schemaType !== "page") return S.document().views([S.view.form()]);
   return S.document().views([
@@ -75,26 +73,34 @@ export default () =>
       //     return S.list({ id: "li", items: [root, ...items] });
       //   },
       // }),
+
       S.listItem()
         .title("Pages")
         .icon(CgCalendar)
-        .child(S.documentTypeList("page")),
+        .child(
+          S.documentTypeList("page").filter(
+            '_type == "page" && !defined(pageType) '
+          )
+        ),
+      S.listItem()
+        .title("UseCases")
+        .icon(CgCalendar)
+        .child(
+          S.documentTypeList("page").filter(
+            '_type == "page" && pageType._ref == "a697a676-d535-4531-830e-7fd89d23dd33"'
+          )
+        ),
 
       // S.listItem()
-      //   .title("Events")
+      //   .title("PagesTypes")
       //   .icon(CgCalendar)
-      //   .child(S.documentTypeList("event")),
+      //   .child(S.documentTypeList("pageType")),
 
       S.listItem()
         .title("Persons/Institutions")
         .icon(CgProfile)
         .child(S.documentTypeList("person")),
 
-      // S.listItem().title("Tags").icon(CgTag).child(S.documentTypeList("tag")),
-      // S.listItem()
-      //   .title("PageType")
-      //   .icon(CgTag)
-      //   .child(S.documentTypeList("pageType")),
       S.listItem()
         .title("Testimonial")
         .icon(CgTag)

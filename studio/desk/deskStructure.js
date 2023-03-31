@@ -3,6 +3,7 @@ import { CgProfile, CgCalendar, CgTag } from "react-icons/cg";
 import { MdSettings } from "react-icons/md";
 import Iframe from "sanity-plugin-iframe-pane";
 import resolveProductionUrl from "../parts/resolveProductionUrl";
+import initialUseCase from "../parts/initialValueTemplates";
 
 export const getDefaultDocumentNode = (doc) => {
   if (doc.schemaType !== "page") return S.document().views([S.view.form()]);
@@ -83,12 +84,19 @@ export default () =>
           )
         ),
       S.listItem()
-        .title("UseCases")
+        .title("Use Cases")
         .icon(CgCalendar)
         .child(
-          S.documentTypeList("page").filter(
-            '_type == "page" && pageType._ref == "a697a676-d535-4531-830e-7fd89d23dd33"'
-          )
+          S.documentTypeList("page")
+            .title("Use Cases")
+            .filter(
+              '_type == "page" && pageType._ref == "3efaf8b1-8110-4143-b36f-838041281f32"'
+            )
+            .initialValueTemplates(
+              S.initialValueTemplateItem("page-by-pageType", {
+                pageTypeId: "3efaf8b1-8110-4143-b36f-838041281f32",
+              })
+            )
         ),
 
       // S.listItem()

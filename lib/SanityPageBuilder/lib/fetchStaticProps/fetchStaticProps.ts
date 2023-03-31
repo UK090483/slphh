@@ -20,6 +20,12 @@ export async function fetchStaticProps<P>(
   }
 
   const slug = params && params.slug && params.slug[params.slug.length - 1];
+  const pageType =
+    params && params.slug && params.slug.length === 2 && params.slug[0];
+
+  if (pageType && pageType !== "use-cases") {
+    return { notFound: true, revalidate };
+  }
 
   const localizedQuery = (slug: string) =>
     Object.keys(locales).reduce((acc, item) => {
@@ -31,7 +37,9 @@ export async function fetchStaticProps<P>(
     }, `slug.current == "${slug}"`);
 
   const filter = slug
-    ? `_type == "page" && (${localizedQuery(slug)})`
+    ? `_type == "page" && (${localizedQuery(slug)}) ${
+        pageType ? "" : "&& !defined(pageType)"
+      } `
     : `_id == *[_id == 'siteConfig'][0].indexPage._ref`;
 
   const fetch = `*[${filter}][0]{

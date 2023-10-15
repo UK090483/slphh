@@ -36,8 +36,27 @@ const selectItems = [
   { value: "other", label: "other" },
 ];
 
+const getLabel = (items: typeof selectItems, value?: string) => {
+  if (!value) return "";
+
+  return items.reduce((acc, item) => {
+    if (item.items) {
+      const found = item.items.find((i) => i.value === value);
+      if (found) {
+        return found.label;
+      }
+    }
+
+    if (item.value === value) {
+      return item.label;
+    }
+
+    return acc;
+  }, "");
+};
+
 const Select: React.FC = () => {
-  const { name, type, placeholder, options } = useFieldContext();
+  const { name, options } = useFieldContext();
 
   const { setValue, register, watch } = useFormContext();
 
@@ -48,31 +67,33 @@ const Select: React.FC = () => {
       <Listbox
         {...register(name, options)}
         value={value}
-        onChange={(e) => setValue(name, e)}
+        onChange={(e) => setValue(name, e.value)}
       >
         <div className="relative mt-1">
           <Listbox.Button
             id={name}
-            className="relative  w-full cursor-default  text-left border-dotted border-0 border-b-2  border-primary h-8"
+            className="relative w-full cursor-default border-dotted border-0 border-b-2 border-primary h-7"
           >
-            {({ value, open }) => (
-              <span className="w-full h-full ">
-                <span className="block truncate pl-2">
-                  {value ? value : ""}
+            {({ open }) => {
+              return (
+                <span className="w-full h-full flex">
+                  <span className="text-left w-full block pl-2 truncate ">
+                    {getLabel(selectItems, value)}
+                  </span>
+                  <span className="pointer-events-none flex items-center bg-black rounded-full shrink-0  justify-center w-6 h-6">
+                    <ChevronDownIcon
+                      className={clsx(
+                        "h-5 w-5 transition-transform text-white ",
+                        {
+                          "rotate-180 ": open,
+                        }
+                      )}
+                      aria-hidden="true"
+                    />
+                  </span>
                 </span>
-                <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center  bg-black rounded-full  justify-center w-6 h-6">
-                  <ChevronDownIcon
-                    className={clsx(
-                      "h-5 w-5 transition-transform text-white ",
-                      {
-                        "rotate-180 ": open,
-                      }
-                    )}
-                    aria-hidden="true"
-                  />
-                </span>
-              </span>
-            )}
+              );
+            }}
           </Listbox.Button>
           <Transition
             as={Fragment}
@@ -80,7 +101,7 @@ const Select: React.FC = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute max-h-60 w-full overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute max-h-60 w-full z-50 overflow-auto rounded-md bg-white text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
               {selectItems.map((item, itemIdx) => {
                 if (item.items) {
                   return (
@@ -93,13 +114,13 @@ const Select: React.FC = () => {
                       </figcaption>
                       <ul className="relative w-full">
                         {item.items.map((subitem, subitemIndex) => (
-                          <Option key={subitemIndex} value={subitem.value} />
+                          <Option key={subitemIndex} option={subitem} />
                         ))}
                       </ul>
                     </figure>
                   );
                 }
-                return <Option key={itemIdx} value={item.value || ""} />;
+                return <Option key={itemIdx} option={item} />;
               })}
             </Listbox.Options>
           </Transition>
@@ -109,19 +130,19 @@ const Select: React.FC = () => {
   );
 };
 
-const Option = ({ value }: { value: string }) => {
+const Option = ({ option }: { option: { value: string; label: string } }) => {
   return (
     <Listbox.Option
       className={({ active }) =>
-        `relative cursor-default text-left select-none py-2 pl-10 pr-4 text-black text-base-mobile ${
+        `relative cursor-default text-left select-none py-2 pl-10 pr-4 text-black text-sm md:text-base-mobile ${
           active ? "bg-secondary bg-opacity-50 " : ""
         }`
       }
-      value={value}
+      value={option}
     >
       {({ selected }) => (
         <>
-          <span className={`block truncate`}>{value}</span>
+          <span className={`block truncate`}>{option.label}</span>
           {selected ? (
             <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
               <CheckIcon className="h-5 w-5" aria-hidden="true" />

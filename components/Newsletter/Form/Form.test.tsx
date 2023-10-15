@@ -15,7 +15,7 @@ const testData = {
   email: "test@tester.com",
   "family-name": "testing",
   "first-name": "tester",
-  description: "SME/Corporate",
+  description: "Hamburg-based:SME/Corporate",
 };
 
 describe("NewsletterForm", () => {

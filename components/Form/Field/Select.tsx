@@ -77,7 +77,7 @@ const Select: React.FC = () => {
             {({ open }) => {
               return (
                 <span className="w-full h-full flex">
-                  <span className="text-left w-full block pl-2 truncate ">
+                  <span className="text-left w-full block pl-2 truncate">
                     {getLabel(selectItems, value)}
                   </span>
                   <span className="pointer-events-none flex items-center bg-black rounded-full shrink-0  justify-center w-6 h-6">

@@ -7,17 +7,11 @@ export default async function cleverReachHandler(
 ) {
   const raw = req.rawHeaders;
   const cR = new CleverReach();
-  //   const result = await cR.eraseRecipient("konradullrich@me.com");
-  //   const add = await cR.addRecipient({
-  //     email: "konradullrich@me.com",
-  //     global_attributes: {},
-  //   });
-  //   const activate = await cR.activateRecipient({
-  //     email: "konradullrich@me.com",
-  //     doidata: { referer: "asd", user_agent: "dfg", user_ip: "1.2.3.4" },
-  //   });
+
+  // const r = await cR.getReceivers();
 
   return res.json({
     header: req.headers,
+    //r,
   });
 }

@@ -20,7 +20,7 @@ const Field: React.FunctionComponent<IFieldProps> = (props) => {
     formState: { isSubmitting, errors },
   } = useFormContext();
 
-  const { name } = props;
+  const { name, children } = props;
 
   const hasError = !!errors[name];
 
@@ -28,7 +28,7 @@ const Field: React.FunctionComponent<IFieldProps> = (props) => {
     <FieldContextProvider {...props}>
       <div
         className={clsx(
-          " w-full relative md:pt-4 pb-4 md:pb-6 px-2 transition-all text-base-mobile md:text-base border-0  border-t-2  border-transparent   rounded-sm  ",
+          "w-full relative md:pt-4 pb-4 md:pb-6 px-2 transition-all text-base-mobile md:text-base border-0  border-t-2  border-transparent   rounded-sm  ",
           {
             "opacity-50 ": isSubmitting,
             "bg-red bg-opacity-20": hasError,
@@ -40,7 +40,8 @@ const Field: React.FunctionComponent<IFieldProps> = (props) => {
       >
         <div className=" grid grid-rows-2 gap-2 sm:grid-rows-1 sm:gap-0 sm:grid-cols-[100px_1fr]  md:grid-cols-[120px_1fr] ">
           <FormLabel />
-          <Input />
+
+          {children ? children : <Input />}
         </div>
 
         <FieldError />

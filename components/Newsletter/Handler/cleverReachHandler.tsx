@@ -26,7 +26,7 @@ export default async function cleverReachHandler(
         data["first-name"] && data["family-name"]
           ? `${data["first-name"]} ${data["family-name"]}`
           : undefined,
-      description: data["description"],
+      contacttype: data["description"],
     },
   };
 

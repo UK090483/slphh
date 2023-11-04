@@ -17,7 +17,7 @@ export const Input: React.FC = () => {
       readOnly={isSubmitting}
       placeholder={placeholder}
       className={clsx(
-        "w-full pt-4 pl-2  leading-none flex justify-center  transition-all border-dotted border-0 border-b-2  border-primary p-0 focus:outline-dotted  focus:outline-0 outline-primary  placeholder:text-center placeholder:font-bold ",
+        "w-full pt-4 pl-2 leading-none flex justify-center  transition-all border-dotted border-0 border-b-2  border-primary p-0 focus:outline-dotted  focus:outline-0 outline-primary  placeholder:text-center placeholder:font-bold ",
         {
           "border-red": !!errors[name],
         }

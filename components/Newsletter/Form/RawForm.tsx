@@ -1,6 +1,7 @@
 import * as React from "react";
 import Field from "../../Form/Field/Field";
 import Form from "../../Form/Form";
+import Select from "../../Form/Field/Select";
 import { Animation } from "./Animation";
 
 const RawForm: React.FC<{ handleSubmit: (data: any) => void }> = ({
@@ -29,6 +30,15 @@ const RawForm: React.FC<{ handleSubmit: (data: any) => void }> = ({
         <Field label="First Name" name="first-name" type="text" />
         <Field label="Last Name" name="family-name" type="text" />
         <Field label="Company" name="company" type="text" />
+        <Field
+          label="We are a*"
+          name="description"
+          options={{
+            required: { message: "required", value: true },
+          }}
+        >
+          <Select />
+        </Field>
       </Form>
     </Animation>
   );

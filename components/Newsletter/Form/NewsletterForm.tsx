@@ -44,7 +44,7 @@ const NewsletterForm: React.FC<INewsletterFormProps> = (props) => {
 
   return (
     <AnimatePresence>
-      <div className="w-full   mx-auto ">
+      <div className="w-full mx-auto">
         {steps === "init" && <RawForm handleSubmit={handleSubmit} />}
         {steps === "submitting" && <Submitting />}
         {steps === "success" && <Success />}

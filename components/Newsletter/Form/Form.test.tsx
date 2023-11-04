@@ -15,6 +15,7 @@ const testData = {
   email: "test@tester.com",
   "family-name": "testing",
   "first-name": "tester",
+  description: "Hamburg-based:SME/Corporate",
 };
 
 describe("NewsletterForm", () => {
@@ -22,6 +23,7 @@ describe("NewsletterForm", () => {
   let firstName: HTMLElement;
   let lastName: HTMLElement;
   let company: HTMLElement;
+  let description: HTMLElement;
   let submit: HTMLElement;
 
   beforeEach(async () => {
@@ -32,6 +34,7 @@ describe("NewsletterForm", () => {
     firstName = screen.getByLabelText("First Name :");
     lastName = screen.getByLabelText("Last Name :");
     company = screen.getByLabelText("Company :");
+    description = screen.getByLabelText("We are a* :");
     submit = screen.getByText("Submit");
     mockLogin.mockReset();
   });
@@ -45,6 +48,11 @@ describe("NewsletterForm", () => {
       user.type(firstName, testData["first-name"]);
       user.type(lastName, testData["family-name"]);
       user.type(company, testData["company"]);
+      user.click(description);
+    });
+
+    act(() => {
+      user.click(screen.getAllByRole("option")[0]);
     });
 
     await act(async () => {
@@ -58,10 +66,15 @@ describe("NewsletterForm", () => {
     mockLogin.mockImplementation(
       () => new Promise<boolean>((resolve, reject) => resolve(true))
     );
-    act(() => {
+    await act(async () => {
       user.type(firstName, testData["first-name"]);
       user.type(lastName, testData["family-name"]);
       user.type(company, testData["company"]);
+      user.click(description);
+    });
+
+    act(() => {
+      user.click(screen.getAllByRole("option")[0]);
     });
 
     await act(async () => {
@@ -102,9 +115,15 @@ describe("NewsletterForm", () => {
           }, 200)
         )
     );
-    act(() => {
+    await act(async () => {
       user.type(email, testData.email);
+      user.click(description);
     });
+
+    act(() => {
+      user.click(screen.getAllByRole("option")[0]);
+    });
+
     await act(async () => {
       await fireEvent.click(submit);
     });
@@ -119,9 +138,15 @@ describe("NewsletterForm", () => {
     mockLogin.mockImplementation(
       () => new Promise<boolean>((resolve, reject) => resolve(true))
     );
-    act(() => {
+    await act(async () => {
       user.type(email, testData.email);
+      user.click(description);
     });
+
+    act(() => {
+      user.click(screen.getAllByRole("option")[0]);
+    });
+
     await act(async () => {
       await fireEvent.click(submit);
     });
@@ -131,9 +156,15 @@ describe("NewsletterForm", () => {
     mockLogin.mockImplementation(
       () => new Promise<boolean>((resolve, reject) => resolve(false))
     );
-    act(() => {
+    await act(async () => {
       user.type(email, testData.email);
+      user.click(description);
     });
+
+    act(() => {
+      user.click(screen.getAllByRole("option")[0]);
+    });
+
     await act(async () => {
       await fireEvent.click(submit);
     });
